@@ -1,9 +1,9 @@
 const path = require('path')
 const { ConcatSource } = require('webpack-sources')
-const { JavascriptModulesPlugin } = require('webpack')
+const { javascript } = require('webpack')
 
 function isRuntimeExtracted(compilation) {
-  return compilation.chunks.some(
+  return [...compilation.chunks].some(
     (chunk) =>
       chunk.isOnlyInitial() && chunk.hasRuntime() && !chunk.hasEntryModule()
   )
@@ -60,14 +60,12 @@ module.exports = class MinaRuntimeWebpackPlugin {
         return source
       }
 
-      JavascriptModulesPlugin.getCompilationHooks(compilation).renderMain.tap(
-        'MinaRuntimePlugin',
-        callback
-      )
-      JavascriptModulesPlugin.getCompilationHooks(compilation).renderChunk.tap(
-        'MinaRuntimePlugin',
-        callback
-      )
+      javascript.JavascriptModulesPlugin.getCompilationHooks(
+        compilation
+      ).renderMain.tap('MinaRuntimePlugin', callback)
+      javascript.JavascriptModulesPlugin.getCompilationHooks(
+        compilation
+      ).renderChunk.tap('MinaRuntimePlugin', callback)
     })
   }
 }

@@ -4,12 +4,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MinaWebpackPlugin = require('./plugin/MinaWebpackPlugin')
 const MinaRuntimePlugin = require('./plugin/MinaRuntimePlugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const debuggable = process.env.BUILD_TYPE !== 'release'
 
 module.exports = {
   context: resolve('src'),
-  entry: './app.js',
+  entry: './app.ts',
   output: {
     path: resolve('dist'),
     filename: '[name].js',
@@ -18,12 +19,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: 'babel-loader',
+        test: /\.ts$/,
+        use: ['babel-loader', 'ts-loader'],
+      },
+      {
+        test: /\.less$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({ filename: '[name].wxss' }),
     new EnvironmentPlugin({
       NODE_ENV: JSON.stringify(process.env.NODE_ENV) || 'development',
       BUILD_TYPE: JSON.stringify(process.env.BUILD_TYPE) || 'debug',
@@ -37,7 +43,7 @@ module.exports = {
           from: '**/*',
           to: './',
           globOptions: {
-            ignore: ['**/*.js'],
+            ignore: ['**/*.ts', '**/*.less'],
           },
         },
       ],

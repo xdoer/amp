@@ -34,7 +34,7 @@ class MinaWebpackPlugin {
   applyEntry(compiler, done) {
     const { context } = compiler.options
     this.entries
-      .map((item) => replaceExt(item, '.js'))
+      .map((item) => replaceExt(item, '.ts'))
       .map((item) => path.relative(context, item))
       .forEach((item) =>
         new EntryPlugin(context, './' + item, replaceExt(item, '')).apply(
