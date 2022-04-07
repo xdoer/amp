@@ -1,6 +1,7 @@
 const path = require('path')
 const { ConcatSource } = require('webpack-sources')
 const { javascript } = require('webpack')
+const requiredPath = require('required-path')
 
 function isRuntimeExtracted(compilation) {
   return [...compilation.chunks].some(
@@ -10,7 +11,14 @@ function isRuntimeExtracted(compilation) {
 }
 
 function script({ dependencies }) {
-  return ';' + dependencies.map((file) => `require('${file}');`).join('')
+  return (
+    ';' +
+    dependencies
+      .map((file) => {
+        return `require('${requiredPath(file)}');`
+      })
+      .join('')
+  )
 }
 
 module.exports = class MinaRuntimeWebpackPlugin {

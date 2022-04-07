@@ -17,7 +17,7 @@ module.exports = {
     sourceType: 'module',
   },
   globals: {
-    wx: true,
+    my: true,
     App: true,
     Page: true,
     getCurrentPages: true,
