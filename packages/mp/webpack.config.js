@@ -2,8 +2,8 @@ const { resolve } = require('path')
 const { EnvironmentPlugin } = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MinaWebpackPlugin = require('./plugin/MinaWebpackPlugin')
-const MinaRuntimePlugin = require('./plugin/MinaRuntimePlugin')
+const MinaWebpackPlugin = require('webpack-mp-entry')
+const MinaRuntimePlugin = require('webpack-mp-require')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const debuggable = process.env.BUILD_TYPE !== 'release'

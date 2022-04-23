@@ -1,34 +1,36 @@
-const path = require('path')
-const { ConcatSource } = require('webpack-sources')
-const { javascript } = require('webpack')
+import path from 'path'
+import { ConcatSource } from 'webpack-sources'
 const requiredPath = require('required-path')
+import { Compiler, javascript } from 'webpack'
 
-function isRuntimeExtracted(compilation) {
+function isRuntimeExtracted(compilation: any) {
   return [...compilation.chunks].some(
     (chunk) =>
       chunk.isOnlyInitial() && chunk.hasRuntime() && !chunk.hasEntryModule()
   )
 }
 
-function script({ dependencies }) {
+function script({ dependencies }: any) {
   return (
     ';' +
     dependencies
-      .map((file) => {
+      .map((file: any) => {
         return `require('${requiredPath(file)}');`
       })
       .join('')
   )
 }
 
-module.exports = class MinaRuntimeWebpackPlugin {
-  constructor(options = {}) {
+class MpRequireWebpackPlugin {
+  runtime: any
+
+  constructor(options: any = {}) {
     this.runtime = options.runtime || ''
   }
 
-  apply(compiler) {
-    compiler.hooks.compilation.tap('MinaRuntimePlugin', (compilation) => {
-      const callback = (source, entry) => {
+  apply(compiler: Compiler) {
+    compiler.hooks.compilation.tap('MpRequirePlugin', (compilation) => {
+      const callback = (source: any, entry: any) => {
         if (!isRuntimeExtracted(compilation)) {
           throw new Error(
             [
@@ -44,10 +46,10 @@ module.exports = class MinaRuntimeWebpackPlugin {
           return source
         }
 
-        let dependencies = []
+        let dependencies: any = []
         // 找到该入口 chunk 依赖的其它所有 chunk
-        entry.chunk.groupsIterable.forEach((group) => {
-          group.chunks.forEach((chunk) => {
+        entry.chunk.groupsIterable.forEach((group: any) => {
+          group.chunks.forEach((chunk: any) => {
             /**
              * assume output.filename is chunk.name here
              */
@@ -68,12 +70,11 @@ module.exports = class MinaRuntimeWebpackPlugin {
         return source
       }
 
-      javascript.JavascriptModulesPlugin.getCompilationHooks(
-        compilation
-      ).renderMain.tap('MinaRuntimePlugin', callback)
-      javascript.JavascriptModulesPlugin.getCompilationHooks(
-        compilation
-      ).renderChunk.tap('MinaRuntimePlugin', callback)
+      const getCompilationHooks = javascript.JavascriptModulesPlugin.getCompilationHooks(compilation)
+      getCompilationHooks.renderMain.tap('MpRequirePlugin', callback)
+      getCompilationHooks.renderChunk.tap('MpRequirePlugin', callback)
     })
   }
 }
+
+module.exports = MpRequireWebpackPlugin

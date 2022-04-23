@@ -1,5 +1,3 @@
-import './index.less'
-
 const util = require('../../utils/util.js')
 
 console.log(util.formatTime(new Date()))
