@@ -50,6 +50,9 @@ class MpRequireWebpackPlugin {
         // 找到该入口 chunk 依赖的其它所有 chunk
         entry.chunk.groupsIterable.forEach((group: any) => {
           group.chunks.forEach((chunk: any) => {
+
+            if (!chunk.name || entry.chunk.name === chunk.name) return
+
             /**
              * assume output.filename is chunk.name here
              */
@@ -58,9 +61,10 @@ class MpRequireWebpackPlugin {
               chunk.name
             )
 
-            if (chunk === entry || ~dependencies.indexOf(filename)) {
+            if (~dependencies.indexOf(filename)) {
               return
             }
+
             dependencies.push(filename)
           })
         })

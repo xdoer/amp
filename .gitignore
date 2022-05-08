@@ -3,3 +3,4 @@ dist
 package-lock.json
 .mini-ide
 yarn.lock
+.DS_Store

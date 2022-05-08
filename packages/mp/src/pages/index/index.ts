@@ -1,6 +1,4 @@
-const util = require('../../utils/util.js')
-
-console.log(util.formatTime(new Date()))
+import './index.less'
 
 // index.js
 // 获取应用实例

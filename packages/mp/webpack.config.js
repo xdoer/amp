@@ -20,7 +20,25 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: ['babel-loader', 'ts-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: [
+                [
+                  'babel-plugin-module-resolver',
+                  {
+                    root: './src',
+                    alias: {
+                      '@': './src',
+                    },
+                  },
+                ],
+              ],
+            },
+          },
+          'ts-loader',
+        ],
       },
       {
         test: /\.less$/i,
@@ -52,7 +70,12 @@ module.exports = {
     new MinaRuntimePlugin(),
   ],
   mode: debuggable ? 'none' : 'production',
-
+  resolve: {
+    extensions: ['.ts', '.js'],
+    alias: {
+      'regenerator-runtime': resolve(__dirname, 'regenerator-runtime'),
+    },
+  },
   optimization: {
     splitChunks: {
       chunks: 'all',

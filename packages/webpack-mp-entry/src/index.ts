@@ -15,9 +15,12 @@ class MpEntryWebpackPlugin {
 
     // ts file
     switch (type) {
+      // @ts-ignore
+      case 'plugin':
+        this.createEntries(entry, 'component')
       case 'app': {
         config.pages.forEach((page: string) => {
-          const pagePath = this.basePath + '/' + page + '.ts'
+          const pagePath = path.resolve(this.basePath, page) + '.ts'
           this.entries.push(pagePath)
           this.createEntries(pagePath, 'page')
         })
@@ -25,17 +28,16 @@ class MpEntryWebpackPlugin {
       }
       case 'component':
       case 'page': {
-        if (config.usingComponents) {
-          Object.values(config.usingComponents).map((compPath) => {
-            const abCompPath = this.basePath + compPath + '.ts'
-            this.entries.push(abCompPath)
-            this.createEntries(abCompPath, 'component')
-          })
-        }
+        const components = config.usingComponents || config.publicComponents
+        Object.values(components || {}).map((compPath) => {
+          const __compPath = compPath as string
+          const _componentPath = path.isAbsolute(__compPath) ? __compPath.slice(1) : __compPath
+          const abCompPath = path.resolve(this.basePath, _componentPath) + '.ts'
+          this.entries.push(abCompPath)
+          this.createEntries(abCompPath, 'component')
+        })
       }
     }
-
-    // less file
   }
 
   applyEntry(compiler: Compiler) {
@@ -48,9 +50,18 @@ class MpEntryWebpackPlugin {
   }
 
   apply(compiler: Compiler) {
-    const appPath = path.resolve(this.basePath, 'app.ts')
-    this.entries.push(appPath)
-    this.createEntries(appPath, 'app')
+    const isPlugin = process.env.BUILD_TARGET === 'plugin'
+
+    if (isPlugin) {
+      const appPath = path.resolve(this.basePath, 'index.ts')
+      this.entries.push(appPath)
+      const pluginJson = path.resolve(this.basePath, 'plugin.json')
+      this.createEntries(pluginJson, 'plugin')
+    } else {
+      const appPath = path.resolve(this.basePath, 'app.ts')
+      this.entries.push(appPath)
+      this.createEntries(appPath, 'app')
+    }
 
     compiler.hooks.entryOption.tap('MpEntryWebpackPlugin', () => {
       this.applyEntry(compiler)
