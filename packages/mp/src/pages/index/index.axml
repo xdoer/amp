@@ -2,5 +2,6 @@
   <view class="usermotto" onTap="bindViewTap">
     <text class="user-motto">{{motto}}</text>
   </view>
+  <tag><tag/>
   <button></button>
 </view>

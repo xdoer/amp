@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "button": "/components/button/index"
+    "button": "/components/button/index",
+    "tag": "antd-mini/es/Tag/index"
   }
 }

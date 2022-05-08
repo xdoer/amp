@@ -1,5 +1,5 @@
 import path from 'path'
-import fs from 'fs'
+import fs from 'fs-extra'
 import { EntryPlugin, Compiler } from 'webpack'
 const replaceExt = require('replace-ext')
 
@@ -31,10 +31,18 @@ class MpEntryWebpackPlugin {
         const components = config.usingComponents || config.publicComponents
         Object.values(components || {}).map((compPath) => {
           const __compPath = compPath as string
-          const _componentPath = path.isAbsolute(__compPath) ? __compPath.slice(1) : __compPath
-          const abCompPath = path.resolve(this.basePath, _componentPath) + '.ts'
-          this.entries.push(abCompPath)
-          this.createEntries(abCompPath, 'component')
+
+          const moduleComponent = !path.isAbsolute(__compPath)
+
+          if (moduleComponent) {
+            // 引用 node_module 组件，直接拷贝
+            // this.moduleComponents(__compPath)
+          } else {
+            const _componentPath = __compPath.slice(1)
+            const abCompPath = path.resolve(this.basePath, _componentPath) + '.ts'
+            this.entries.push(abCompPath)
+            this.createEntries(abCompPath, 'component')
+          }
         })
       }
     }

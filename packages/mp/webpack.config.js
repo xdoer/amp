@@ -2,8 +2,9 @@ const { resolve } = require('path')
 const { EnvironmentPlugin } = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MinaWebpackPlugin = require('webpack-mp-entry')
-const MinaRuntimePlugin = require('webpack-mp-require')
+const mpWebpackPlugin = require('webpack-mp-entry')
+const mpRuntimePlugin = require('webpack-mp-require')
+const mpModulePlugin = require('webpack-mp-module')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const debuggable = process.env.BUILD_TYPE !== 'release'
@@ -15,6 +16,9 @@ module.exports = {
     path: resolve('dist'),
     filename: '[name].js',
     globalObject: 'my',
+  },
+  cache: {
+    type: 'filesystem',
   },
   module: {
     rules: [
@@ -66,8 +70,9 @@ module.exports = {
         },
       ],
     }),
-    new MinaWebpackPlugin(),
-    new MinaRuntimePlugin(),
+    new mpWebpackPlugin(),
+    new mpRuntimePlugin(),
+    new mpModulePlugin({ modules: ['antd-mini'] }),
   ],
   mode: debuggable ? 'none' : 'production',
   resolve: {
