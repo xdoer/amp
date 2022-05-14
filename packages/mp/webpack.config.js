@@ -72,7 +72,13 @@ module.exports = {
     }),
     new mpWebpackPlugin(),
     new mpRuntimePlugin(),
-    new mpModulePlugin({ modules: ['antd-mini'] }),
+    new mpModulePlugin({
+      modules: [
+        {
+          name: 'antd-mini',
+        },
+      ],
+    }),
   ],
   mode: debuggable ? 'none' : 'production',
   resolve: {
