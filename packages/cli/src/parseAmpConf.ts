@@ -1,9 +1,9 @@
-const { resolve } = require('./utils')
+import { resolve } from './utils'
 
 function getAmpConfig() {
   return require(resolve('amp.config.js'))
 }
 
-module.exports = function resolveAmpConfig() {
+export default function resolveAmpConfig() {
   return getAmpConfig()
 }

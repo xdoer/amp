@@ -1,9 +1,10 @@
 {
-  "name": "@amp/example",
+  "name": "@amp/example2",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "amp -w",
+    "b": "amp -p",
     "start": "webpack --watch --progress",
     "build": "cross-env NODE_ENV=production BUILD_TYPE=release webpack"
   },

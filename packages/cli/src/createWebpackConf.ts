@@ -1,18 +1,14 @@
-const { mergeWithCustomize, customizeObject } = require('webpack-merge')
-const Config = require('webpack-chain')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const parseAmpConf = require('./parseAmpConf')
-const parseCommand = require('./parseCommand')
-const baseConf = require('./webpackConf')
-const getEntry = require('./getEntry')
-const { resolve } = require('./utils')
-const path = require('path')
-const webpack = require('webpack')
+import { mergeWithCustomize, customizeObject } from 'webpack-merge'
+import parseAmpConf from './parseAmpConf'
+import parseCommand from './parseCommand'
+import baseConf from './webpackConf'
+import getEntry from './getEntry'
+import { resolve } from './utils'
+import webpack from 'webpack'
 
-module.exports = function createWebpackConf() {
+export default function createWebpackConf(): any {
   const { isProduct, isWatch } = parseCommand()
-  const { sourceRoot, outputRoot, defineConstants, alias, copy } =
-    parseAmpConf()
+  const { sourceRoot, outputRoot, defineConstants, alias, webpack: userWebpack } = parseAmpConf()
 
   const config = {
     entry: {
@@ -25,7 +21,7 @@ module.exports = function createWebpackConf() {
     },
     resolve: {
       alias: {
-        'regenerator-runtime': path.resolve('./regenerator-runtime'),
+        'regenerator-runtime': require.resolve('@amp/cli/dist/lib/regenerator-runtime'),
       },
     },
     mode: isProduct ? 'production' : 'none',
@@ -38,15 +34,7 @@ module.exports = function createWebpackConf() {
         'process.env': {
           NODE_ENV: isProduct ? '"production"' : '"development"',
         },
-      }),
-      new CopyWebpackPlugin({
-        patterns: [
-          {
-            from: resolve('project.config.json'),
-            to: resolve(`${outputRoot}/project.config.json`),
-          },
-          ...copy,
-        ],
+        ...defineConstants,
       }),
     ],
     module: {
@@ -61,8 +49,11 @@ module.exports = function createWebpackConf() {
                   [
                     'module-resolver',
                     {
-                      root: sourceRoot,
-                      alias,
+                      root: './src',
+                      alias: {
+                        '@': './src',
+                        ...alias,
+                      },
                     },
                   ],
                 ],
@@ -81,8 +72,11 @@ module.exports = function createWebpackConf() {
                   [
                     'module-resolver',
                     {
-                      root: sourceRoot,
-                      alias,
+                      root: './src',
+                      alias: {
+                        '@': './src',
+                        ...alias
+                      },
                     },
                   ],
                 ],
@@ -93,16 +87,14 @@ module.exports = function createWebpackConf() {
           include: [resolve(sourceRoot)],
         },
       ],
-    },
+    }
   }
 
-  return webpackChain(
-    new Config().merge(
-      mergeWithCustomize({
-        customizeObject: customizeObject({
-          snapshot: 'replace',
-        }),
-      })(baseConf, config)
-    )
-  ).toConfig()
+  return userWebpack(
+    mergeWithCustomize({
+      customizeObject: customizeObject({
+        snapshot: 'merge',
+      }),
+    })(baseConf, config)
+  )
 }

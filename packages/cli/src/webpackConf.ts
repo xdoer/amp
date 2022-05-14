@@ -1,6 +1,6 @@
-const { resolve } = require('path')
+import { resolve } from './utils'
 
-module.exports = {
+export default {
   performance: {
     hints: false,
   },
@@ -12,7 +12,7 @@ module.exports = {
   cache: {
     type: 'filesystem',
     buildDependencies: {
-      config: [resolve('config/')],
+      // config: [resolve('config/')],
     },
     cacheDirectory: resolve('.cache/'),
   },

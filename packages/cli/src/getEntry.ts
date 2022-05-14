@@ -1,10 +1,10 @@
-const fs = require('fs')
-const { resolve } = require('./utils')
+import fs from 'fs'
+import { resolve } from './utils'
 
 function isTsProject() {
   return fs.existsSync(resolve('tsconfig.json'))
 }
 
-module.exports = function getEntry(dir) {
+export default function getEntry(dir) {
   return resolve(dir, `app.${isTsProject() ? 'ts' : 'js'}`)
 }

@@ -1,23 +1,24 @@
-const chalk = require('chalk')
-const webpack = require('webpack')
-const WebpackDevServer = require('webpack-dev-server')
-const parseCommand = require('./parseCommand')
-const createWebpackConf = require('./createWebpackConf')
+#!/usr/bin/env node
+
+import parseCommand from "./parseCommand"
+import createWebpackConf from "./createWebpackConf"
+import chalk from 'chalk'
+import webpack from 'webpack'
 
 function main() {
   const { isWatch } = parseCommand()
   const webpackConf = createWebpackConf()
 
-  const compiler = webpack([webpackConf], (err, stats) => {
+  const cb = (err, stats) => {
     if (err) {
       process.exitCode = 1
       return console.error(err)
     }
 
-    const stStats = Array.isArray(stats.stats) ? stats.stats : [stats]
+    const stStats = Array.isArray(stats!.stats) ? stats!.stats : [stats]
 
     stStats.forEach((item) => {
-      console.log(item.compilation.name + '打包结果：')
+      console.log((item.compilation.name || '') + '打包结果：')
       process.stdout.write(
         item.toString({
           colors: true,
@@ -30,7 +31,7 @@ function main() {
       )
     })
 
-    if (stats.hasErrors()) {
+    if (stats!.hasErrors()) {
       console.log(chalk.red('  Build failed with errors.\n'))
     } else if (isWatch) {
       console.log(
@@ -39,18 +40,12 @@ function main() {
     } else {
       console.log(chalk.cyan('  Build complete.\n'))
     }
-  })
+  }
 
   if (isWatch) {
-    const server = new WebpackDevServer(
-      {
-        ...webpackConf.devServer,
-        open: true,
-      },
-      compiler
-    )
-
-    server.start()
+    webpack([webpackConf]).watch([], cb)
+  } else {
+    webpack([webpackConf], cb)
   }
 }
 
