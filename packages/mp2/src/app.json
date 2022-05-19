@@ -1,13 +1,14 @@
 {
-  "pages": ["pages/index/index"],
-  "subPackages": [
-    {
-      "root": "packageA",
-      "pages": ["pages/page1", "pages/page2"]
-    },
-    {
-      "root": "packageB",
-      "pages": ["pages/page3", "pages/page4"]
-    }
-  ]
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

@@ -1,4 +1,18 @@
-import { formatTime } from '@/utils/util'
-import { computed } from '@goldfishjs/core'
+// import { setupApp, useAppLifeCycle } from '@goldfishjs/core';
+// import { formatTime } from '@/utils/util'
+// import './app.less'
 
-console.log(formatTime(new Date()), computed)
+// App(
+//   setupApp(() => {
+//     useAppLifeCycle('onLaunch', () => {
+//       console.log('哈哈哈哈哈哈哈哈哈哈哈哈和', formatTime(new Date()))
+//     });
+//     return {};
+//   })
+// );
+
+App({
+  onLaunch() {
+    console.log('哈哈哈')
+  }
+})
