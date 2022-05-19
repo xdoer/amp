@@ -12,9 +12,7 @@ export default function createWebpackConf(): any {
   const { sourceRoot, outputRoot, webpack: userWebpack } = parseAmpConf()
 
   const config = {
-    entry: {
-      app: getEntry(sourceRoot),
-    },
+    entry: getEntry(sourceRoot),
     output: {
       path: resolve(outputRoot),
       publicPath: '/',

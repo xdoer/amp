@@ -4,6 +4,12 @@ module.exports = {
   outputRoot: 'dist',
   defineConstants: {},
   alias: {},
+  typeExtMap: {
+    json: '.json',
+    script: '.js',
+    template: '.axml',
+    styles: '.acss',
+  },
   webpack(config) {
     return config
   },
