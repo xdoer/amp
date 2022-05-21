@@ -62,5 +62,9 @@ export default function getWebpackRules() {
       test: /\.axml/,
       use: [require.resolve('../../dist/loader/file-loader.js')],
     },
+    {
+      test: /\.sjs/,
+      use: [require.resolve('../../dist/loader/file-loader.js')],
+    },
   ]
 }

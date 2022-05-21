@@ -1,3 +1,0 @@
-<view onTap="handleTap">
-  HI, My Component
-</view>

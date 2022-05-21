@@ -1,9 +1,15 @@
 import { parseQuery } from 'loader-utils'
-import getAMPEntry from '../entry'
+import { getAMPEntry } from '../entry'
 import parseAmpConf from '../parseAmpConf'
 import { resolve } from 'path'
+import { useComp, jsonExt, empty } from '../constants'
 
 const { outputRoot, sourceRoot } = parseAmpConf()
+
+// 组件引用规范为绝对路径(有需要再调整)
+function normalizePath(name: string) {
+  return `/components/${name}/index`
+}
 
 module.exports = async function (source) {
   const { asConfig } = parseQuery(this.resourceQuery)
@@ -13,7 +19,7 @@ module.exports = async function (source) {
    */
   if (asConfig) {
     const json = JSON.parse(source)
-    const compMap = json['usingComponents'] || {}
+    const compMap = json[useComp] || {}
 
     let output = ''
 
@@ -21,19 +27,18 @@ module.exports = async function (source) {
       .forEach(({ caller, key, value, name, loc, output: _output }) => {
 
         // 拿到当前资源要输出的目录
-        if (this.resourcePath === loc + '.json') output = _output
+        if (this.resourcePath === loc + jsonExt) output = _output
 
         if (!this.resourcePath.includes(caller)) return
         if (compMap[key] !== value) return
 
-        // 组件引用规范为绝对路径(有需要再调整成可配置)
-        compMap[key] = `/components/${name}/${name}`
+        compMap[key] = normalizePath(name)
       })
 
     if (output) {
-      output = output.replace(resolve(outputRoot), '') + '.json'
+      output = output.replace(resolve(outputRoot), empty) + jsonExt
     } else {
-      output = this.resourcePath.replace(resolve(sourceRoot), '')
+      output = this.resourcePath.replace(resolve(sourceRoot), empty)
     }
 
     this.emitFile(output, JSON.stringify(json, null, 2))

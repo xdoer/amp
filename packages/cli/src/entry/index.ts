@@ -1,8 +1,10 @@
 import { resolve, isAbsolute, parse, join } from 'path'
 import hash from 'hash-sum'
-import { jsonExt, MAIN_PACKAGE, useComp } from './constants'
-import { Entry, EntryType } from './types'
+import groupBy from 'lodash.groupby'
+import { jsonExt, MAIN_PACKAGE, useComp } from '../constants'
+import { Entry, EntryType } from '../types'
 import parseAmpConf from '../parseAmpConf'
+import uniqBy from 'lodash.uniqby'
 
 const entries: Entry[] = []
 
@@ -14,8 +16,8 @@ function getJsonEntry(_path) {
   return require(resolve(dir, name) + jsonExt)
 }
 
-function addEntry(entry: Entry) {
-  entries.push(entry)
+function addEntry(options: Entry) {
+  entries.push(options)
 }
 
 function addPage(page = '', pkg = MAIN_PACKAGE) {
@@ -56,7 +58,7 @@ function addComponent(
 ) {
   const entry = compPathResolve(value, currentDir)
   const name = `${parse(join(entry, '..')).name.toLowerCase()}-${hash(entry)}`
-  const output = resolve(outputRoot) + `/component/${name}/${name}`
+  const output = resolve(outputRoot) + `/components/${name}/index`
 
   addEntry({
     type: EntryType.comp,
@@ -91,7 +93,7 @@ function compPathResolve(comp, currentDir) {
   }
 }
 
-export default function getAppEntry() {
+export function getAMPEntry() {
   if (entries.length) return entries
 
   const appJson = getJsonEntry(appEntry)
@@ -108,4 +110,12 @@ export default function getAppEntry() {
   }
 
   return entries
+}
+
+export function getAMPEntryBy(strategy: keyof Entry) {
+  return groupBy(getAMPEntry(), strategy)
+}
+
+export function getAMPEntryUniq(strategy: keyof Entry) {
+  return uniqBy(getAMPEntry(), strategy)
 }

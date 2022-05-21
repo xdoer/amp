@@ -1,10 +1,13 @@
-import './logs.less'
+import { setupPage, usePageLifeCycle } from '@goldfishjs/core';
+import { formatTime } from '../../utils/util'
 
-Page({
-  data: {
-    logs: []
-  },
-  onLoad() {
-    console.log('加载', this.data.logs);
+Page(setupPage(() => {
+
+  usePageLifeCycle('onShow', () => {
+    console.log('logs', formatTime(new Date()))
+  })
+
+  return {
+
   }
-})
+}))

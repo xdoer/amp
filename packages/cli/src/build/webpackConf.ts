@@ -24,5 +24,19 @@ export default {
   },
   optimization: {
     emitOnErrors: true,
+    splitChunks: {
+      defaultSizeTypes: ['javascript', 'unknown'],
+      chunks: 'all',
+      usedExports: true,
+      minChunks: 1,
+      minSize: 1000,
+      enforceSizeThreshold: Infinity,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '-',
+    },
+    runtimeChunk: {
+      name: 'bundle',
+    },
   },
 }
