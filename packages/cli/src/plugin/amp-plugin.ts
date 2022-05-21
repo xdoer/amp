@@ -21,7 +21,7 @@ export default class AmpWebpackPlugin {
       // https://webpack.js.org/plugins/internal-plugins/#entryplugin
       const out = output.replace(resolve(outputRoot), '')
 
-      const exts = ['.ts', '.js', '.json', '.axml', '.sjs']
+      const exts = ['.ts', '.js', '.json', '.axml', '.sjs', '.acss']
 
       exts.forEach(ext => {
         const target = loc + ext

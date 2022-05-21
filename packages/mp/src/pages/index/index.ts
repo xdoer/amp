@@ -16,7 +16,7 @@ Page({
   // 事件处理函数
   bindViewTap() {
     my.navigateTo({
-      url: '../logs/logs',
+      url: '/package-user/pages/logs/logs',
     })
   },
   onLoad() {
