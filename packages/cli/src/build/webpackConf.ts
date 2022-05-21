@@ -1,4 +1,4 @@
-import { resolve } from './utils'
+import { resolve } from 'path'
 
 export default {
   performance: {
@@ -6,7 +6,6 @@ export default {
   },
   mode: 'none',
   resolve: {
-    extensions: ['.js', '.ts'],
     modules: ['node_modules'],
     alias: {
       // 小程序支持 async

@@ -1,22 +1,26 @@
 import { mergeWithCustomize, customizeObject } from 'webpack-merge'
-import parseAmpConf from './parseAmpConf'
-import parseCommand from './parseCommand'
+import parseAmpConf from '../parseAmpConf'
+import parseCommand from '../parseCommand'
 import baseConf from './webpackConf'
 import getEntry from './getEntry'
-import { resolve } from './utils'
+import { resolve } from 'path'
 import getWebpackRules from './getWebpackRules'
 import getWebpackPlugins from './getWebpackPlugins'
 
 export default function createWebpackConf(): any {
   const { isProduct, isWatch } = parseCommand()
-  const { sourceRoot, outputRoot, webpack: userWebpack } = parseAmpConf()
+  const { sourceRoot, outputRoot, webpack: userWebpack, extensions } = parseAmpConf()
 
   const config = {
-    entry: getEntry(sourceRoot),
+    entry: { app: [getEntry(sourceRoot), getEntry(sourceRoot, 'json?asConfig')] },
     output: {
       path: resolve(outputRoot),
       publicPath: '/',
       filename: '[name].js',
+    },
+    resolve: {
+      // https://webpack.js.org/configuration/resolve#resolveextensions
+      extensions: [...extensions, '...'],
     },
     mode: isProduct ? 'production' : 'none',
     optimization: {

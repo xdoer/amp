@@ -1,7 +1,7 @@
-import parseAmpConf from './parseAmpConf'
-import parseCommand from './parseCommand'
+import parseAmpConf from '../parseAmpConf'
+import parseCommand from '../parseCommand'
 import webpack from 'webpack'
-import AmpPlugin from './amp'
+import AmpPlugin from '../plugin/amp-entry'
 
 export default function getWebpackPlugins() {
   const { isProduct } = parseCommand()

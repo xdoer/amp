@@ -1,4 +1,4 @@
-import { resolve } from './utils'
+import { resolve } from 'path'
 
 function getAmpConfig() {
   return require(resolve('amp.config.js'))

@@ -82,7 +82,6 @@ module.exports = {
   ],
   mode: debuggable ? 'none' : 'production',
   resolve: {
-    extensions: ['.ts', '.js'],
     alias: {
       'regenerator-runtime': resolve(__dirname, 'regenerator-runtime'),
     },

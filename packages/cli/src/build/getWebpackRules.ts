@@ -1,5 +1,5 @@
-import parseAmpConf from './parseAmpConf'
-import { resolve } from './utils'
+import parseAmpConf from '../parseAmpConf'
+import { resolve } from 'path'
 
 export default function getWebpackRules() {
   const { alias, sourceRoot } = parseAmpConf()
@@ -51,6 +51,16 @@ export default function getWebpackRules() {
         'ts-loader',
       ],
       include: [resolve(sourceRoot)],
+    },
+    {
+      test: /\.json/,
+      resourceQuery: /asConfig/,
+      use: [require.resolve('../../dist/loader/json-loader.js')],
+      type: 'javascript/auto',
+    },
+    {
+      test: /\.axml/,
+      use: [require.resolve('../../dist/loader/file-loader.js')],
     },
   ]
 }
