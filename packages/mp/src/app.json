@@ -12,6 +12,25 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "textColor": "#dddddd",
+    "selectedColor": "#49a9ee",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/index/index",
+        "name": "首页",
+        "icon": "./assets/a.png",
+        "activeIcon": "./assets/b.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "name": "日志",
+        "icon": "./assets/b.png",
+        "activeIcon": "./assets/a.png"
+      }
+    ]
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

@@ -1,7 +1,7 @@
 import { mergeWithCustomize, customizeObject } from 'webpack-merge'
 import parseAmpConf from '../parseAmpConf'
 import parseCommand from '../parseCommand'
-import baseConf from './webpackConf'
+import baseConf from './baseWebpackConf'
 import getEntry from './getEntry'
 import { resolve } from 'path'
 import getWebpackRules from './getWebpackRules'
@@ -12,7 +12,7 @@ export default function createWebpackConf(): any {
   const { sourceRoot, outputRoot, webpack: userWebpack, extensions } = parseAmpConf()
 
   const config = {
-    entry: { app: [getEntry(sourceRoot), getEntry(sourceRoot, 'json?asConfig')] },
+    entry: { app: [getEntry(sourceRoot), getEntry(sourceRoot, 'json?asConfig&type=app')] },
     output: {
       path: resolve(outputRoot),
       publicPath: '/',

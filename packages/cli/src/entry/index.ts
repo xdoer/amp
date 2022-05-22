@@ -116,10 +116,8 @@ export function getAMPEntryBy(strategy: keyof Entry) {
   return groupBy(getAMPEntry(), strategy)
 }
 
-export const getAMPEntryUniq = (() => {
-  const cache = {}
-  return function (strategy: keyof Entry) {
-    if (cache[strategy]) return cache[strategy]
-    return cache[strategy] = uniqBy(getAMPEntry(), strategy)
-  }
-})()
+const cache = {}
+export const getAMPEntryUniq = (strategy: keyof Entry) => {
+  if (cache[strategy]) return cache[strategy]
+  return cache[strategy] = uniqBy(getAMPEntry(), strategy)
+}

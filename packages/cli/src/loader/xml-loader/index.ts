@@ -47,6 +47,8 @@ module.exports = function xmlLoader(source) {
       const currentPath = path.join(dir, link.value)
       const _dir = path.parse(output).dir
       const outputPath = path.join(_dir, link.value)
+
+      fs.ensureDirSync(path.parse(outputPath).dir)
       fs.copyFileSync(currentPath, outputPath)
     })
 
