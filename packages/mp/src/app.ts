@@ -9,12 +9,3 @@ App(
     return {};
   })
 );
-
-
-async function aaa() {
-  const x = await 1
-
-  console.log(x)
-}
-
-aaa()

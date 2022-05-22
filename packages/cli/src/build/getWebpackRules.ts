@@ -59,7 +59,13 @@ export default function getWebpackRules() {
       type: 'javascript/auto',
     },
     {
-      test: /\.(axml|sjs|acss)/,
+      test: /\.axml/,
+      use: [
+        require.resolve('../../dist/loader/xml-loader/index.js')
+      ],
+    },
+    {
+      test: /\.acss/,
       use: [require.resolve('../../dist/loader/file-loader.js')],
     }
   ]

@@ -1,8 +1,11 @@
+<import-sjs name="button"
+  from='../../util.sjs' />
 <view class="container">
   <view class="usermotto" onTap="bindViewTap">
     <text class="user-motto">{{motto}}</text>
   </view>
-  <tag>哈哈哈哈</tag>
+  <tag>哈哈哈哈2222222</tag>
+  <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgitee.com%2Fzakzhu%2Fmd-images%2Fraw%2Fmaster%2FDocker-Image%25E6%25B7%25B1%25E5%2585%25A5%25E7%2590%2586%25E8%25A7%25A3%2Fimage.png&refer=http%3A%2F%2Fgitee.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1655791084&t=5a9bf2935bc1e1f851bd319525d46f39" />
   <button onTap="bindViewTap">嘿嘿嘿</button>
   <button2 onTap="bindViewTap">嘿嘿嘿2</button2>
 </view>

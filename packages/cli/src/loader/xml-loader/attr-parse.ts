@@ -1,4 +1,4 @@
-const Parser = require('fastparse')
+import Parser from 'fastparse'
 
 const processMatch = function (match, strUntilValue, name, value, index) {
   if (!this.isRelevantTagAttr(this.currentTag, name)) return
@@ -31,10 +31,10 @@ const parser = new Parser({
   }
 })
 
-module.exports = function parse(html, isRelevantTagAttr) {
+export default function parse(html, isRelevantTagAttr) {
   return parser.parse('outside', html, {
     currentTag: null,
     results: [],
-    isRelevantTagAttr: isRelevantTagAttr
+    isRelevantTagAttr
   }).results
 }

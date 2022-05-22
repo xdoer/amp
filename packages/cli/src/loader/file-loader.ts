@@ -5,14 +5,15 @@ import { empty } from '../constants'
 const { outputRoot } = parseAmpConf()
 
 module.exports = function (source) {
+  // this.cacheable()
 
-  getAMPEntryUniq('loc').forEach(entry => {
-    if (this.resourcePath.includes(entry.loc)) {
-      const { ext } = parse(this.resourcePath)
-      const output = entry.output.replace(resolve(outputRoot), empty) + ext
-      this.emitFile(output, source)
-    }
-  })
+  const entry = getAMPEntryUniq('loc').find(entry => this.resourcePath.includes(entry.loc))
+
+  if (entry) {
+    const { ext } = parse(this.resourcePath)
+    const output = entry.output.replace(resolve(outputRoot), empty) + ext
+    this.emitFile(output, source)
+  }
 
   return ''
 }
