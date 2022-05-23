@@ -13,6 +13,8 @@ module.exports = {
     path.resolve('src/app.less'),
     path.resolve('src/app.json?asConfig&type=app'),
   ],
+  // 不打包某个依赖 https://webpack.js.org/configuration/externals/
+  externals: {},
   webpack(config) {
     return config
   },

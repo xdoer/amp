@@ -8,7 +8,7 @@ import getWebpackPlugins from './getWebpackPlugins'
 
 export default function createWebpackConf(): any {
   const { isProduct, isWatch } = parseCommand()
-  const { outputRoot, webpack: userWebpack, entryIncludes } = parseAmpConf()
+  const { outputRoot, webpack: userWebpack, entryIncludes, externals } = parseAmpConf()
 
   const config = {
     entry: { app: entryIncludes },
@@ -21,6 +21,7 @@ export default function createWebpackConf(): any {
       // https://webpack.js.org/configuration/resolve#resolveextensions
       extensions: ['.ts', '...'],
     },
+    externals,
     mode: isProduct ? 'production' : 'none',
     optimization: {
       nodeEnv: isProduct ? 'production' : 'development',
