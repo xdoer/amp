@@ -31,14 +31,17 @@ export default class AmpWebpackPlugin {
 
       requiredExts.forEach(ext => new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler))
 
-      // 每个单元下，可能有的
-      const possibleExts = style ? [style, '.acss'] : ['.acss']
-      possibleExts.forEach(ext => {
+
+      const styleExts = style ? [style, '.acss'] : ['.acss']
+
+      for (let index = 0; index < styleExts.length; index++) {
+        const ext = styleExts[index];
         try {
           fs.accessSync(loc + ext, constants.R_OK)
           new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler)
+          break
         } catch (e) { }
-      })
+      }
     })
   }
 
