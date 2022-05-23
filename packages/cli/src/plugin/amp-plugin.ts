@@ -12,7 +12,7 @@ function fix(path) {
   return path
 }
 
-const { outputRoot } = parseAmpConf()
+const { outputRoot, style } = parseAmpConf()
 
 export default class AmpWebpackPlugin {
 
@@ -26,17 +26,18 @@ export default class AmpWebpackPlugin {
       // https://webpack.js.org/plugins/internal-plugins/#entryplugin
       const out = output.replace(resolve(outputRoot), '')
 
-      const exts = ['.ts', '.js', '.json', '.axml', '.sjs', '.acss']
+      // 每个单元下, 必须有的
+      const requiredExts = ['', '.axml', '.json?asConfig']
 
-      exts.forEach(ext => {
-        const target = loc + ext
+      requiredExts.forEach(ext => new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler))
 
+      // 每个单元下，可能有的
+      const possibleExts = style ? [style, '.acss'] : ['.acss']
+      possibleExts.forEach(ext => {
         try {
-          fs.accessSync(target, constants.R_OK)
-          new EntryPlugin(this.compiler.context, target + (ext === '.json' ? '?asConfig' : ''), out).apply(this.compiler)
-        } catch (e) {
-
-        }
+          fs.accessSync(loc + ext, constants.R_OK)
+          new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler)
+        } catch (e) { }
       })
     })
   }

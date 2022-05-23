@@ -19,7 +19,6 @@ function isUrlRequest(url) {
 }
 
 module.exports = function xmlLoader(source) {
-  this.cacheable()
   const { dir, ext } = path.parse(this.resourcePath)
   const entry = getAMPEntry().find(entry => entry.loc.includes(dir))
 

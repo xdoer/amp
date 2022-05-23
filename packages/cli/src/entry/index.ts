@@ -79,6 +79,7 @@ function pagePathResolve(page, pkg = MAIN_PACKAGE) {
 }
 
 function compPathResolve(comp, currentDir) {
+  // 组件写成绝对路径，性能会高一些
   if (isAbsolute(comp)) {
     return resolve(sourceRoot) + comp
   }
