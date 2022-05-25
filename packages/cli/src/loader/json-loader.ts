@@ -4,7 +4,7 @@ import parseAmpConf from '../parseAmpConf'
 import { resolve, join, parse } from 'path'
 import { useComp, empty } from '../constants'
 import fs from 'fs-extra'
-import { getRelativeOutput, isRelativeUrl, normalizePath } from '../utils'
+import { getRelativeOutput, isRelativeUrl, normalizeCompPath } from '../utils'
 
 const { outputRoot, sourceRoot } = parseAmpConf()
 
@@ -27,7 +27,7 @@ module.exports = function (source) {
         if (compMap[key] !== value) return
 
         // 格式化组件的路径
-        compMap[key] = normalizePath(name)
+        compMap[key] = normalizeCompPath(name)
       })
 
     if (type === 'app') {

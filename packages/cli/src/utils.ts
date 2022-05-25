@@ -13,7 +13,7 @@ export function getRelativeOutput(_path) {
 }
 
 // 组件引用规范为绝对路径
-export function normalizePath(name: string) {
+export function normalizeCompPath(name: string) {
   return `/components/${name}/index`
 }
 
@@ -25,4 +25,8 @@ export function isRelativeUrl(url: string): boolean {
   // 对于url中存在Mustache插值的情况也返回false
   if (/\{\{((?:.|\n|\r)+?)\}\}(?!})/.test(url)) return false
   return true
+}
+
+export function createRelativePath(path) {
+  return /^\./.test(path) ? path : './' + path
 }
