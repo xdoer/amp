@@ -4,14 +4,7 @@ import { ampEntry } from '../entry'
 import parseAmpConf from '../parseAmpConf'
 import fs, { constants } from 'fs'
 import { runtimeCodeFixBabel, runtimeCodeCtxObject } from '../constants'
-import { getRelativeOutput } from '../utils'
-
-function fix(path) {
-  if (!/^\./.test(path)) {
-    return './' + path
-  }
-  return path
-}
+import { getRelativeOutput, createRelativePath } from '../utils'
 
 const { outputRoot, style } = parseAmpConf()
 
@@ -73,7 +66,7 @@ export default class AmpWebpackPlugin {
               if (!relativeChunkFile) return
 
               const x = (chunk) => (chunk[0] === '/' ? '' : '/') + chunk
-              const relativePath = fix(path.relative(path.dirname(resolve(outputRoot) + x(chunkFile)), resolve(outputRoot) + x(relativeChunkFile)))
+              const relativePath = createRelativePath(path.relative(path.dirname(resolve(outputRoot) + x(chunkFile)), resolve(outputRoot) + x(relativeChunkFile)))
 
               if (index === 0) {
                 if (chunk.name === appName) {
