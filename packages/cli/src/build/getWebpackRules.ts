@@ -70,12 +70,15 @@ export default function getWebpackRules() {
     },
     {
       test: /\.less/,
-      use: [{
-        loader: require.resolve('../../dist/loader/file-loader.js'),
-        options: {
-          ext: '.acss'
+      use: [
+        {
+          loader: require.resolve('../../dist/loader/file-loader.js'),
+          options: {
+            ext: '.acss'
+          },
         },
-      }, require.resolve('less-loader')],
+        require.resolve('less-loader')
+      ],
     },
   ]
 }

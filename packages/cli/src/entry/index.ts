@@ -1,124 +1,136 @@
 import { resolve, isAbsolute, parse, join } from 'path'
 import hash from 'hash-sum'
-import groupBy from 'lodash.groupby'
 import { jsonExt, MAIN_PACKAGE, useComp } from '../constants'
 import { Entry, EntryType } from '../types'
 import parseAmpConf from '../parseAmpConf'
-import uniqBy from 'lodash.uniqby'
-
-const entries: Entry[] = []
+import { getBaseOutput, getRelativeOutput } from '../utils'
 
 const { sourceRoot, outputRoot, appEntry } = parseAmpConf()
 
-function getJsonEntry(_path) {
-  const { name, dir, ext } = parse(_path)
-  if (ext) return require(resolve(dir, `${name}${jsonExt}`))
-  return require(resolve(dir, name) + jsonExt)
-}
+class AmpEntry {
+  entries: Entry[] = [] // 所有引用关系
+  entryOutputMap: Map<string, string> = new Map() // 输入与输出
+  resourceMap: Map<string, Entry[]> = new Map()
 
-function addEntry(options: Entry) {
-  entries.push(options)
-}
+  constructor() {
+    const appJson = this.getJsonEntry(appEntry)
 
-function addPage(page = '', pkg = MAIN_PACKAGE) {
-  const entry = pagePathResolve(page, pkg)
+    if (appJson.pages) {
+      appJson.pages.forEach((page) => this.addPage(page, MAIN_PACKAGE))
+    }
 
-  const output = entry.replace(resolve(sourceRoot), resolve(outputRoot))
-
-  addEntry({
-    type: EntryType.page,
-    pkg,
-    value: page,
-    key: page,
-    loc: entry,
-    name: parse(join(entry, '..')).name,
-    output,
-    caller: '',
-  })
-
-  travelComponents(entry, page, pkg)
-}
-
-function travelComponents(entry, page, pkg) {
-  const json = getJsonEntry(entry)
-  const compMap = json[useComp]
-  if (compMap) {
-    Object.entries(compMap).forEach(([key, value]) =>
-      addComponent(key, value as string, page, pkg, parse(entry).dir)
-    )
-  }
-}
-
-function addComponent(
-  key = '',
-  value = '',
-  page = '',
-  pkg = MAIN_PACKAGE,
-  currentDir = ''
-) {
-  const entry = compPathResolve(value, currentDir)
-  const name = `${parse(join(entry, '..')).name.toLowerCase()}-${hash(entry)}`
-  const output = resolve(outputRoot) + `/components/${name}/index`
-
-  addEntry({
-    type: EntryType.comp,
-    pkg,
-    name,
-    value,
-    loc: entry,
-    output,
-    key,
-    caller: currentDir,
-  })
-
-  travelComponents(entry, page, pkg)
-}
-
-function pagePathResolve(page, pkg = MAIN_PACKAGE) {
-  return resolve(sourceRoot, pkg === MAIN_PACKAGE ? '' : pkg, page)
-}
-
-function compPathResolve(comp, currentDir) {
-  // 组件写成绝对路径，性能会高一些
-  if (isAbsolute(comp)) {
-    return resolve(sourceRoot) + comp
+    if (appJson.subPackages) {
+      appJson.subPackages.forEach((pkg) => {
+        const { root, pages } = pkg
+        pages.forEach((page) => this.addPage(page, root))
+      })
+    }
   }
 
-  try {
-    // 兼容 monorepos 结构
-    const { dir, name } = parse(require.resolve(comp + jsonExt))
-    return resolve(dir, name)
-  } catch (e) {
-    // 处理 ../../ 路径
-    return join(currentDir, comp)
-  }
-}
-
-export function getAMPEntry() {
-  if (entries.length) return entries
-
-  const appJson = getJsonEntry(appEntry)
-
-  if (appJson.pages) {
-    appJson.pages.forEach((page) => addPage(page, MAIN_PACKAGE))
+  // 获取某源码文件的应当的输出目录
+  getResourceOutput(resourcePath: string, relative?: boolean): string {
+    const { dir, name, ext } = parse(resourcePath)
+    const pathNoExt = `${dir}/${name}`
+    const outputDir = this.entryOutputMap.get(pathNoExt) || getBaseOutput(pathNoExt)
+    const output = `${outputDir}${ext}`
+    return relative ? getRelativeOutput(output) : output
   }
 
-  if (appJson.subPackages) {
-    appJson.subPackages.forEach((pkg) => {
-      const { root, pages } = pkg
-      pages.forEach((page) => addPage(page, root))
+  getResourceEntries(resourcePath: string): Entry[] {
+    const { dir } = parse(resourcePath)
+    return this.resourceMap.get(dir) || []
+  }
+
+  private addEntry(options: Entry) {
+    this.entries.push(options)
+    this.entryOutputMap.set(options.loc, options.output)
+    const caller = this.resourceMap.get(options.caller) || []
+    this.resourceMap.set(options.caller, caller.concat(options))
+  }
+
+  private getJsonEntry(_path) {
+    const { name, dir, ext } = parse(_path)
+    if (ext) return require(resolve(dir, `${name}${jsonExt}`))
+    return require(resolve(dir, name) + jsonExt)
+  }
+
+  private addPage(page = '', pkg = MAIN_PACKAGE) {
+    const entry = this.pagePathResolve(page, pkg)
+
+    this.addEntry({
+      type: EntryType.page,
+      pkg,
+      value: page,
+      key: page,
+      loc: entry,
+      name: parse(join(entry, '..')).name,
+      output: getBaseOutput(entry),
+      caller: parse(entry).dir,
     })
+
+    this.travelComponents(entry, page, pkg)
   }
 
-  return entries
+  private travelComponents(entry, page, pkg) {
+    const json = this.getJsonEntry(entry)
+    const compMap = json[useComp]
+    if (compMap) {
+      Object.entries(compMap).forEach(([key, value]) => {
+        this.addComponent(key, value as string, page, pkg, parse(entry).dir)
+      })
+    }
+  }
+
+  private getOutputCompName(entry) {
+    // hash 处理为了防止命名重复
+    return `${parse(join(entry, '..')).name.toLowerCase()}-${hash(entry)}`
+  }
+
+  private addComponent(
+    key,
+    value,
+    page,
+    pkg = MAIN_PACKAGE,
+    currentDir
+  ) {
+    const entry = this.compPathResolve(value, currentDir)
+    const name = this.getOutputCompName(entry)
+    // 所有组件都输出到 output 下的 components 目录中
+    const output = resolve(outputRoot) + `/components/${name}/index`
+
+    this.addEntry({
+      type: EntryType.comp,
+      pkg,
+      name,
+      value,
+      loc: entry,
+      output,
+      key,
+      caller: currentDir,
+    })
+
+    this.travelComponents(entry, page, pkg)
+  }
+
+  private pagePathResolve(page, pkg = MAIN_PACKAGE) {
+    return resolve(sourceRoot, pkg === MAIN_PACKAGE ? '' : pkg, page)
+  }
+
+  private compPathResolve(comp, currentDir) {
+    // 组件写成绝对路径，性能会高一些
+    if (isAbsolute(comp)) {
+      return resolve(sourceRoot) + comp
+    }
+
+    try {
+      // 兼容 monorepos 结构
+      const { dir, name } = parse(require.resolve(comp + jsonExt))
+      return resolve(dir, name)
+    } catch (e) {
+      // 处理 ../../ 路径
+      return join(currentDir, comp)
+    }
+  }
 }
 
-export function getAMPEntryBy(strategy: keyof Entry) {
-  return groupBy(getAMPEntry(), strategy)
-}
-
-const cache = {}
-export const getAMPEntryUniq = (strategy: keyof Entry) => {
-  if (cache[strategy]) return cache[strategy]
-  return cache[strategy] = uniqBy(getAMPEntry(), strategy)
-}
+export const ampEntry = new AmpEntry()

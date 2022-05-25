@@ -1,26 +1,20 @@
 import { getOptions } from 'loader-utils'
 import { parse, resolve } from 'path'
-import { getAMPEntryUniq } from "../entry"
-import parseAmpConf from '../parseAmpConf'
-import { empty } from '../constants'
-const { outputRoot, sourceRoot } = parseAmpConf()
+import { ampEntry } from "../entry"
 
 // 直接输出文件
 module.exports = function (source) {
-  const entry = getAMPEntryUniq('loc').find(entry => this.resourcePath.includes(entry.loc))
+  const output = ampEntry.getResourceOutput(this.resourcePath, true)
   const options = getOptions(this)
-  const ext = options.ext || parse(this.resourcePath).ext
 
-  if (entry) {
-    const output = entry.output.replace(resolve(outputRoot), empty) + ext
-    this.emitFile(output, source)
+  if (options.ext) {
+    const { dir, name } = parse(output)
+    this.emitFile(resolve(dir, `${name}${options.ext}`), source)
   } else {
-    // 输出的对应位置
-    const _output = this.resourcePath.replace(resolve(sourceRoot), empty)
-    const { dir, name } = parse(_output)
-    const output = resolve(dir, `${name}${ext}`)
     this.emitFile(output, source)
   }
 
-  return ''
+  return `
+    module.exports = { resourcePath: "${this.resourcePath}", outputPath: "${output}" }
+  `
 }

@@ -1,16 +1,12 @@
 import { parseQuery } from 'loader-utils'
-import { getAMPEntry } from '../entry'
+import { ampEntry } from '../entry'
 import parseAmpConf from '../parseAmpConf'
 import { resolve, join, parse } from 'path'
-import { useComp, jsonExt, empty } from '../constants'
+import { useComp, empty } from '../constants'
 import fs from 'fs-extra'
+import { getRelativeOutput, isRelativeUrl, normalizePath } from '../utils'
 
 const { outputRoot, sourceRoot } = parseAmpConf()
-
-// 组件引用规范为绝对路径(有需要再调整)
-function normalizePath(name: string) {
-  return `/components/${name}/index`
-}
 
 module.exports = function (source) {
   const { asConfig, type } = parseQuery(this.resourceQuery)
@@ -22,15 +18,12 @@ module.exports = function (source) {
     const json = JSON.parse(source)
     const compMap = json[useComp] || {}
 
-    let output = ''
+    // 当前资源文件的引用
+    const entries = ampEntry.getResourceEntries(this.resourcePath)
 
-    getAMPEntry()
-      .forEach(({ caller, key, value, name, loc, output: _output }) => {
-
-        // 拿到当前资源要输出的目录
-        if (this.resourcePath === loc + jsonExt) output = _output
-
-        if (!this.resourcePath.includes(caller)) return
+    entries
+      .forEach((entry) => {
+        const { key, value, name } = entry
         if (compMap[key] !== value) return
 
         // 格式化组件的路径
@@ -41,15 +34,16 @@ module.exports = function (source) {
       const { dir } = parse(this.resourcePath)
 
       function emitAssets(icon) {
-        if (icon) {
+        if (isRelativeUrl(icon)) {
           const iconPath = join(dir, icon)
           const distPath = resolve(outputRoot) + iconPath.replace(resolve(sourceRoot), empty)
+          // TODO: 资源文件可以加到 webpack 构建流程
           fs.ensureDirSync(parse(distPath).dir)
           fs.copyFileSync(iconPath, distPath)
         }
       }
 
-      // 处理 tabbar 图片资源
+      // 处理 tabBar 图片资源
       if (json.tabBar) {
         json.tabBar.items.forEach(item => {
           const { icon, activeIcon } = item
@@ -59,14 +53,13 @@ module.exports = function (source) {
       }
     }
 
-    if (output) {
-      output = output.replace(resolve(outputRoot), empty) + jsonExt
-    } else {
-      output = this.resourcePath.replace(resolve(sourceRoot), empty)
-    }
+    const output = ampEntry.getResourceOutput(this.resourcePath)
 
-    this.emitFile(output, JSON.stringify(json, null, 2))
-    return ''
+    this.emitFile(getRelativeOutput(output), JSON.stringify(json, null, 2))
+
+    return `
+      module.exports = { resourcePath: "${this.resourcePath}", outputPath: "${output}" }
+    `
   }
 
   return `

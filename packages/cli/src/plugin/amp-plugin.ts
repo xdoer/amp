@@ -1,9 +1,10 @@
 import { Compiler, EntryPlugin, Compilation, sources, Chunk } from 'webpack'
 import path, { resolve } from 'path'
-import { getAMPEntryUniq } from '../entry'
+import { ampEntry } from '../entry'
 import parseAmpConf from '../parseAmpConf'
 import fs, { constants } from 'fs'
 import { runtimeCodeFixBabel, runtimeCodeCtxObject } from '../constants'
+import { getRelativeOutput } from '../utils'
 
 function fix(path) {
   if (!/^\./.test(path)) {
@@ -20,18 +21,17 @@ export default class AmpWebpackPlugin {
 
   // 动态添加入口
   applyEntry() {
-    // 添加 entry
-    getAMPEntryUniq('loc').forEach(entry => {
-      const { loc, output } = entry
+
+    ampEntry.entryOutputMap.forEach((output, loc) => {
       // https://webpack.js.org/plugins/internal-plugins/#entryplugin
-      const out = output.replace(resolve(outputRoot), '')
+      const out = getRelativeOutput(output)
 
       // 每个单元下, 必须有的
       const requiredExts = ['', '.axml', '.json?asConfig']
 
       requiredExts.forEach(ext => new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler))
 
-
+      // 可能有的，需要先检验文件存不存在
       const styleExts = style ? [style, '.acss'] : ['.acss']
 
       for (let index = 0; index < styleExts.length; index++) {
