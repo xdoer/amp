@@ -55,24 +55,24 @@ export default function getWebpackRules() {
     {
       test: /\.json/,
       resourceQuery: /asConfig/,
-      use: [require.resolve('../../dist/loader/json-loader.js')],
+      use: [require.resolve('@amp/cli/dist/loader/json-loader')],
       type: 'javascript/auto',
     },
     {
       test: /\.axml/,
       use: [
-        require.resolve('../../dist/loader/xml-loader/index.js')
+        require.resolve('@amp/cli/dist/loader/xml-loader')
       ],
     },
     {
       test: /\.acss/,
-      use: [require.resolve('../../dist/loader/file-loader.js')],
+      use: [require.resolve('@amp/cli/dist/loader/file-loader')],
     },
     {
       test: /\.less/,
       use: [
         {
-          loader: require.resolve('../../dist/loader/file-loader.js'),
+          loader: require.resolve('@amp/cli/dist/loader/file-loader'),
           options: {
             ext: '.acss'
           },

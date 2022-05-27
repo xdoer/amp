@@ -1,7 +1,7 @@
-import parseCommand from "../parseCommand"
-import createWebpackConf from "./createWebpackConf"
 import chalk from 'chalk'
 import webpack from 'webpack'
+import parseCommand from "../parseCommand"
+import createWebpackConf from "./createWebpackConf"
 
 export default function startPack() {
   const { isWatch } = parseCommand()
@@ -13,9 +13,9 @@ export default function startPack() {
       return console.error(err)
     }
 
-    const stStats = Array.isArray(stats!.stats) ? stats!.stats : [stats]
+    const states = Array.isArray(stats!.stats) ? stats!.stats : [stats]
 
-    stStats.forEach((item) => {
+    states.forEach((item) => {
       console.log((item.compilation.name || '') + '打包结果：')
       process.stdout.write(
         item.toString({

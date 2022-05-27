@@ -1,10 +1,10 @@
-import { mergeWithCustomize, customizeObject } from 'webpack-merge'
-import parseAmpConf from '../parseAmpConf'
-import parseCommand from '../parseCommand'
-import baseConf from './baseWebpackConf'
 import { resolve } from 'path'
+import { mergeWithCustomize, customizeObject } from 'webpack-merge'
+import baseConf from './baseWebpackConf'
 import getWebpackRules from './getWebpackRules'
 import getWebpackPlugins from './getWebpackPlugins'
+import parseAmpConf from '../parseAmpConf'
+import parseCommand from '../parseCommand'
 
 export default function createWebpackConf(): any {
   const { isProduct, isWatch } = parseCommand()
