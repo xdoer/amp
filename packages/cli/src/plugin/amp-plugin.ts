@@ -1,12 +1,13 @@
 import { Compiler, EntryPlugin, Compilation, sources, Chunk } from 'webpack'
+import fs, { constants } from 'fs'
 import path, { resolve } from 'path'
 import { ampEntry } from '../entry'
 import parseAmpConf from '../parseAmpConf'
-import fs, { constants } from 'fs'
 import { runtimeCodeFixBabel, runtimeCodeCtxObject } from '../constants'
 import { getRelativeOutput, createRelativePath } from '../utils'
+import { platformConf } from '../ampConf'
 
-const { outputRoot, style } = parseAmpConf()
+const { outputRoot, style, platform } = parseAmpConf()
 
 export default class AmpWebpackPlugin {
 
@@ -14,21 +15,22 @@ export default class AmpWebpackPlugin {
 
   // 动态添加入口
   applyEntry() {
+    const { xml, css, json } = platformConf[platform].ext
 
     ampEntry.entryOutputMap.forEach((output, loc) => {
       // https://webpack.js.org/plugins/internal-plugins/#entryplugin
       const out = getRelativeOutput(output)
 
       // 每个单元下, 必须有的
-      const requiredExts = ['', '.axml', '.json?asConfig']
+      const requiredExts = ['', xml]
 
       requiredExts.forEach(ext => new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler))
 
       // 可能有的，需要先检验文件存不存在
-      const styleExts = style ? [style, '.acss'] : ['.acss']
+      const checkExts = style ? [style, css, `${json}?asConfig`] : [css, `${json}?asConfig`]
 
-      for (let index = 0; index < styleExts.length; index++) {
-        const ext = styleExts[index];
+      for (let i = 0; i < checkExts.length; i++) {
+        const ext = checkExts[i];
         try {
           fs.accessSync(loc + ext, constants.R_OK)
           new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler)

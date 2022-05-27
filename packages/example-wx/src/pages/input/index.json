@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Input 输入框",
+  "usingComponents": {
+    "i-input": "../../comp-lib/input/index",
+    "i-button": "../../comp-lib/button/index",
+    "i-panel": "../../comp-lib/panel/index"
+  }
+}

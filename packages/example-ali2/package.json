@@ -1,0 +1,15 @@
+{
+  "name": "ant-mini-program-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "amp -w",
+    "build": "amp"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mini-ali-ui": "^1.0.10"
+  }
+}

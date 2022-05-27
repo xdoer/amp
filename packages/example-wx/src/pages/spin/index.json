@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "Spin 加载中",
+  "usingComponents": {
+    "i-spin": "../../comp-lib/spin/index",
+    "i-panel": "../../comp-lib/panel/index",
+    "i-row": "../../comp-lib/row/index",
+    "i-col": "../../comp-lib/col/index",
+    "i-grid": "../../comp-lib/grid/index",
+    "i-grid-item": "../../comp-lib/grid-item/index",
+    "i-icon": "../../comp-lib/icon/index",
+    "i-switch": "../../comp-lib/switch/index"
+  }
+}

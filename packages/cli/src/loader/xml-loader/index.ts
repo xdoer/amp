@@ -3,6 +3,9 @@ import path from 'path'
 import attrParse from './attr-parse'
 import { ampEntry } from '../../entry'
 import { getRelativeOutput, isRelativeUrl } from '../../utils'
+import parseAmpConf from '../../parseAmpConf'
+
+const { outputRoot, sourceRoot } = parseAmpConf()
 
 module.exports = function xmlLoader(source) {
   const { dir } = path.parse(this.resourcePath)
@@ -27,7 +30,13 @@ module.exports = function xmlLoader(source) {
   links
     .filter(link => isRelativeUrl(link.value))
     .forEach(link => {
-      const currentPath = path.join(dir, link.value)
+      let currentPath = ''
+      if (path.isAbsolute(link.value)) {
+        currentPath = path.resolve(sourceRoot) + link.value
+      } else {
+        currentPath = path.join(dir, link.value)
+      }
+
       const _dir = path.parse(output).dir
       const outputPath = path.join(_dir, link.value)
 

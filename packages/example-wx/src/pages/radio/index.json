@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Radio 单选",
+  "usingComponents": {
+    "i-panel": "../../comp-lib/panel/index",
+    "i-button": "../../comp-lib/button/index",
+    "i-radio-group": "../../comp-lib/radio-group/index",
+    "i-radio": "../../comp-lib/radio/index"
+  }
+}

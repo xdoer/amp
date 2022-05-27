@@ -2,13 +2,13 @@ import path from 'path'
 import { empty } from './constants'
 import parseAmpConf from './parseAmpConf'
 
-const { sourceRoot, outputRoot } = parseAmpConf()
-
 export function getBaseOutput(_path) {
+  const { sourceRoot, outputRoot } = parseAmpConf()
   return _path.replace(path.resolve(sourceRoot), path.resolve(outputRoot))
 }
 
 export function getRelativeOutput(_path) {
+  const { outputRoot } = parseAmpConf()
   return _path.replace(path.resolve(outputRoot), empty)
 }
 
@@ -29,4 +29,8 @@ export function isRelativeUrl(url: string): boolean {
 
 export function createRelativePath(path) {
   return /^\./.test(path) ? path : './' + path
+}
+
+export function merge(target, source) {
+  return Object.assign({}, target, source)
 }

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "NoticeBar 通告栏",
+  "usingComponents": {
+    "i-panel": "../../comp-lib/panel/index",
+    "i-notice-bar": "../../comp-lib/notice-bar/index"
+  }
+}

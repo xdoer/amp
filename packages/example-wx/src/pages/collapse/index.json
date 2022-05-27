@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "折叠面板",
+  "usingComponents": {
+    "i-collapse": "../../comp-lib/collapse/index",
+    "i-collapse-item": "../../comp-lib/collapse-item/index"
+  }
+}

@@ -13,3 +13,16 @@ export enum EntryType {
   page = 'page',
   comp = 'component'
 }
+
+export interface AmpConf {
+  platform: 'ali' | 'wx'
+  appEntry: string
+  sourceRoot: string
+  outputRoot: string
+  defineConstants: { [key: string]: string }
+  alias: { [key: string]: string }
+  style: string
+  entryIncludes: string[]
+  externals: { [key: string]: string }
+  webpack: (config) => any
+}

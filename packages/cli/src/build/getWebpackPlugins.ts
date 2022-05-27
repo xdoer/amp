@@ -1,6 +1,6 @@
+import webpack from 'webpack'
 import parseAmpConf from '../parseAmpConf'
 import parseCommand from '../parseCommand'
-import webpack from 'webpack'
 import AmpWebpackPlugin from '../plugin/amp-plugin'
 
 export default function getWebpackPlugins() {

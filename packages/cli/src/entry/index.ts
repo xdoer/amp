@@ -50,8 +50,12 @@ class AmpEntry {
 
   private getJsonEntry(_path) {
     const { name, dir, ext } = parse(_path)
-    if (ext) return require(resolve(dir, `${name}${jsonExt}`))
-    return require(resolve(dir, name) + jsonExt)
+    try {
+      if (ext) return require(resolve(dir, `${name}${jsonExt}`))
+      return require(resolve(dir, name) + jsonExt)
+    } catch {
+      return {}
+    }
   }
 
   private addPage(page = '', pkg = MAIN_PACKAGE) {

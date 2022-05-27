@@ -1,15 +1,15 @@
+import fs from 'fs-extra'
 import { parseQuery } from 'loader-utils'
+import { resolve, join, parse } from 'path'
 import { ampEntry } from '../entry'
 import parseAmpConf from '../parseAmpConf'
-import { resolve, join, parse } from 'path'
 import { useComp, empty } from '../constants'
-import fs from 'fs-extra'
 import { getRelativeOutput, isRelativeUrl, normalizeCompPath } from '../utils'
 
-const { outputRoot, sourceRoot } = parseAmpConf()
 
 module.exports = function (source) {
   const { asConfig, type } = parseQuery(this.resourceQuery)
+  const { outputRoot, sourceRoot } = parseAmpConf()
 
   /**
    * 配置类的 json 需要在路径后加 asConfig 参数

@@ -1,8 +1,10 @@
-import parseAmpConf from '../parseAmpConf'
 import { resolve } from 'path'
+import parseAmpConf from '../parseAmpConf'
+import { platformConf } from '../ampConf'
 
 export default function getWebpackRules() {
-  const { alias, sourceRoot } = parseAmpConf()
+  const { alias, sourceRoot, platform } = parseAmpConf()
+  const { xml, css, json } = platformConf[platform].ext
 
   return [
     {
@@ -53,19 +55,19 @@ export default function getWebpackRules() {
       include: [resolve(sourceRoot)],
     },
     {
-      test: /\.json/,
+      test: new RegExp(json),
       resourceQuery: /asConfig/,
       use: [require.resolve('@amp/cli/dist/loader/json-loader')],
       type: 'javascript/auto',
     },
     {
-      test: /\.axml/,
+      test: new RegExp(xml),
       use: [
         require.resolve('@amp/cli/dist/loader/xml-loader')
       ],
     },
     {
-      test: /\.acss/,
+      test: new RegExp(css),
       use: [require.resolve('@amp/cli/dist/loader/file-loader')],
     },
     {
@@ -74,7 +76,7 @@ export default function getWebpackRules() {
         {
           loader: require.resolve('@amp/cli/dist/loader/file-loader'),
           options: {
-            ext: '.acss'
+            ext: css
           },
         },
         require.resolve('less-loader')

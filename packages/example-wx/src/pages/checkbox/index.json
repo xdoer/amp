@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Checkbox 复选",
+  "usingComponents": {
+    "i-panel": "../../comp-lib/panel/index",
+    "i-button": "../../comp-lib/button/index",
+    "i-checkbox-group": "../../comp-lib/checkbox-group/index",
+    "i-checkbox": "../../comp-lib/checkbox/index"
+  }
+}

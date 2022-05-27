@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "Rate 评分",
+  "usingComponents": {
+    "i-rate": "../../comp-lib/rate/index",
+    "i-cell-group": "../../comp-lib/cell-group/index",
+    "i-cell": "../../comp-lib/cell/index"
+  }
+}
