@@ -23,3 +23,5 @@ module.exports = function (source) {
     module.exports = { resourcePath: "${this.resourcePath}", outputPath: "${output}" }
   `
 }
+
+module.exports.raw = true
