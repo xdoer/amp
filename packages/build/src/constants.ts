@@ -5,6 +5,9 @@ export const empty = ''
 
 export const runtimeCodeCtxObject =
   'var context = (function() { return this })() || Function("return this")();\n'
+
+export const regeneratorRuntimeFix = 'var regeneratorRuntime\n'
+
 export const runtimeCodeFixBabel = `
 try {
   if(!context.console){

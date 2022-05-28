@@ -7,10 +7,7 @@ export default {
   mode: 'none',
   resolve: {
     modules: ['node_modules'],
-    alias: {
-      // 小程序支持 async
-      'regenerator-runtime': require.resolve('@amp/build/lib/deps/regenerator-runtime'),
-    },
+    alias: {},
   },
   cache: {
     type: 'filesystem',

@@ -4,7 +4,7 @@ import { parseQuery } from 'loader-utils'
 import path, { resolve } from 'path'
 import { ampEntry } from '../entry'
 import { parseAmpConf } from '../ampConf'
-import { runtimeCodeFixBabel, runtimeCodeCtxObject } from '../constants'
+import { runtimeCodeFixBabel, runtimeCodeCtxObject, regeneratorRuntimeFix } from '../constants'
 import { getRelativeOutput, createRelativePath } from '../utils'
 import { platformConf } from '../ampConf/default-conf'
 
@@ -85,6 +85,7 @@ export default class AmpWebpackPlugin {
                 if (index === 0) {
                   if (chunk.name === appName) {
                     source.add(runtimeCodeCtxObject)
+                    source.add(regeneratorRuntimeFix)
                     source.add(
                       `context[${JSON.stringify(
                         chunkLoadingGlobal
@@ -95,6 +96,7 @@ export default class AmpWebpackPlugin {
                   } else {
                     // 其余chunk中通过context全局传递runtime
                     source.add(runtimeCodeCtxObject)
+                    source.add(regeneratorRuntimeFix)
                     source.add(
                       `${globalObject}[${JSON.stringify(
                         chunkLoadingGlobal
@@ -108,6 +110,7 @@ export default class AmpWebpackPlugin {
 
               if (isRuntime) {
                 source.add(runtimeCodeCtxObject)
+                source.add(regeneratorRuntimeFix)
                 source.add(runtimeCodeFixBabel)
                 source.add(originalSource)
                 source.add(
