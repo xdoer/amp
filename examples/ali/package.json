@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "mini-ali-ui": "^1.0.10"
+  },
+  "devDependencies": {
+    "@amp/cli": "1.0.0"
   }
 }

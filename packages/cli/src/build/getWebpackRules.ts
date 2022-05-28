@@ -51,7 +51,7 @@ export default function getWebpackRules() {
     },
     {
       test: new RegExp(njs),
-      use: [require.resolve('@amp/cli/lib/loader/json-loader'), babelLoader],
+      use: [require.resolve('@amp/cli/lib/loader/file-loader'), babelLoader],
     },
     {
       test: /\.less/,
