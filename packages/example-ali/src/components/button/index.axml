@@ -1,8 +1,0 @@
-<import-sjs name="button"
-  from='./index.sjs' />
-
-<view onTap="handleTap">
-  HI, My Component
-</view>
-
-<image src="./movie.png" />

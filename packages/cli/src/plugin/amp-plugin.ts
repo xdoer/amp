@@ -160,7 +160,7 @@ export default class AmpWebpackPlugin {
     )
   }
 
-  // 动态入口
+  // 编译过程中, 新增入口
   dynamicEntry() {
     this.compiler.hooks.thisCompilation.tap(
       'AmpWebpackPlugin ',
@@ -193,7 +193,7 @@ export default class AmpWebpackPlugin {
                 this.compiler.context,
                 dep,
                 output,
-                (e, res) => {}
+                (e, res) => { }
               )
             }
           }
