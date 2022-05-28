@@ -1,13 +1,9 @@
 import chalk from 'chalk'
 import webpack from 'webpack'
+import { BuildOptions } from './types'
 import getWebpackConf from './webpackConf'
 
-interface Options {
-  isWatch: boolean
-  isProduct: boolean
-}
-
-export default function (options: Options) {
+export default function (options: BuildOptions) {
   const { isWatch } = options
   const webpackConf = getWebpackConf(options)
 

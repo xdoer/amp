@@ -1,3 +1,9 @@
+export interface BuildOptions {
+  isWatch: boolean
+  isProduct: boolean
+  analyze: boolean
+}
+
 export interface Entry {
   type: EntryType // 入口类型
   loc: string // 当前文件位置

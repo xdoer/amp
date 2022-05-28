@@ -9,9 +9,7 @@
   "keywords": [],
   "author": "Thomas Trainset",
   "license": "ISC",
-  "dependencies": {
-    "@amp/build": "1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "typescript": "^4.6.4"
   }

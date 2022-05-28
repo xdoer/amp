@@ -1,12 +1,14 @@
 import webpack from 'webpack'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { parseAmpConf } from '../ampConf'
 import AmpWebpackPlugin from '../plugin/amp-plugin'
+import { BuildOptions } from '../types'
 
-export default function getWebpackPlugins(options: any) {
-  const { isProduct } = options
+export default function getWebpackPlugins(options: BuildOptions) {
+  const { isProduct, analyze } = options
   const { defineConstants } = parseAmpConf()
 
-  return [
+  const plugins = [
     new AmpWebpackPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -15,4 +17,10 @@ export default function getWebpackPlugins(options: any) {
       ...defineConstants,
     }),
   ]
+
+  if (analyze) {
+    plugins.push(new BundleAnalyzerPlugin())
+  }
+
+  return plugins
 }

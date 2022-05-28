@@ -1,3 +1,5 @@
+import { setupPage } from '@goldfishjs/core'
+
 let openAPIList = [
   {
     name: '获取授权码',
@@ -345,18 +347,36 @@ const APIList = [
   },
 ]
 
-Page({
-  data: {
-    APIList,
-  },
-  onSearchBarTap() {
-    my.navigateTo({
-      url: '/page/common/search/search',
-    })
-  },
-  openPage(e) {
-    my.navigateTo({
-      url: e.target.dataset.url,
-    })
-  },
-})
+Page(
+  setupPage(() => {
+    return {
+      APIList,
+      onSearchBarTap() {
+        my.navigateTo({
+          url: '/page/common/search/search',
+        })
+      },
+      openPage(e) {
+        my.navigateTo({
+          url: e.target.dataset.url,
+        })
+      },
+    }
+  })
+)
+
+// Page({
+//   data: {
+//     APIList,
+//   },
+//   onSearchBarTap() {
+//     my.navigateTo({
+//       url: '/page/common/search/search',
+//     })
+//   },
+//   openPage(e) {
+//     my.navigateTo({
+//       url: e.target.dataset.url,
+//     })
+//   },
+// })
