@@ -65,8 +65,10 @@ export default class AmpWebpackPlugin {
               if (!chunkFile || processedChunk.has(chunk)) return
 
               let originalSource = compilation.assets[chunkFile]
+              const isRegeneratorRuntime = /regeneratorRuntime/.test(originalSource.source().toString())
               const source = new sources.ConcatSource()
               source.add(`\nvar ${globalObject} = ${globalObject} || {};\n\n`)
+              if (isRegeneratorRuntime) source.add(regeneratorRuntimeFix)
 
               relativeChunks.forEach((relativeChunk, index) => {
                 const relativeChunkFile = relativeChunk.files
@@ -85,7 +87,6 @@ export default class AmpWebpackPlugin {
                 if (index === 0) {
                   if (chunk.name === appName) {
                     source.add(runtimeCodeCtxObject)
-                    source.add(regeneratorRuntimeFix)
                     source.add(
                       `context[${JSON.stringify(
                         chunkLoadingGlobal
@@ -96,7 +97,7 @@ export default class AmpWebpackPlugin {
                   } else {
                     // 其余chunk中通过context全局传递runtime
                     source.add(runtimeCodeCtxObject)
-                    source.add(regeneratorRuntimeFix)
+
                     source.add(
                       `${globalObject}[${JSON.stringify(
                         chunkLoadingGlobal
@@ -110,7 +111,7 @@ export default class AmpWebpackPlugin {
 
               if (isRuntime) {
                 source.add(runtimeCodeCtxObject)
-                source.add(regeneratorRuntimeFix)
+
                 source.add(runtimeCodeFixBabel)
                 source.add(originalSource)
                 source.add(
