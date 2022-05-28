@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "bin": {
-    "amp": "./dist/index.js"
+    "amp": "./lib/index.js"
   },
   "files": [
-    "dist"
+    "lib"
   ],
   "scripts": {
     "dev": "tsc -w",
