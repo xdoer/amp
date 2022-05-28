@@ -1,7 +1,7 @@
 import { parseQuery } from 'loader-utils'
 import { resolve, join, parse } from 'path'
 import { ampEntry } from '../entry'
-import parseAmpConf from '../parseAmpConf'
+import { parseAmpConf } from '../ampConf'
 import { useComp, empty } from '../constants'
 import {
   getRelativeOutput,
@@ -9,7 +9,7 @@ import {
   jsonModule,
   normalizeCompPath,
 } from '../utils'
-import { addQuery, AssetQuery } from '../addQuery'
+import { addQuery, AssetQuery } from './addQuery'
 
 module.exports = function (source) {
   const { outputRoot, sourceRoot } = parseAmpConf()

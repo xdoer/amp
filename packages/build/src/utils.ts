@@ -1,6 +1,6 @@
 import path from 'path'
 import { empty } from './constants'
-import parseAmpConf from './parseAmpConf'
+import { parseAmpConf } from './ampConf'
 
 export function getBaseOutput(_path) {
   const { sourceRoot, outputRoot } = parseAmpConf()

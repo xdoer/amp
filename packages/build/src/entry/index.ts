@@ -2,7 +2,7 @@ import { resolve, isAbsolute, parse, join } from 'path'
 import hash from 'hash-sum'
 import { jsonExt, MAIN_PACKAGE, useComp } from '../constants'
 import { Entry, EntryType } from '../types'
-import parseAmpConf from '../parseAmpConf'
+import { parseAmpConf } from '../ampConf'
 import { getBaseOutput, getRelativeOutput } from '../utils'
 
 const { sourceRoot, outputRoot, appEntry } = parseAmpConf()

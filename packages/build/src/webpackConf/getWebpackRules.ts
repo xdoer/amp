@@ -1,6 +1,5 @@
 import { resolve } from 'path'
-import parseAmpConf from '../parseAmpConf'
-import { platformConf } from '../ampConf'
+import { parseAmpConf, platformConf } from '../ampConf'
 
 export default function getWebpackRules() {
   const { alias, sourceRoot, platform } = parseAmpConf()
@@ -38,26 +37,26 @@ export default function getWebpackRules() {
     {
       test: new RegExp(json),
       resourceQuery: /asConfig/,
-      use: [require.resolve('@amp/cli/lib/loader/json-loader')],
+      use: [require.resolve('@amp/build/lib/loader/json-loader')],
       type: 'javascript/auto',
     },
     {
       test: new RegExp(xml),
-      use: [require.resolve('@amp/cli/lib/loader/xml-loader')],
+      use: [require.resolve('@amp/build/lib/loader/xml-loader')],
     },
     {
       test: new RegExp(css),
-      use: [require.resolve('@amp/cli/lib/loader/file-loader')],
+      use: [require.resolve('@amp/build/lib/loader/file-loader')],
     },
     {
       test: new RegExp(njs),
-      use: [require.resolve('@amp/cli/lib/loader/file-loader'), babelLoader],
+      use: [require.resolve('@amp/build/lib/loader/file-loader'), babelLoader],
     },
     {
       test: /\.less/,
       use: [
         {
-          loader: require.resolve('@amp/cli/lib/loader/file-loader'),
+          loader: require.resolve('@amp/build/lib/loader/file-loader'),
           options: { ext: css },
         },
         require.resolve('less-loader'),
@@ -65,7 +64,7 @@ export default function getWebpackRules() {
     },
     {
       test: /\.(png|jpe?g|gif|svg)$/,
-      use: [require.resolve('@amp/cli/lib/loader/file-loader')],
+      use: [require.resolve('@amp/build/lib/loader/file-loader')],
     },
   ]
 }

@@ -1,11 +1,15 @@
 import chalk from 'chalk'
 import webpack from 'webpack'
-import parseCommand from '../parseCommand'
-import createWebpackConf from './createWebpackConf'
+import getWebpackConf from './webpackConf'
 
-export default function startPack() {
-  const { isWatch } = parseCommand()
-  const webpackConf = createWebpackConf()
+interface Options {
+  isWatch: boolean
+  isProduct: boolean
+}
+
+export default function (options: Options) {
+  const { isWatch } = options
+  const webpackConf = getWebpackConf(options)
 
   const cb = (err, stats) => {
     if (err) {

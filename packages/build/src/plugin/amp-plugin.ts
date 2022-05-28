@@ -3,10 +3,10 @@ import fs from 'fs'
 import { parseQuery } from 'loader-utils'
 import path, { resolve } from 'path'
 import { ampEntry } from '../entry'
-import parseAmpConf from '../parseAmpConf'
+import { parseAmpConf } from '../ampConf'
 import { runtimeCodeFixBabel, runtimeCodeCtxObject } from '../constants'
 import { getRelativeOutput, createRelativePath } from '../utils'
-import { platformConf } from '../ampConf'
+import { platformConf } from '../ampConf/default-conf'
 
 const { outputRoot, style, platform } = parseAmpConf()
 

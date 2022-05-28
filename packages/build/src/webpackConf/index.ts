@@ -3,11 +3,11 @@ import { mergeWithCustomize, customizeObject } from 'webpack-merge'
 import baseConf from './baseWebpackConf'
 import getWebpackRules from './getWebpackRules'
 import getWebpackPlugins from './getWebpackPlugins'
-import parseAmpConf from '../parseAmpConf'
-import parseCommand from '../parseCommand'
+import { parseAmpConf } from '../ampConf'
 
-export default function createWebpackConf(): any {
-  const { isProduct, isWatch } = parseCommand()
+export default function getWebpackConf(options): any {
+  const { isProduct, isWatch } = options
+
   const {
     outputRoot,
     webpack: userWebpack,
@@ -32,7 +32,7 @@ export default function createWebpackConf(): any {
       nodeEnv: isProduct ? 'production' : 'development',
     },
     devtool: isWatch ? 'inline-source-map' : 'source-map',
-    plugins: getWebpackPlugins(),
+    plugins: getWebpackPlugins(options),
     module: { rules: getWebpackRules() },
   }
 

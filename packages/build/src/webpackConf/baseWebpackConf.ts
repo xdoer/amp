@@ -9,7 +9,7 @@ export default {
     modules: ['node_modules'],
     alias: {
       // 小程序支持 async
-      'regenerator-runtime': require.resolve('@amp/cli/lib/deps/regenerator-runtime'),
+      'regenerator-runtime': require.resolve('@amp/build/lib/deps/regenerator-runtime'),
     },
   },
   cache: {

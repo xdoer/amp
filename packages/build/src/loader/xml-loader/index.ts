@@ -3,9 +3,8 @@ import fs from 'fs-extra'
 import attrParse from './attr-parse'
 import { ampEntry } from '../../entry'
 import { getBaseOutput, getRelativeOutput, isRelativeUrl } from '../../utils'
-import { addQuery, AssetQuery } from '../../addQuery'
-import parseAmpConf from '../../parseAmpConf'
-import { platformConf } from '../../ampConf'
+import { addQuery, AssetQuery } from '../addQuery'
+import { parseAmpConf, platformConf } from '../../ampConf'
 
 const { sourceRoot, platform, style } = parseAmpConf()
 const assetSet = new Set()
