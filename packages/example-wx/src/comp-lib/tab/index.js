@@ -3,48 +3,48 @@ Component({
 
   relations: {
     '../tabs/index': {
-      type: 'parent'
-    }
+      type: 'parent',
+    },
   },
 
   properties: {
     key: {
       type: String,
-      value: ''
+      value: '',
     },
     title: {
       type: String,
-      value: ''
+      value: '',
     },
     dot: {
       type: Boolean,
-      value: false
+      value: false,
     },
     count: {
       type: Number,
-      value: 0
-    }
+      value: 0,
+    },
   },
 
   data: {
     current: false,
     currentColor: '',
-    scroll: false
+    scroll: false,
   },
 
   methods: {
-    changeCurrent (current) {
+    changeCurrent(current) {
       this.setData({ current })
     },
-    changeCurrentColor (currentColor) {
+    changeCurrentColor(currentColor) {
       this.setData({ currentColor })
     },
-    changeScroll (scroll) {
+    changeScroll(scroll) {
       this.setData({ scroll })
     },
-    handleClickItem () {
+    handleClickItem() {
       const parent = this.getRelationNodes('../tabs/index')[0]
       parent.emitEvent(this.data.key)
-    }
-  }
+    },
+  },
 })

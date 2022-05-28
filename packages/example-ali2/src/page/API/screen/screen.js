@@ -5,9 +5,9 @@ Page({
   },
   onLoad() {
     my.getScreenBrightness({
-      success: res => {
+      success: (res) => {
         this.setData({
-          brightness: res.brightness
+          brightness: res.brightness,
         })
       },
     })
@@ -19,7 +19,7 @@ Page({
         this.setData({
           brightness: e.detail.value,
         })
-      }
+      },
     })
   },
   switchKeepScreenOn(e) {
@@ -29,16 +29,16 @@ Page({
         this.setData({
           status: e.detail.value,
         })
-      }
+      },
     })
   },
   getBrightness() {
     my.getScreenBrightness({
-      success: res => {
+      success: (res) => {
         my.alert({
-          content: `当前屏幕亮度：${res.brightness}`
-        });
-      }
+          content: `当前屏幕亮度：${res.brightness}`,
+        })
+      },
     })
-  }
-});
+  },
+})

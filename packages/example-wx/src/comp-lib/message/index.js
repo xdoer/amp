@@ -2,7 +2,7 @@ const defaultData = {
   visible: false,
   content: '',
   duration: 2,
-  type: 'default' // default || success || warning || error
+  type: 'default', // default || success || warning || error
 }
 
 let timmer = null
@@ -11,18 +11,18 @@ Component({
   externalClasses: ['i-class'],
 
   data: {
-    ...defaultData
+    ...defaultData,
   },
 
   methods: {
-    handleShow (options) {
+    handleShow(options) {
       const { type = 'default', duration = 2 } = options
 
       this.setData({
         ...options,
         type,
         duration,
-        visible: true
+        visible: true,
       })
 
       const d = this.data.duration * 1000
@@ -36,10 +36,10 @@ Component({
       }
     },
 
-    handleHide () {
+    handleHide() {
       this.setData({
-        ...defaultData
+        ...defaultData,
       })
-    }
-  }
+    },
+  },
 })

@@ -2,25 +2,25 @@ Component({
   externalClasses: ['i-class'],
 
   options: {
-    multipleSlots: true
+    multipleSlots: true,
   },
 
   properties: {
     full: {
       type: Boolean,
-      value: false
+      value: false,
     },
     thumb: {
       type: String,
-      value: ''
+      value: '',
     },
     title: {
       type: String,
-      value: ''
+      value: '',
     },
     extra: {
       type: String,
-      value: ''
-    }
-  }
+      value: '',
+    },
+  },
 })

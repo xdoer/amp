@@ -3,18 +3,18 @@ Component({
 
   relations: {
     '../row/index': {
-      type: 'parent'
-    }
+      type: 'parent',
+    },
   },
 
   properties: {
     span: {
       value: 0,
-      type: Number
+      type: Number,
     },
     offset: {
       value: 0,
-      type: Number
-    }
-  }
+      type: Number,
+    },
+  },
 })

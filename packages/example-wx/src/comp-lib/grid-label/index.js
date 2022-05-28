@@ -3,8 +3,7 @@ Component({
 
   relations: {
     '../grid-item/index': {
-      type: 'parent'
-    }
-  }
-
+      type: 'parent',
+    },
+  },
 })

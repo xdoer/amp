@@ -4,16 +4,16 @@ Component({
   properties: {
     title: {
       type: String,
-      value: ''
+      value: '',
     },
     // 标题顶部距离
     hideTop: {
       type: Boolean,
-      value: false
+      value: false,
     },
     hideBorder: {
       type: Boolean,
-      value: false
-    }
-  }
+      value: false,
+    },
+  },
 })

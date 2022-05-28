@@ -3,23 +3,23 @@ Component({
   properties: {
     content: {
       type: String,
-      value: ''
+      value: '',
     },
     height: {
       type: Number,
-      value: 48
+      value: 48,
     },
     color: {
       type: String,
-      value: '#80848f'
+      value: '#80848f',
     },
     lineColor: {
       type: String,
-      value: '#e9eaec'
+      value: '#e9eaec',
     },
     size: {
       type: String,
-      value: 12
-    }
-  }
+      value: 12,
+    },
+  },
 })

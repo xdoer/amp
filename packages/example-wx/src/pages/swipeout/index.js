@@ -7,8 +7,8 @@ Page({
     actions2: [
       {
         name: '删除',
-        color: '#ed3f14'
-      }
+        color: '#ed3f14',
+      },
     ],
     actions: [
       {
@@ -17,30 +17,30 @@ Page({
         fontsize: '20',
         width: 100,
         icon: 'like',
-        background: '#ed3f14'
+        background: '#ed3f14',
       },
       {
         name: '返回',
         width: 100,
         color: '#80848f',
         fontsize: '20',
-        icon: 'undo'
-      }
-    ]
+        icon: 'undo',
+      },
+    ],
   },
-  handleCancel2 () {
+  handleCancel2() {
     this.setData({
       visible2: false,
-      toggle: !this.data.toggle
+      toggle: !this.data.toggle,
     })
     console.log(this.data.toggle, 111111111)
   },
-  handleClickItem2 () {
+  handleClickItem2() {
     const action = [...this.data.actions2]
     action[0].loading = true
 
     this.setData({
-      actions2: action
+      actions2: action,
     })
 
     setTimeout(() => {
@@ -48,18 +48,18 @@ Page({
       this.setData({
         visible2: false,
         actions2: action,
-        toggle: !this.data.toggle
+        toggle: !this.data.toggle,
       })
     }, 2000)
   },
-  handlerCloseButton () {
+  handlerCloseButton() {
     this.setData({
-      toggle2: !this.data.toggle2
+      toggle2: !this.data.toggle2,
     })
   },
-  actionsTap () {
+  actionsTap() {
     this.setData({
-      visible2: true
+      visible2: true,
     })
-  }
+  },
 })

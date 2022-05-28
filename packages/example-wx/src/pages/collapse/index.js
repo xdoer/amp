@@ -1,5 +1,5 @@
 Page({
   data: {
-    name: 'name1'
-  }
+    name: 'name1',
+  },
 })

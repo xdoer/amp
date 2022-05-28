@@ -3,31 +3,31 @@ Component({
   properties: {
     scrollTop: {
       type: Number,
-      observer (val) {
+      observer(val) {
         this._updateScrollTopChange()
-      }
-    }
+      },
+    },
   },
   relations: {
     '../sticky-item/index': {
       type: 'child',
-      linked () {
+      linked() {
         this._updateDataChange()
       },
-      linkChanged () {
+      linkChanged() {
         this._updateDataChange()
       },
-      unlinked () {
+      unlinked() {
         this._updateDataChange()
-      }
-    }
+      },
+    },
   },
   data: {
     timer: null,
-    itemLength: 0
+    itemLength: 0,
   },
   methods: {
-    _updateScrollTopChange () {
+    _updateScrollTopChange() {
       const stickies = this.getRelationNodes('../sticky-item/index')
       if (stickies.length > 0) {
         stickies.forEach((item) => {
@@ -37,13 +37,13 @@ Component({
         })
       }
     },
-    _updateDataChange () {
+    _updateDataChange() {
       const stickies = this.getRelationNodes('../sticky-item/index')
       if (stickies.length > 0) {
         if (this.data.timer) {
           clearTimeout(this.data.timer)
           this.setData({
-            timer: null
+            timer: null,
           })
         }
         this.data.timer = setTimeout(() => {
@@ -54,10 +54,9 @@ Component({
           })
         }, 0)
         this.setData({
-          timer: this.data.timer
+          timer: this.data.timer,
         })
       }
-    }
-  }
-
+    },
+  },
 })

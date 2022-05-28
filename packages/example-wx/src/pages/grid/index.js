@@ -1,10 +1,10 @@
 Page({
   data: {
-    isAdd: false
+    isAdd: false,
   },
-  handleAdd () {
+  handleAdd() {
     this.setData({
-      isAdd: !this.data.isAdd
+      isAdd: !this.data.isAdd,
     })
-  }
+  },
 })

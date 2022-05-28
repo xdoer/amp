@@ -1,6 +1,6 @@
 import { getOptions, parseQuery } from 'loader-utils'
 import { parse, resolve } from 'path'
-import { ampEntry } from "../entry"
+import { ampEntry } from '../entry'
 
 // 直接输出文件
 module.exports = function (source) {

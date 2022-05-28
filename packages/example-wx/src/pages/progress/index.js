@@ -1,24 +1,24 @@
 Page({
   data: {
     percent: 0,
-    status: 'normal'
+    status: 'normal',
   },
-  handleAdd () {
+  handleAdd() {
     if (this.data.percent === 100) return
     this.setData({
-      percent: this.data.percent + 10
+      percent: this.data.percent + 10,
     })
     if (this.data.percent === 100) {
       this.setData({
-        status: 'success'
+        status: 'success',
       })
     }
   },
-  handleReduce () {
+  handleReduce() {
     if (this.data.percent === 0) return
     this.setData({
       percent: this.data.percent - 10,
-      status: 'normal'
+      status: 'normal',
     })
-  }
+  },
 })

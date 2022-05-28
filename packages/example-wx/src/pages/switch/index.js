@@ -1,11 +1,11 @@
 Page({
   data: {
-    switch1: false
+    switch1: false,
   },
-  onChange (event) {
+  onChange(event) {
     const detail = event.detail
     this.setData({
-      switch1: detail.value
+      switch1: detail.value,
     })
-  }
+  },
 })

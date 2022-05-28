@@ -8,16 +8,16 @@ Page({
         production: 'AlipayJSAPI',
       },
       dataType: 'json',
-      success: function(res) {
-        my.alert({content: JSON.stringify(res)});
+      success: function (res) {
+        my.alert({ content: JSON.stringify(res) })
       },
-      fail: function(res) {
-        my.alert({content: JSON.stringify(res)});
+      fail: function (res) {
+        my.alert({ content: JSON.stringify(res) })
       },
-      complete: function(res) {
+      complete: function (res) {
         // my.alert({title: 'complete'});
-      }
-    });
+      },
+    })
   },
   request() {
     my.request({
@@ -28,16 +28,16 @@ Page({
         production: 'AlipayJSAPI',
       },
       dataType: 'json',
-      success: function(res) {
-        my.alert({content: JSON.stringify(res)});
+      success: function (res) {
+        my.alert({ content: JSON.stringify(res) })
       },
-      fail: function(res) {
-        my.alert({content: JSON.stringify(res)});
+      fail: function (res) {
+        my.alert({ content: JSON.stringify(res) })
       },
-      complete: function(res) {
+      complete: function (res) {
         // my.alert({title: 'complete'});
-      }
-    });
+      },
+    })
   },
   requestAndAbort() {
     const task = my.request({
@@ -48,16 +48,16 @@ Page({
         production: 'AlipayJSAPI',
       },
       dataType: 'json',
-      success: function(res) {
-        my.alert({content: JSON.stringify(res)});
+      success: function (res) {
+        my.alert({ content: JSON.stringify(res) })
       },
-      fail: function(res) {
-        my.alert({content: JSON.stringify(res)});
+      fail: function (res) {
+        my.alert({ content: JSON.stringify(res) })
       },
-      complete: function(res) {
+      complete: function (res) {
         // my.alert({title: 'complete'});
-      }
-    });
-    task.abort();
+      },
+    })
+    task.abort()
   },
 })

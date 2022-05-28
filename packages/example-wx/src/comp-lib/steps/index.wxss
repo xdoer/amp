@@ -1,1 +1,3 @@
-.i-steps{width:100%}
+.i-steps {
+  width: 100%;
+}

@@ -3,36 +3,36 @@ Component({
   relations: {
     '../radio/index': {
       type: 'child',
-      linked () {
+      linked() {
         this.changeCurrent()
       },
-      linkChanged () {
+      linkChanged() {
         this.changeCurrent()
       },
-      unlinked () {
+      unlinked() {
         this.changeCurrent()
-      }
-    }
+      },
+    },
   },
   properties: {
     current: {
       type: String,
       value: '',
-      observer: 'changeCurrent'
-    }
+      observer: 'changeCurrent',
+    },
   },
   methods: {
-    changeCurrent (val = this.data.current) {
+    changeCurrent(val = this.data.current) {
       const items = this.getRelationNodes('../radio/index')
       const len = items.length
       if (len > 0) {
-        items.forEach(item => {
+        items.forEach((item) => {
           item.changeCurrent(val === item.data.value)
         })
       }
     },
-    emitEvent (current) {
+    emitEvent(current) {
       this.triggerEvent('change', current)
-    }
-  }
+    },
+  },
 })

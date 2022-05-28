@@ -4,20 +4,20 @@ Component({
   relations: {
     '../cell/index': {
       type: 'child',
-      linked () {
+      linked() {
         this._updateIsLastCell()
       },
-      linkChanged () {
+      linkChanged() {
         this._updateIsLastCell()
       },
-      unlinked () {
+      unlinked() {
         this._updateIsLastCell()
-      }
-    }
+      },
+    },
   },
 
   methods: {
-    _updateIsLastCell () {
+    _updateIsLastCell() {
       const cells = this.getRelationNodes('../cell/index')
       const len = cells.length
 
@@ -28,6 +28,6 @@ Component({
           cell.updateIsLastCell(index === lastIndex)
         })
       }
-    }
-  }
+    },
+  },
 })

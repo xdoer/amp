@@ -4,19 +4,19 @@ Component({
     showDay: Boolean,
     callback: String,
     format: Array,
-    clearTimer: Boolean
+    clearTimer: Boolean,
   },
   externalClasses: ['countdown-class'],
   data: {
     time: '',
     resultFormat: [],
-    changeFormat: false
+    changeFormat: false,
   },
-  ready () {
+  ready() {
     this.getFormat()
   },
   methods: {
-    getFormat () {
+    getFormat() {
       const data = this.data
       const len = data.format.length
 
@@ -35,14 +35,14 @@ Component({
 
       this.getLastTime()
     },
-    init () {
+    init() {
       const self = this
       setTimeout(function () {
         /* eslint-disable no-useless-call */
         self.getLastTime.call(self)
       }, 1000)
     },
-    getLastTime () {
+    getLastTime() {
       const data = this.data
       const gapTime = Math.ceil((data.target - new Date().getTime()) / 1000)
       let result = ''
@@ -58,7 +58,8 @@ Component({
         const minute = this.formatNum(parseInt(lastTime / 60))
         const second = this.formatNum(lastTime % 60)
 
-        if (data.changeFormat) time = `${hour}${format[1]}${minute}${format[2]}${second}${format[3]}`
+        if (data.changeFormat)
+          time = `${hour}${format[1]}${minute}${format[2]}${second}${format[3]}`
         else time = `${hour}:${minute}:${second}`
         /* eslint-disable no-useless-call */
         if (!data.clearTimer) this.init.call(this)
@@ -76,14 +77,14 @@ Component({
         result = time
       }
       this.setData({
-        time: result
+        time: result,
       })
     },
-    formatNum (num) {
+    formatNum(num) {
       return num > 9 ? num : `0${num}`
     },
-    endfn () {
+    endfn() {
       this.triggerEvent('callback', {})
-    }
-  }
+    },
+  },
 })

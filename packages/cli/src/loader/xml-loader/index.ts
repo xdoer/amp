@@ -22,7 +22,7 @@ module.exports = function xmlLoader(source) {
     'cover-image:src',
     'import:src',
     'include:src',
-    'import-sjs:from'
+    'import-sjs:from',
   ]
 
   const links = attrParse(source, (tag, attr) => {
@@ -30,7 +30,7 @@ module.exports = function xmlLoader(source) {
       if (a.charAt(0) === ':') {
         return attr === a.slice(1)
       } else {
-        return (tag + ':' + attr) === a
+        return tag + ':' + attr === a
       }
     })
     return !!res
@@ -40,8 +40,8 @@ module.exports = function xmlLoader(source) {
 
   // 解析 xml 中的相对路径资源进行拷贝
   links
-    .filter(link => isRelativeUrl(link.value))
-    .forEach(link => {
+    .filter((link) => isRelativeUrl(link.value))
+    .forEach((link) => {
       let currentPath = ''
       let outputPath = ''
       if (path.isAbsolute(link.value)) {
@@ -63,20 +63,32 @@ module.exports = function xmlLoader(source) {
         const exts = [css, json, ...userExts]
 
         // js/ts 不需要 ext，需要加入独立的 entry
-        assets.push({ resource: `${dir}/${name}`, options: { output: getRelativeOutput(`${outDir}/${name}`), type: 'entry' } })
+        assets.push({
+          resource: `${dir}/${name}`,
+          options: {
+            output: getRelativeOutput(`${outDir}/${name}`),
+            type: 'entry',
+          },
+        })
 
-        exts.forEach(ext => {
+        exts.forEach((ext) => {
           let file = `${dir}/${name}${ext}`
           if (fs.existsSync(file)) {
             file = `${file}${ext === json ? '?asConfig' : ''}`
-            assets.push({ resource: file, options: { output: getRelativeOutput(`${outDir}/${name}${ext}`) } })
+            assets.push({
+              resource: file,
+              options: { output: getRelativeOutput(`${outDir}/${name}${ext}`) },
+            })
           }
         })
 
         assetSet.add(currentPath)
       }
 
-      assets.push({ resource: currentPath, options: { output: getRelativeOutput(outputPath) } })
+      assets.push({
+        resource: currentPath,
+        options: { output: getRelativeOutput(outputPath) },
+      })
     })
 
   this.emitFile(getRelativeOutput(output), source)

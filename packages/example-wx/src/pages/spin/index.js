@@ -1,13 +1,13 @@
 Page({
   data: {
     spinShow: true,
-    switch: false
+    switch: false,
   },
-  onSwitchChange ({ detail }) {
+  onSwitchChange({ detail }) {
     const value = detail.value
     this.setData({
       switch: value,
-      spinShow: !value
+      spinShow: !value,
     })
-  }
+  },
 })

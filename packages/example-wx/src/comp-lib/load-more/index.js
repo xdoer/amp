@@ -4,11 +4,11 @@ Component({
   properties: {
     loading: {
       type: Boolean,
-      value: true
+      value: true,
     },
     tip: {
       type: String,
-      value: ''
-    }
-  }
+      value: '',
+    },
+  },
 })

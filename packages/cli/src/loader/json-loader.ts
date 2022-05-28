@@ -3,9 +3,13 @@ import { resolve, join, parse } from 'path'
 import { ampEntry } from '../entry'
 import parseAmpConf from '../parseAmpConf'
 import { useComp, empty } from '../constants'
-import { getRelativeOutput, isRelativeUrl, jsonModule, normalizeCompPath } from '../utils'
+import {
+  getRelativeOutput,
+  isRelativeUrl,
+  jsonModule,
+  normalizeCompPath,
+} from '../utils'
 import { addQuery, AssetQuery } from '../addQuery'
-
 
 module.exports = function (source) {
   const { outputRoot, sourceRoot } = parseAmpConf()
@@ -22,14 +26,13 @@ module.exports = function (source) {
       // 当前资源文件的引用
       const entries = ampEntry.getResourceEntries(this.resourcePath)
 
-      entries
-        .forEach((entry) => {
-          const { key, value, name } = entry
-          if (compMap[key] !== value) return
+      entries.forEach((entry) => {
+        const { key, value, name } = entry
+        if (compMap[key] !== value) return
 
-          // 格式化组件的路径
-          compMap[key] = normalizeCompPath(name)
-        })
+        // 格式化组件的路径
+        compMap[key] = normalizeCompPath(name)
+      })
 
       if (type === 'app') {
         const { dir } = parse(this.resourcePath)
@@ -37,21 +40,20 @@ module.exports = function (source) {
         function emitAssets(icon) {
           if (isRelativeUrl(icon)) {
             const iconPath = join(dir, icon)
-            const distPath = resolve(outputRoot) + iconPath.replace(resolve(sourceRoot), empty)
-            assetsQuery.push(
-              {
-                resource: iconPath,
-                options: {
-                  output: getRelativeOutput(distPath)
-                }
-              }
-            )
+            const distPath =
+              resolve(outputRoot) + iconPath.replace(resolve(sourceRoot), empty)
+            assetsQuery.push({
+              resource: iconPath,
+              options: {
+                output: getRelativeOutput(distPath),
+              },
+            })
           }
         }
 
         // 处理 tabBar 图片资源
         if (json.tabBar) {
-          json.tabBar.items.forEach(item => {
+          json.tabBar.items.forEach((item) => {
             const { icon, activeIcon } = item
             emitAssets(icon)
             emitAssets(activeIcon)

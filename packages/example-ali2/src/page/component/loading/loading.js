@@ -3,4 +3,4 @@ Page({
     loadSize: '180rpx',
   },
   onLoad() {},
-});
+})

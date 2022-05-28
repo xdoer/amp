@@ -4,63 +4,63 @@ Component({
   relations: {
     '../tab-bar-item/index': {
       type: 'child',
-      linked () {
+      linked() {
         this.changeCurrent()
       },
-      linkChanged () {
+      linkChanged() {
         this.changeCurrent()
       },
-      unlinked () {
+      unlinked() {
         this.changeCurrent()
-      }
-    }
+      },
+    },
   },
 
   properties: {
     current: {
       type: String,
       value: '',
-      observer: 'changeCurrent'
+      observer: 'changeCurrent',
     },
     color: {
       type: String,
-      value: ''
+      value: '',
     },
     fixed: {
       type: Boolean,
-      value: false
-    }
+      value: false,
+    },
   },
 
   data: {
-    list: []
+    list: [],
   },
 
   methods: {
-    changeCurrent (val = this.data.current) {
+    changeCurrent(val = this.data.current) {
       const items = this.getRelationNodes('../tab-bar-item/index')
       const len = items.length
 
       if (len > 0) {
         const list = []
-        items.forEach(item => {
+        items.forEach((item) => {
           item.changeCurrent(item.data.key === val)
           item.changeCurrentColor(this.data.color)
           list.push({
-            key: item.data.key
+            key: item.data.key,
           })
         })
         this.setData({
-          list: list
+          list: list,
         })
       }
     },
-    emitEvent (key) {
+    emitEvent(key) {
       this.triggerEvent('change', { key })
     },
-    handleClickItem (e) {
+    handleClickItem(e) {
       const key = e.currentTarget.dataset.key
       this.emitEvent(key)
-    }
-  }
+    },
+  },
 })

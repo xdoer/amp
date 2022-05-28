@@ -5,19 +5,19 @@ Component({
     // small || default || large
     size: {
       type: String,
-      value: 'default'
+      value: 'default',
     },
     fix: {
       type: Boolean,
-      value: false
+      value: false,
     },
     fullscreen: {
       type: Boolean,
-      value: false
+      value: false,
     },
     custom: {
       type: Boolean,
-      value: false
-    }
-  }
+      value: false,
+    },
+  },
 })

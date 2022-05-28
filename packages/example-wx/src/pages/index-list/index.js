@@ -1,18 +1,45 @@
 import { cities } from './city'
 Page({
   data: {
-    cities: []
+    cities: [],
   },
-  onChange (event) {
+  onChange(event) {
     console.log(event.detail, 'click right menu callback data')
   },
-  onReady () {
+  onReady() {
     const storeCity = new Array(26)
-    const words = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    const words = [
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'H',
+      'I',
+      'J',
+      'K',
+      'L',
+      'M',
+      'N',
+      'O',
+      'P',
+      'Q',
+      'R',
+      'S',
+      'T',
+      'U',
+      'V',
+      'W',
+      'X',
+      'Y',
+      'Z',
+    ]
     words.forEach((item, index) => {
       storeCity[index] = {
         key: item,
-        list: []
+        list: [],
       }
     })
     cities.forEach((item) => {
@@ -20,12 +47,12 @@ Page({
       const index = words.indexOf(firstName)
       storeCity[index].list.push({
         name: item.name,
-        key: firstName
+        key: firstName,
       })
     })
     this.data.cities = storeCity
     this.setData({
-      cities: this.data.cities
+      cities: this.data.cities,
     })
-  }
+  },
 })

@@ -1,4 +1,4 @@
-function addNum (num1, num2) {
+function addNum(num1, num2) {
   let sq1, sq2
   try {
     sq1 = num1.toString().split('.')[1].length
@@ -22,24 +22,24 @@ Component({
     size: String,
     value: {
       type: Number,
-      value: 1
+      value: 1,
     },
     min: {
       type: Number,
-      value: -Infinity
+      value: -Infinity,
     },
     max: {
       type: Number,
-      value: Infinity
+      value: Infinity,
     },
     step: {
       type: Number,
-      value: 1
-    }
+      value: 1,
+    },
   },
 
   methods: {
-    handleChangeStep (e, type) {
+    handleChangeStep(e, type) {
       const { dataset = {} } = e.currentTarget
       const { disabled } = dataset
       const { step } = this.data
@@ -58,15 +58,15 @@ Component({
       this.handleEmit(value, type)
     },
 
-    handleMinus (e) {
+    handleMinus(e) {
       this.handleChangeStep(e, 'minus')
     },
 
-    handlePlus (e) {
+    handlePlus(e) {
       this.handleChangeStep(e, 'plus')
     },
 
-    handleBlur (e) {
+    handleBlur(e) {
       let { value } = e.detail
       const { min, max } = this.data
 
@@ -86,13 +86,13 @@ Component({
 
       this.handleEmit(value)
     },
-    handleEmit (value, type) {
+    handleEmit(value, type) {
       const data = {
-        value: value
+        value: value,
       }
       if (type) data.type = type
 
       this.triggerEvent('change', data)
-    }
-  }
+    },
+  },
 })

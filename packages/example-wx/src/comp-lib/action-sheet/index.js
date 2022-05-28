@@ -2,46 +2,46 @@ Component({
   externalClasses: ['i-class', 'i-class-mask', 'i-class-header'],
 
   options: {
-    multipleSlots: true
+    multipleSlots: true,
   },
 
   properties: {
     visible: {
       type: Boolean,
-      value: false
+      value: false,
     },
     maskClosable: {
       type: Boolean,
-      value: true
+      value: true,
     },
     showCancel: {
       type: Boolean,
-      value: false
+      value: false,
     },
     cancelText: {
       type: String,
-      value: '取消'
+      value: '取消',
     },
     actions: {
       type: Array,
-      value: []
-    }
+      value: [],
+    },
   },
 
   methods: {
-    handleClickMask () {
+    handleClickMask() {
       if (!this.data.maskClosable) return
       this.handleClickCancel()
     },
 
-    handleClickItem ({ currentTarget = {} }) {
+    handleClickItem({ currentTarget = {} }) {
       const dataset = currentTarget.dataset || {}
       const { index } = dataset
       this.triggerEvent('click', { index })
     },
 
-    handleClickCancel () {
+    handleClickCancel() {
       this.triggerEvent('cancel')
-    }
-  }
+    },
+  },
 })

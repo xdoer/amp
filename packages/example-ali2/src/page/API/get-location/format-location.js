@@ -4,7 +4,7 @@ function formatLocation(longitude, latitude) {
 
   return {
     longitude: longitude.toString().split('.'),
-    latitude: latitude.toString().split('.')
+    latitude: latitude.toString().split('.'),
   }
 }
 

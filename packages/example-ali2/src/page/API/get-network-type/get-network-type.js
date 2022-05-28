@@ -1,17 +1,17 @@
 Page({
   data: {
-    hasNetworkType: false
+    hasNetworkType: false,
   },
   onLoad() {
-    this.onChange = this.onChange.bind(this);
+    this.onChange = this.onChange.bind(this)
     // my.onNetworkChange(this.onChange);
   },
-  onChange(res){
-    console.log('onNetworkChange', res);
+  onChange(res) {
+    console.log('onNetworkChange', res)
     this.setData({
       hasNetworkType: true,
-      networkType: res.networkType
-    });
+      networkType: res.networkType,
+    })
   },
   onUnload() {
     // my.offNetworkChange(this.onChange);
@@ -21,15 +21,15 @@ Page({
       success: (res) => {
         this.setData({
           hasNetworkType: true,
-          networkType: res.networkType
+          networkType: res.networkType,
         })
-      }
+      },
     })
   },
   clear() {
     this.setData({
       hasNetworkType: false,
-      networkType: ''
+      networkType: '',
     })
   },
-});
+})

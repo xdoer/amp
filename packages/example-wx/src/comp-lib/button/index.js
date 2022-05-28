@@ -5,76 +5,76 @@ Component({
     // default, primary, ghost, info, success, warning, error
     type: {
       type: String,
-      value: ''
+      value: '',
     },
     inline: {
       type: Boolean,
-      value: false
+      value: false,
     },
     // default, large, small
     size: {
       type: String,
-      value: ''
+      value: '',
     },
     // circle, square
     shape: {
       type: String,
-      value: 'square'
+      value: 'square',
     },
     disabled: {
       type: Boolean,
-      value: false
+      value: false,
     },
     loading: {
       type: Boolean,
-      value: false
+      value: false,
     },
     long: {
       type: Boolean,
-      value: false
+      value: false,
     },
     openType: String,
     appParameter: String,
     hoverStopPropagation: Boolean,
     hoverStartTime: {
       type: Number,
-      value: 20
+      value: 20,
     },
     hoverStayTime: {
       type: Number,
-      value: 70
+      value: 70,
     },
     lang: {
       type: String,
-      value: 'en'
+      value: 'en',
     },
     sessionFrom: {
       type: String,
-      value: ''
+      value: '',
     },
     sendMessageTitle: String,
     sendMessagePath: String,
     sendMessageImg: String,
-    showMessageCard: Boolean
+    showMessageCard: Boolean,
   },
 
   methods: {
-    handleTap () {
+    handleTap() {
       if (this.data.disabled) return false
 
       this.triggerEvent('click')
     },
-    bindgetuserinfo ({ detail = {} } = {}) {
+    bindgetuserinfo({ detail = {} } = {}) {
       this.triggerEvent('getuserinfo', detail)
     },
-    bindcontact ({ detail = {} } = {}) {
+    bindcontact({ detail = {} } = {}) {
       this.triggerEvent('contact', detail)
     },
-    bindgetphonenumber ({ detail = {} } = {}) {
+    bindgetphonenumber({ detail = {} } = {}) {
       this.triggerEvent('getphonenumber', detail)
     },
-    binderror ({ detail = {} } = {}) {
+    binderror({ detail = {} } = {}) {
       this.triggerEvent('error', detail)
-    }
-  }
+    },
+  },
 })

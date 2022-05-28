@@ -6,6 +6,6 @@ Page({
   onInput(e) {
     this.setData({
       value: e.detail.value,
-    });
+    })
   },
-});
+})

@@ -1,18 +1,18 @@
 Page({
   data: {
     current: 'tab1',
-    current_scroll: 'tab1'
+    current_scroll: 'tab1',
   },
 
-  handleChange ({ detail }) {
+  handleChange({ detail }) {
     this.setData({
-      current: detail.key
+      current: detail.key,
     })
   },
 
-  handleChangeScroll ({ detail }) {
+  handleChangeScroll({ detail }) {
     this.setData({
-      current_scroll: detail.key
+      current_scroll: detail.key,
     })
-  }
+  },
 })

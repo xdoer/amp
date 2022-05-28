@@ -4,53 +4,53 @@ Component({
   relations: {
     '../tab/index': {
       type: 'child',
-      linked () {
+      linked() {
         this.changeCurrent()
       },
-      linkChanged () {
+      linkChanged() {
         this.changeCurrent()
       },
-      unlinked () {
+      unlinked() {
         this.changeCurrent()
-      }
-    }
+      },
+    },
   },
 
   properties: {
     current: {
       type: String,
       value: '',
-      observer: 'changeCurrent'
+      observer: 'changeCurrent',
     },
     color: {
       type: String,
-      value: ''
+      value: '',
     },
     scroll: {
       type: Boolean,
-      value: false
+      value: false,
     },
     fixed: {
       type: Boolean,
-      value: false
-    }
+      value: false,
+    },
   },
 
   methods: {
-    changeCurrent (val = this.data.current) {
+    changeCurrent(val = this.data.current) {
       const items = this.getRelationNodes('../tab/index')
       const len = items.length
 
       if (len > 0) {
-        items.forEach(item => {
+        items.forEach((item) => {
           item.changeScroll(this.data.scroll)
           item.changeCurrent(item.data.key === val)
           item.changeCurrentColor(this.data.color)
         })
       }
     },
-    emitEvent (key) {
+    emitEvent(key) {
       this.triggerEvent('change', { key })
-    }
-  }
+    },
+  },
 })

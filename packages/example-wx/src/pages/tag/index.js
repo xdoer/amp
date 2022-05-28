@@ -5,34 +5,34 @@ Page({
       {
         name: '标签一',
         checked: false,
-        color: 'default'
+        color: 'default',
       },
       {
         name: '标签二',
         checked: false,
-        color: 'red'
+        color: 'red',
       },
       {
         name: '标签三',
         checked: true,
-        color: 'blue'
+        color: 'blue',
       },
       {
         name: '标签4️',
         checked: true,
-        color: 'green'
-      }
-    ]
+        color: 'green',
+      },
+    ],
   },
-  oneChange (event) {
+  oneChange(event) {
     this.setData({
-      oneChecked: event.detail.checked
+      oneChecked: event.detail.checked,
     })
   },
-  onChange (event) {
+  onChange(event) {
     const detail = event.detail
     this.setData({
-      ['tags[' + event.detail.name + '].checked']: detail.checked
+      ['tags[' + event.detail.name + '].checked']: detail.checked,
     })
-  }
+  },
 })

@@ -37,18 +37,18 @@ Page({
   closeGuide() {
     this.setData({
       guideShow: false,
-    });
+    })
   },
   onShowJumpGuide() {
     this.setData({
       guideShow: true,
       guideJump: true,
-    });
+    })
   },
   onShowGuide() {
     this.setData({
       guideShow: true,
       guideJump: false,
-    });
+    })
   },
-});
+})

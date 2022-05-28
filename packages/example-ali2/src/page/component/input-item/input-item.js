@@ -9,12 +9,12 @@ Page({
   onExtraTap() {
     my.alert({
       content: 'extra tapped',
-    });
+    })
   },
   onItemInput(e) {
     this.setData({
       [e.target.dataset.field]: e.detail.value,
-    });
+    })
   },
   onItemFocus() {},
   onItemBlur() {},
@@ -22,11 +22,11 @@ Page({
   onClear(e) {
     this.setData({
       [e.target.dataset.field]: '',
-    });
+    })
   },
   onSend() {
     my.alert({
       title: 'verify code sent',
-    });
+    })
   },
-});
+})

@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Avatar",
-  "usingComponents":{
+  "usingComponents": {
     "avatar": "mini-ali-ui/es/avatar/index"
   }
 }

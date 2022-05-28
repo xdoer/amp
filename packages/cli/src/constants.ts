@@ -3,7 +3,8 @@ export const jsonExt = '.json'
 export const useComp = 'usingComponents'
 export const empty = ''
 
-export const runtimeCodeCtxObject = 'var context = (function() { return this })() || Function("return this")();\n'
+export const runtimeCodeCtxObject =
+  'var context = (function() { return this })() || Function("return this")();\n'
 export const runtimeCodeFixBabel = `
 try {
   if(!context.console){

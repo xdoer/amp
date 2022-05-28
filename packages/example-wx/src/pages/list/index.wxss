@@ -1,4 +1,4 @@
-.cell-panel-demo{
-    display: block;
-    margin-top: 15px;
+.cell-panel-demo {
+  display: block;
+  margin-top: 15px;
 }

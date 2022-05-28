@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import webpack from 'webpack'
-import parseCommand from "../parseCommand"
-import createWebpackConf from "./createWebpackConf"
+import parseCommand from '../parseCommand'
+import createWebpackConf from './createWebpackConf'
 
 export default function startPack() {
   const { isWatch } = parseCommand()

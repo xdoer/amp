@@ -2,14 +2,12 @@ Component({
   externalClasses: ['i-class'],
   options: {
     // 在组件定义时的选项中启用多slot支持
-    multipleSlots: true
+    multipleSlots: true,
   },
   methods: {
-    handleTap2 (event) {
+    handleTap2(event) {
       console.log(event, 1111111)
     },
-    handleTap3 () {
-
-    }
-  }
+    handleTap3() {},
+  },
 })

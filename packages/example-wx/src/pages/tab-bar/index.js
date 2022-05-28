@@ -1,11 +1,11 @@
 Page({
   data: {
-    current: 'homepage'
+    current: 'homepage',
   },
 
-  handleChange ({ detail }) {
+  handleChange({ detail }) {
     this.setData({
-      current: detail.key
+      current: detail.key,
     })
-  }
+  },
 })

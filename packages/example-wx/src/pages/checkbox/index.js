@@ -1,45 +1,51 @@
 Page({
   data: {
-    fruit: [{
-      id: 1,
-      name: '香蕉'
-    }, {
-      id: 2,
-      name: '苹果'
-    }, {
-      id: 3,
-      name: '西瓜'
-    }, {
-      id: 4,
-      name: '葡萄'
-    }],
+    fruit: [
+      {
+        id: 1,
+        name: '香蕉',
+      },
+      {
+        id: 2,
+        name: '苹果',
+      },
+      {
+        id: 3,
+        name: '西瓜',
+      },
+      {
+        id: 4,
+        name: '葡萄',
+      },
+    ],
     current: ['苹果', '葡萄'],
     position: 'left',
     animal: '熊猫',
     checked: false,
-    disabled: false
+    disabled: false,
   },
-  handleFruitChange ({ detail = {} }) {
+  handleFruitChange({ detail = {} }) {
     const index = this.data.current.indexOf(detail.value)
-    index === -1 ? this.data.current.push(detail.value) : this.data.current.splice(index, 1)
+    index === -1
+      ? this.data.current.push(detail.value)
+      : this.data.current.splice(index, 1)
     this.setData({
-      current: this.data.current
+      current: this.data.current,
     })
   },
-  handleClick () {
+  handleClick() {
     this.setData({
-      position: this.data.position.indexOf('left') !== -1 ? 'right' : 'left'
+      position: this.data.position.indexOf('left') !== -1 ? 'right' : 'left',
     })
   },
-  handleDisabled () {
+  handleDisabled() {
     this.setData({
-      disabled: !this.data.disabled
+      disabled: !this.data.disabled,
     })
   },
-  handleAnimalChange ({ detail = {} }) {
+  handleAnimalChange({ detail = {} }) {
     this.setData({
-      checked: detail.current
+      checked: detail.current,
     })
-  }
-
+  },
 })

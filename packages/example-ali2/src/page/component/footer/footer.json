@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Footer",
-  "usingComponents":{
+  "usingComponents": {
     "footer": "mini-ali-ui/es/footer/index"
   }
 }

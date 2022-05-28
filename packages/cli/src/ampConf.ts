@@ -7,8 +7,8 @@ export const platformConf = {
       css: '.acss',
       json: '.json',
       js: '.js',
-      njs: '.sjs'
-    }
+      njs: '.sjs',
+    },
   },
   wx: {
     ext: {
@@ -16,8 +16,8 @@ export const platformConf = {
       css: '.wxss',
       json: '.json',
       js: '.js',
-      njs: '.wss'
-    }
+      njs: '.wss',
+    },
   },
 }
 

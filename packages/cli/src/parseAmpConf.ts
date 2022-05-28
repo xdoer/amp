@@ -7,7 +7,7 @@ function getAmpConfig() {
   let userAmpConf = {}
   try {
     userAmpConf = require(resolve('amp.config.js'))
-  } catch (e) { }
+  } catch (e) {}
   return userAmpConf
 }
 

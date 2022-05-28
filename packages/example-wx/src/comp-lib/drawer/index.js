@@ -3,31 +3,31 @@ Component({
   properties: {
     visible: {
       type: Boolean,
-      value: false
+      value: false,
     },
 
     mask: {
       type: Boolean,
-      value: true
+      value: true,
     },
 
     maskClosable: {
       type: Boolean,
-      value: true
+      value: true,
     },
 
     mode: {
       type: String,
-      value: 'left' // left right
-    }
+      value: 'left', // left right
+    },
   },
   data: {},
   methods: {
-    handleMaskClick () {
+    handleMaskClick() {
       if (!this.data.maskClosable) {
         return
       }
       this.triggerEvent('close', {})
-    }
-  }
+    },
+  },
 })

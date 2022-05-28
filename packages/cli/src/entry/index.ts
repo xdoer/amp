@@ -31,7 +31,8 @@ class AmpEntry {
   getResourceOutput(resourcePath: string, relative?: boolean): string {
     const { dir, name, ext } = parse(resourcePath)
     const pathNoExt = `${dir}/${name}`
-    const outputDir = this.entryOutputMap.get(pathNoExt) || getBaseOutput(pathNoExt)
+    const outputDir =
+      this.entryOutputMap.get(pathNoExt) || getBaseOutput(pathNoExt)
     const output = `${outputDir}${ext}`
     return relative ? getRelativeOutput(output) : output
   }
@@ -90,13 +91,7 @@ class AmpEntry {
     return `${parse(join(entry, '..')).name.toLowerCase()}-${hash(entry)}`
   }
 
-  private addComponent(
-    key,
-    value,
-    page,
-    pkg = MAIN_PACKAGE,
-    currentDir
-  ) {
+  private addComponent(key, value, page, pkg = MAIN_PACKAGE, currentDir) {
     const entry = this.compPathResolve(value, currentDir)
     const name = this.getOutputCompName(entry)
     // 所有组件都输出到 output 下的 components 目录中

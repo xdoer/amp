@@ -11,7 +11,9 @@ Page({
     this.setData({ animation: this.animation.export() })
   },
   translate() {
-    this.animation.translate(Math.random() * 100 - 50, Math.random() * 100 - 50).step()
+    this.animation
+      .translate(Math.random() * 100 - 50, Math.random() * 100 - 50)
+      .step()
     this.setData({ animation: this.animation.export() })
   },
   skew() {
@@ -19,18 +21,23 @@ Page({
     this.setData({ animation: this.animation.export() })
   },
   rotateAndScale() {
-    this.animation.rotate(Math.random() * 720 - 360)
+    this.animation
+      .rotate(Math.random() * 720 - 360)
       .scale(Math.random() * 2)
       .step()
     this.setData({ animation: this.animation.export() })
   },
   rotateThenScale() {
-    this.animation.rotate(Math.random() * 720 - 360).step()
-      .scale(Math.random() * 2).step()
+    this.animation
+      .rotate(Math.random() * 720 - 360)
+      .step()
+      .scale(Math.random() * 2)
+      .step()
     this.setData({ animation: this.animation.export() })
   },
   all() {
-    this.animation.rotate(Math.random() * 720 - 360)
+    this.animation
+      .rotate(Math.random() * 720 - 360)
       .scale(Math.random() * 2)
       .translate(Math.random() * 100 - 50, Math.random() * 100 - 50)
       .skew(Math.random() * 90, Math.random() * 90)
@@ -38,14 +45,20 @@ Page({
     this.setData({ animation: this.animation.export() })
   },
   allInQueue() {
-    this.animation.rotate(Math.random() * 720 - 360).step()
-      .scale(Math.random() * 2).step()
-      .translate(Math.random() * 100 - 50, Math.random() * 100 - 50).step()
-      .skew(Math.random() * 90, Math.random() * 90).step()
+    this.animation
+      .rotate(Math.random() * 720 - 360)
+      .step()
+      .scale(Math.random() * 2)
+      .step()
+      .translate(Math.random() * 100 - 50, Math.random() * 100 - 50)
+      .step()
+      .skew(Math.random() * 90, Math.random() * 90)
+      .step()
     this.setData({ animation: this.animation.export() })
   },
   reset() {
-    this.animation.rotate3d(0, 0, 0, 0)
+    this.animation
+      .rotate3d(0, 0, 0, 0)
       .rotateX(0)
       .rotateY(0)
       .rotateZ(0)
@@ -54,5 +67,5 @@ Page({
       .skew(0, 0)
       .step({ duration: 0 })
     this.setData({ animation: this.animation.export() })
-  }
+  },
 })

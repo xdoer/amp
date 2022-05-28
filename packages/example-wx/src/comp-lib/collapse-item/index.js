@@ -6,40 +6,44 @@ Component({
       type: 'parent',
       linked: function (target) {
         const options = {
-          accordion: target.data.accordion
+          accordion: target.data.accordion,
         }
         if (target.data.name === this.data.name) {
           options.showContent = 'i-collapse-item-show-content'
         }
         this.setData(options)
-      }
-    }
+      },
+    },
   },
 
   properties: {
     title: String,
-    name: String
+    name: String,
   },
 
   data: {
     showContent: '',
-    accordion: false
+    accordion: false,
   },
 
   options: {
-    multipleSlots: true
+    multipleSlots: true,
   },
 
   methods: {
-    trigger (e) {
+    trigger(e) {
       const data = this.data
       if (data.accordion) {
-        this.triggerEvent('collapse', { name: data.name }, { composed: true, bubbles: true })
+        this.triggerEvent(
+          'collapse',
+          { name: data.name },
+          { composed: true, bubbles: true }
+        )
       } else {
         this.setData({
-          showContent: data.showContent ? '' : 'i-collapse-item-show-content'
+          showContent: data.showContent ? '' : 'i-collapse-item-show-content',
         })
       }
-    }
-  }
+    },
+  },
 })

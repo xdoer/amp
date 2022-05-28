@@ -3,7 +3,7 @@ Component({
 
   relations: {
     '../col/index': {
-      type: 'child'
-    }
-  }
+      type: 'child',
+    },
+  },
 })

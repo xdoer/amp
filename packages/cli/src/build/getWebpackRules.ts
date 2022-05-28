@@ -38,37 +38,34 @@ export default function getWebpackRules() {
     {
       test: new RegExp(json),
       resourceQuery: /asConfig/,
-      use: [require.resolve('@amp/cli/dist/loader/json-loader')],
+      use: [require.resolve('@amp/cli/lib/loader/json-loader')],
       type: 'javascript/auto',
     },
     {
       test: new RegExp(xml),
-      use: [require.resolve('@amp/cli/dist/loader/xml-loader')],
+      use: [require.resolve('@amp/cli/lib/loader/xml-loader')],
     },
     {
       test: new RegExp(css),
-      use: [require.resolve('@amp/cli/dist/loader/file-loader')],
+      use: [require.resolve('@amp/cli/lib/loader/file-loader')],
     },
     {
       test: new RegExp(njs),
-      use: [
-        require.resolve('@amp/cli/dist/loader/json-loader'),
-        babelLoader,
-      ],
+      use: [require.resolve('@amp/cli/lib/loader/json-loader'), babelLoader],
     },
     {
       test: /\.less/,
       use: [
         {
-          loader: require.resolve('@amp/cli/dist/loader/file-loader'),
+          loader: require.resolve('@amp/cli/lib/loader/file-loader'),
           options: { ext: css },
         },
-        require.resolve('less-loader')
+        require.resolve('less-loader'),
       ],
     },
     {
       test: /\.(png|jpe?g|gif|svg)$/,
-      use: [require.resolve('@amp/cli/dist/loader/file-loader')],
+      use: [require.resolve('@amp/cli/lib/loader/file-loader')],
     },
   ]
 }

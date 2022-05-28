@@ -20,19 +20,18 @@ Page({
       },
     ],
     arrIndex: 0,
-    index: 0
+    index: 0,
   },
   bindPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value,
-    });
+    })
   },
   bindObjPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       arrIndex: e.detail.value,
-    });
+    })
   },
-});
-
+})

@@ -5,44 +5,44 @@ Component({
 
   properties: {
     title: {
-      type: String
+      type: String,
     },
     // text || textarea || password || number
     type: {
       type: String,
-      value: 'text'
+      value: 'text',
     },
     disabled: {
       type: Boolean,
-      value: false
+      value: false,
     },
     placeholder: {
       type: String,
-      value: ''
+      value: '',
     },
     autofocus: {
       type: Boolean,
-      value: false
+      value: false,
     },
     mode: {
       type: String,
-      value: 'normal'
+      value: 'normal',
     },
     right: {
       type: Boolean,
-      value: false
+      value: false,
     },
     error: {
       type: Boolean,
-      value: false
+      value: false,
     },
     maxlength: {
-      type: Number
-    }
+      type: Number,
+    },
   },
 
   methods: {
-    handleInputChange (event) {
+    handleInputChange(event) {
       const { detail = {} } = event
       const { value = '' } = detail
       this.setData({ value })
@@ -50,12 +50,12 @@ Component({
       this.triggerEvent('change', event)
     },
 
-    handleInputFocus (event) {
+    handleInputFocus(event) {
       this.triggerEvent('focus', event)
     },
 
-    handleInputBlur (event) {
+    handleInputBlur(event) {
       this.triggerEvent('blur', event)
-    }
-  }
+    },
+  },
 })

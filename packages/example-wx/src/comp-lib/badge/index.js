@@ -5,25 +5,28 @@ Component({
     count: {
       type: Number,
       value: 0,
-      observer: 'finalCount'
+      observer: 'finalCount',
     },
     overflowCount: {
       type: Number,
-      value: 99
+      value: 99,
     },
     dot: {
       type: Boolean,
-      value: false
-    }
+      value: false,
+    },
   },
   data: {
-    finalCount: 0
+    finalCount: 0,
   },
   methods: {
-    finalCount () {
+    finalCount() {
       this.setData({
-        finalCount: parseInt(this.data.count) >= parseInt(this.data.overflowCount) ? `${this.data.overflowCount}+` : this.data.count
+        finalCount:
+          parseInt(this.data.count) >= parseInt(this.data.overflowCount)
+            ? `${this.data.overflowCount}+`
+            : this.data.count,
       })
-    }
-  }
+    },
+  },
 })

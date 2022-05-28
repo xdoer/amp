@@ -4,51 +4,51 @@ Component({
   properties: {
     visible: {
       type: Boolean,
-      value: false
+      value: false,
     },
     title: {
       type: String,
-      value: ''
+      value: '',
     },
     showOk: {
       type: Boolean,
-      value: true
+      value: true,
     },
     showCancel: {
       type: Boolean,
-      value: true
+      value: true,
     },
     okText: {
       type: String,
-      value: '确定'
+      value: '确定',
     },
     cancelText: {
       type: String,
-      value: '取消'
+      value: '取消',
     },
     // 按钮组，有此值时，不显示 ok 和 cancel 按钮
     actions: {
       type: Array,
-      value: []
+      value: [],
     },
     // horizontal || vertical
     actionMode: {
       type: String,
-      value: 'horizontal'
-    }
+      value: 'horizontal',
+    },
   },
 
   methods: {
-    handleClickItem ({ currentTarget = {} }) {
+    handleClickItem({ currentTarget = {} }) {
       const dataset = currentTarget.dataset || {}
       const { index } = dataset
       this.triggerEvent('click', { index })
     },
-    handleClickOk () {
+    handleClickOk() {
       this.triggerEvent('ok')
     },
-    handleClickCancel () {
+    handleClickCancel() {
       this.triggerEvent('cancel')
-    }
-  }
+    },
+  },
 })

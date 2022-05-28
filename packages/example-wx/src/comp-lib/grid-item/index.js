@@ -3,14 +3,14 @@ Component({
 
   relations: {
     '../grid/index': {
-      type: 'parent'
+      type: 'parent',
     },
     '../grid-icon/index': {
-      type: 'child'
-    }
+      type: 'child',
+    },
   },
 
   data: {
-    width: '33.33%'
-  }
+    width: '33.33%',
+  },
 })

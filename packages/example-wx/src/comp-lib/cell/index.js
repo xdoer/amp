@@ -7,54 +7,54 @@ Component({
   externalClasses: ['i-class'],
 
   options: {
-    multipleSlots: true
+    multipleSlots: true,
   },
 
   relations: {
     '../cell-group/index': {
-      type: 'parent'
-    }
+      type: 'parent',
+    },
   },
 
   properties: {
     // 左侧标题
     title: {
-      type: String
+      type: String,
     },
     // 标题下方的描述信息
     label: {
-      type: String
+      type: String,
     },
     // 右侧内容
     value: {
-      type: String
+      type: String,
     },
     // 只有点击 footer 区域才触发 tab 事件
     onlyTapFooter: {
-      type: Boolean
+      type: Boolean,
     },
     // 是否展示右侧箭头并开启尝试以 url 跳转
     isLink: {
       type: null,
-      value: ''
+      value: '',
     },
     // 链接类型，可选值为 navigateTo，redirectTo，switchTab，reLaunch
     linkType: {
       type: String,
-      value: 'navigateTo'
+      value: 'navigateTo',
     },
     url: {
       type: String,
-      value: ''
-    }
+      value: '',
+    },
   },
 
   data: {
-    isLastCell: true
+    isLastCell: true,
   },
 
   methods: {
-    navigateTo () {
+    navigateTo() {
       const { url, linkType } = this.data
       const type = typeof this.data.isLink
 
@@ -67,22 +67,29 @@ Component({
         return
       }
 
-      if (['navigateTo', 'redirectTo', 'switchTab', 'reLaunch'].indexOf(this.data.linkType) === -1) {
-        warn('linkType 属性可选值为 navigateTo，redirectTo，switchTab，reLaunch', this.data.linkType)
+      if (
+        ['navigateTo', 'redirectTo', 'switchTab', 'reLaunch'].indexOf(
+          this.data.linkType
+        ) === -1
+      ) {
+        warn(
+          'linkType 属性可选值为 navigateTo，redirectTo，switchTab，reLaunch',
+          this.data.linkType
+        )
         return
       }
       wx[linkType]({
-        url
+        url,
       })
     },
-    handleTap () {
+    handleTap() {
       if (!this.data.onlyTapFooter) {
         this.navigateTo()
       }
     },
 
-    updateIsLastCell (isLastCell) {
+    updateIsLastCell(isLastCell) {
       this.setData({ isLastCell })
-    }
-  }
+    },
+  },
 })

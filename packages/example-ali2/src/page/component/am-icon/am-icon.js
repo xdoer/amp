@@ -111,16 +111,16 @@ Page({
     searchIcon: [],
   },
   searchIcon(e) {
-    const inputValue = e.detail.value;
-    const _this = this;
-    const searchIcon = [];
+    const inputValue = e.detail.value
+    const _this = this
+    const searchIcon = []
     this.data.iconTypes.forEach((evalue) => {
       if (evalue.match(inputValue)) {
-        searchIcon.push(evalue);
+        searchIcon.push(evalue)
         _this.setData({
           searchIcon,
-        });
+        })
       }
-    });
+    })
   },
-});
+})

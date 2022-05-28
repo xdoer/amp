@@ -2,8 +2,8 @@ let openAPIList = [
   {
     name: '获取授权码',
     path: '/page/API/get-auth-code/get-auth-code',
-  }
-];
+  },
+]
 
 if (my.ap) {
   openAPIList = openAPIList.concat([
@@ -22,10 +22,10 @@ if (my.ap) {
     {
       name: '芝麻信用借还',
       path: '/page/API/zm-credit-borrow/zm-credit-borrow',
-    }
-  ]);
+    },
+  ])
 
-  if(my.canIUse('isCollected')) {
+  if (my.canIUse('isCollected')) {
     openAPIList = openAPIList.concat([
       {
         name: '收藏',
@@ -87,7 +87,7 @@ let interfaceList = [
   },
   {
     name: '下拉刷新',
-    path: '/page/API/pull-down-refresh/pull-down-refresh'
+    path: '/page/API/pull-down-refresh/pull-down-refresh',
   },
   {
     name: '创建动画',
@@ -109,7 +109,7 @@ let interfaceList = [
     name: '节点查询',
     path: '/page/API/create-selector-query/create-selector-query',
   },
-];
+]
 
 if (my.ap) {
   interfaceList = interfaceList.concat([
@@ -129,15 +129,15 @@ if (my.ap) {
       name: '隐藏键盘',
       path: '/page/API/keyboard/keyboard',
     },
-  ]);
+  ])
 
   if (my.canIUse('multiLevelSelect')) {
     interfaceList = interfaceList.concat([
       {
         name: '级联选择',
         path: '/page/API/multi-level-select/multi-level-select',
-      }
-    ]);
+      },
+    ])
   }
 
   if (my.canIUse('optionsSelect')) {
@@ -176,7 +176,7 @@ let deviceAPIList = [
     name: '剪贴板',
     path: '/page/API/clipboard/clipboard',
   },
-];
+]
 
 if (my.ap) {
   deviceAPIList = deviceAPIList.concat([
@@ -208,7 +208,7 @@ if (my.ap) {
       name: '内存不足告警',
       path: '/page/API/memory-warning/memory-warning',
     },
-  ]);
+  ])
 }
 
 const networkAPIList = [
@@ -227,8 +227,8 @@ const networkAPIList = [
   {
     name: 'Websocket',
     path: '/page/API/websocket/websocket',
-  }
-];
+  },
+]
 
 const mediaAPIList = [
   {
@@ -243,7 +243,7 @@ const mediaAPIList = [
     name: '压缩图片',
     path: '/page/API/compress-image/compress-image',
   },
-];
+]
 
 const locationAPIList = [
   {
@@ -258,7 +258,7 @@ const locationAPIList = [
     name: '打开地图选择位置',
     path: '/page/API/choose-location/choose-location',
   },
-];
+]
 
 let otherAPIList = [
   {
@@ -273,7 +273,7 @@ let otherAPIList = [
     name: '自定义分享',
     path: '/page/API/share/share',
   },
-];
+]
 
 if (my.ap) {
   otherAPIList = otherAPIList.concat([
@@ -293,7 +293,7 @@ if (my.ap) {
       name: '自定义分析',
       path: '/page/API/report-analytics/report-analytics',
     },
-  ]);
+  ])
 
   if (my.canIUse('on')) {
     otherAPIList = otherAPIList.concat([
@@ -301,7 +301,7 @@ if (my.ap) {
         name: '容器事件',
         path: '/page/API/events/events',
       },
-    ]);
+    ])
   }
 
   if (my.canIUse('ocr')) {
@@ -310,7 +310,7 @@ if (my.ap) {
         name: 'OCR',
         path: '/page/API/ocr/ocr',
       },
-    ]);
+    ])
   }
 }
 
@@ -342,8 +342,8 @@ const APIList = [
   {
     type: '其他',
     list: otherAPIList,
-  }
-];
+  },
+]
 
 Page({
   data: {
@@ -352,11 +352,11 @@ Page({
   onSearchBarTap() {
     my.navigateTo({
       url: '/page/common/search/search',
-    });
+    })
   },
   openPage(e) {
     my.navigateTo({
       url: e.target.dataset.url,
     })
   },
-});
+})

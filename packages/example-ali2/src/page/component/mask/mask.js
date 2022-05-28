@@ -7,12 +7,12 @@ Page({
     if (this.data.type === 'market') {
       this.setData({
         type: 'product',
-      });
+      })
     } else {
       this.setData({
         type: '',
         show: false,
-      });
+      })
     }
   },
-});
+})

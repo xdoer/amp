@@ -28,42 +28,41 @@ Page({
       { name: 'large', value: 'large' },
     ],
   },
-  onLoad() {
-  },
+  onLoad() {},
   typeChange(e) {
     this.setData({
       type: e.detail.value,
-    });
+    })
   },
   shapeChange(e) {
     this.setData({
       shape: e.detail.value,
-    });
+    })
   },
   sizeChange(e) {
     this.setData({
       capsuleSize: e.detail.value,
-    });
+    })
   },
   titleChange(e) {
     this.setData({
       title: e.detail.value,
-    });
+    })
   },
   subtitleChange(e) {
     this.setData({
       subtitle: e.detail.value,
-    });
+    })
   },
   onDisableChange(e) {
     this.setData({
       disabled: e.detail.value,
-    });
+    })
   },
   onMinWidthChange(e) {
     this.setData({
       capsuleMinWidth: e.detail.value,
-    });
+    })
   },
   onTest() {
     // e.target.dataset.name
@@ -71,6 +70,6 @@ Page({
   onLoadingChange(e) {
     this.setData({
       showLoading: e.detail.value,
-    });
+    })
   },
-});
+})

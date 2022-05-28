@@ -3,36 +3,36 @@ Component({
   relations: {
     '../checkbox/index': {
       type: 'child',
-      linked () {
+      linked() {
         this.changeCurrent()
       },
-      linkChanged () {
+      linkChanged() {
         this.changeCurrent()
       },
-      unlinked () {
+      unlinked() {
         this.changeCurrent()
-      }
-    }
+      },
+    },
   },
   properties: {
     current: {
       type: Array,
       value: [],
-      observer: 'changeCurrent'
-    }
+      observer: 'changeCurrent',
+    },
   },
   methods: {
-    changeCurrent (val = this.data.current) {
+    changeCurrent(val = this.data.current) {
       const items = this.getRelationNodes('../checkbox/index')
       const len = items.length
       if (len > 0) {
-        items.forEach(item => {
+        items.forEach((item) => {
           item.changeCurrent(val.indexOf(item.data.value) !== -1)
         })
       }
     },
-    emitEvent (current) {
+    emitEvent(current) {
       this.triggerEvent('change', current)
-    }
-  }
+    },
+  },
 })

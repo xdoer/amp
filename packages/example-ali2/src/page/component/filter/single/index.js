@@ -9,11 +9,11 @@ Page({
   handleCallBack(data) {
     my.alert({
       content: data,
-    });
+    })
   },
   toggleFilter() {
     this.setData({
       show: !this.data.show,
-    });
+    })
   },
-});
+})

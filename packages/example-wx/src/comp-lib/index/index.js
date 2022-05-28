@@ -3,26 +3,26 @@ Component({
   properties: {
     height: {
       type: String,
-      value: '300'
+      value: '300',
     },
     itemHeight: {
       type: Number,
-      value: 18
-    }
+      value: 18,
+    },
   },
   relations: {
     '../index-item/index': {
       type: 'child',
-      linked () {
+      linked() {
         this._updateDataChange()
       },
-      linkChanged () {
+      linkChanged() {
         this._updateDataChange()
       },
-      unlinked () {
+      unlinked() {
         this._updateDataChange()
-      }
-    }
+      },
+    },
   },
   data: {
     scrollTop: 0,
@@ -32,23 +32,23 @@ Component({
     startTop: 0,
     itemLength: 0,
     currentName: '',
-    isTouches: false
+    isTouches: false,
   },
   methods: {
-    loop () {},
-    _updateDataChange () {
+    loop() {},
+    _updateDataChange() {
       const indexItems = this.getRelationNodes('../index-item/index')
       const len = indexItems.length
       const fixedData = this.data.fixedData
       /*
-             * 使用函数节流限制重复去设置数组内容进而限制多次重复渲染
-             * 暂时没有研究微信在渲染的时候是否会进行函数节流
-            */
+       * 使用函数节流限制重复去设置数组内容进而限制多次重复渲染
+       * 暂时没有研究微信在渲染的时候是否会进行函数节流
+       */
       if (len > 0) {
         if (this.data.timer) {
           clearTimeout(this.data.timer)
           this.setData({
-            timer: null
+            timer: null,
           })
         }
 
@@ -62,17 +62,17 @@ Component({
           })
           this.setData({
             fixedData: data,
-            itemLength: indexItems.length
+            itemLength: indexItems.length,
           })
           // 组件加载完成之后重新设置顶部高度
           this.setTouchStartVal()
         }, 0)
         this.setData({
-          timer: this.data.timer
+          timer: this.data.timer,
         })
       }
     },
-    handlerScroll (event) {
+    handlerScroll(event) {
       const detail = event.detail
       const scrollTop = detail.scrollTop
       const indexItems = this.getRelationNodes('../index-item/index')
@@ -82,35 +82,35 @@ Component({
         if (scrollTop < offset && scrollTop >= data.top) {
           this.setData({
             current: index,
-            currentName: data.currentName
+            currentName: data.currentName,
           })
         }
       })
     },
-    getCurrentItem (index) {
+    getCurrentItem(index) {
       const indexItems = this.getRelationNodes('../index-item/index')
       let result = {}
       result = indexItems[index].data
       result.total = indexItems.length
       return result
     },
-    triggerCallback (options) {
+    triggerCallback(options) {
       this.triggerEvent('change', options)
     },
-    handlerFixedTap (event) {
+    handlerFixedTap(event) {
       const eindex = event.currentTarget.dataset.index
       const item = this.getCurrentItem(eindex)
       this.setData({
         scrollTop: item.top,
         currentName: item.currentName,
-        isTouches: true
+        isTouches: true,
       })
       this.triggerCallback({
         index: eindex,
-        current: item.currentName
+        current: item.currentName,
       })
     },
-    handlerTouchMove (event) {
+    handlerTouchMove(event) {
       const data = this.data
       const touches = event.touches[0] || {}
       const pageY = touches.pageY
@@ -120,9 +120,9 @@ Component({
       const movePosition = this.getCurrentItem(index)
 
       /*
-            * 当touch选中的元素和当前currentName不相等的时候才震动一下
-            * 微信震动事件
-           */
+       * 当touch选中的元素和当前currentName不相等的时候才震动一下
+       * 微信震动事件
+       */
       if (movePosition.name !== this.data.currentName) {
         wx.vibrateShort()
       }
@@ -130,27 +130,30 @@ Component({
       this.setData({
         scrollTop: movePosition.top,
         currentName: movePosition.name,
-        isTouches: true
+        isTouches: true,
       })
 
       this.triggerCallback({
         index: index,
-        current: movePosition.name
+        current: movePosition.name,
       })
     },
-    handlerTouchEnd () {
+    handlerTouchEnd() {
       this.setData({
-        isTouches: false
+        isTouches: false,
       })
     },
-    setTouchStartVal () {
+    setTouchStartVal() {
       const className = '.i-index-fixed'
       const query = wx.createSelectorQuery().in(this)
-      query.select(className).boundingClientRect((res) => {
-        this.setData({
-          startTop: res.top
+      query
+        .select(className)
+        .boundingClientRect((res) => {
+          this.setData({
+            startTop: res.top,
+          })
         })
-      }).exec()
-    }
-  }
+        .exec()
+    },
+  },
 })

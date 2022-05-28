@@ -8,7 +8,12 @@ import parseCommand from '../parseCommand'
 
 export default function createWebpackConf(): any {
   const { isProduct, isWatch } = parseCommand()
-  const { outputRoot, webpack: userWebpack, entryIncludes, externals } = parseAmpConf()
+  const {
+    outputRoot,
+    webpack: userWebpack,
+    entryIncludes,
+    externals,
+  } = parseAmpConf()
 
   const config = {
     entry: { app: entryIncludes },
@@ -28,7 +33,7 @@ export default function createWebpackConf(): any {
     },
     devtool: isWatch ? 'inline-source-map' : 'source-map',
     plugins: getWebpackPlugins(),
-    module: { rules: getWebpackRules() }
+    module: { rules: getWebpackRules() },
   }
 
   return userWebpack(

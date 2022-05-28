@@ -7,8 +7,8 @@ Page({
       success: ({ authCode }) => {
         my.alert({
           content: authCode,
-        });
+        })
       },
-    });
+    })
   },
-});
+})

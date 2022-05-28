@@ -1,4 +1,4 @@
-const banks = ['网商银行', '建设银行', '工商银行', '浦发银行'];
+const banks = ['网商银行', '建设银行', '工商银行', '浦发银行']
 
 Page({
   data: {
@@ -11,8 +11,8 @@ Page({
       success: (res) => {
         this.setData({
           bank: banks[res.index],
-        });
+        })
       },
-    });
+    })
   },
-});
+})

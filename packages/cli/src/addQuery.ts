@@ -12,17 +12,15 @@ export function addQuery(query: AssetQuery[]) {
   return `
     module.export = {
       ${query.map(({ resource, options = {} }) => {
+        const keys = Object.keys(options)
+        const queryStr = keys.reduce((res, cur, idx) => {
+          const end = keys.length - 1 === idx ? '' : '&'
+          return res + `${cur}=${options[cur]}${end}`
+        }, '?')
 
-    const keys = Object.keys(options)
-    const queryStr = keys.reduce((res, cur, idx) => {
-      const end = keys.length - 1 === idx ? '' : '&'
-      return res + `${cur}=${options[cur]}${end}`
-    }, '?')
-
-    return `
+        return `
       "${resource}": require("${resource}${queryStr}")
     `
-  })
-    }
+      })}
     }`
 }

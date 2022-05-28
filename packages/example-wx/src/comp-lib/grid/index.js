@@ -4,20 +4,20 @@ Component({
   relations: {
     '../grid-item/index': {
       type: 'child',
-      linked () {
+      linked() {
         this.setGridItemWidth()
       },
-      linkChanged () {
+      linkChanged() {
         this.setGridItemWidth()
       },
-      unlinked () {
+      unlinked() {
         this.setGridItemWidth()
-      }
-    }
+      },
+    },
   },
 
   methods: {
-    setGridItemWidth () {
+    setGridItemWidth() {
       const nodes = this.getRelationNodes('../grid-item/index')
 
       // const len = nodes.length;
@@ -36,15 +36,15 @@ Component({
       //     });
       // }
       const width = 100 / nodes.length
-      nodes.forEach(item => {
+      nodes.forEach((item) => {
         item.setData({
-          width: width + '%'
+          width: width + '%',
         })
       })
-    }
+    },
   },
 
-  ready () {
+  ready() {
     this.setGridItemWidth()
-  }
+  },
 })

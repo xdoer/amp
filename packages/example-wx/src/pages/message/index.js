@@ -1,33 +1,33 @@
-const { $Message } = require("../../comp-lib/base/index");
+const { $Message } = require('../../comp-lib/base/index')
 
 Page({
   handleDefault() {
     $Message({
-      content: "这是一条普通提醒",
-    });
+      content: '这是一条普通提醒',
+    })
   },
   handleSuccess() {
     $Message({
-      content: "这是一条成功提醒",
-      type: "success",
-    });
+      content: '这是一条成功提醒',
+      type: 'success',
+    })
   },
   handleWarning() {
     $Message({
-      content: "这是一条警告提醒",
-      type: "warning",
-    });
+      content: '这是一条警告提醒',
+      type: 'warning',
+    })
   },
   handleError() {
     $Message({
-      content: "这是一条错误提醒",
-      type: "error",
-    });
+      content: '这是一条错误提醒',
+      type: 'error',
+    })
   },
   handleDuration() {
     $Message({
-      content: "我将在 5 秒后消失",
+      content: '我将在 5 秒后消失',
       duration: 5,
-    });
+    })
   },
-});
+})

@@ -1,37 +1,36 @@
 Component({
   externalClasses: ['i-class'],
   options: {
-    multipleSlots: true
+    multipleSlots: true,
   },
   properties: {
     // info, success, warning, error
     type: {
       type: String,
-      value: 'info'
+      value: 'info',
     },
     closable: {
       type: Boolean,
-      value: false
+      value: false,
     },
     showIcon: {
       type: Boolean,
-      default: false
+      default: false,
     },
     desc: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: {
-    closed: false
+    closed: false,
   },
   methods: {
-    handleTap () {
+    handleTap() {
       this.setData({
-        closed: !this.data.closed
+        closed: !this.data.closed,
       })
       this.triggerEvent('close')
-    }
-
-  }
+    },
+  },
 })

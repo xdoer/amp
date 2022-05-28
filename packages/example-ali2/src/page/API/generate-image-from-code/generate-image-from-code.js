@@ -7,15 +7,14 @@ Page({
     my.generateImageFromCode({
       code: 'https://www.alipay.com',
       format: 'QRCODE',
-      width:200,
+      width: 200,
       correctLevel: 'H',
-      success:(data)=>{
+      success: (data) => {
         console.log(data)
         this.setData({
-          imageStr: data.image
+          imageStr: data.image,
         })
-        
-      }
+      },
     })
   },
-});
+})

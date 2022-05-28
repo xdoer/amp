@@ -3,36 +3,36 @@ Component({
   properties: {
     value: {
       type: Boolean,
-      value: false
+      value: false,
     },
     // large small default
     size: {
       type: String,
-      value: 'default'
+      value: 'default',
     },
     // is or not disable
     disabled: {
       type: Boolean,
-      value: false
+      value: false,
     },
     // hidden inut name
     name: {
       type: String,
-      value: ''
-    }
+      value: '',
+    },
   },
   options: {
     // 在组件定义时的选项中启用多slot支持
-    multipleSlots: true
+    multipleSlots: true,
   },
   methods: {
-    toggle () {
+    toggle() {
       if (this.data.disabled) return
       const data = this.data
       const value = !data.value
       this.triggerEvent('change', {
-        value: value
+        value: value,
       })
-    }
-  }
+    },
+  },
 })

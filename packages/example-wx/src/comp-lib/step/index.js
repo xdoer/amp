@@ -4,29 +4,29 @@ Component({
     status: {
       type: String,
       // wait、process、finish、error
-      value: ''
+      value: '',
     },
     title: {
       type: String,
-      value: ''
+      value: '',
     },
     content: {
       type: String,
-      value: ''
+      value: '',
     },
     icon: {
       type: String,
-      value: ''
-    }
+      value: '',
+    },
   },
   options: {
     // 在组件定义时的选项中启用多slot支持
-    multipleSlots: true
+    multipleSlots: true,
   },
   relations: {
     '../steps/index': {
-      type: 'parent'
-    }
+      type: 'parent',
+    },
   },
   data: {
     // step length
@@ -36,17 +36,16 @@ Component({
     // parent component select current index
     current: 0,
     // css direction
-    direction: 'horizontal'
+    direction: 'horizontal',
   },
   methods: {
-    updateDataChange (options) {
+    updateDataChange(options) {
       this.setData({
         len: options.len,
         index: options.index,
         current: options.current,
-        direction: options.direction
+        direction: options.direction,
       })
-    }
-  }
-
+    },
+  },
 })

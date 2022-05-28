@@ -1,19 +1,18 @@
 Page({
   chooseImage() {
     my.chooseImage({
-      sourceType: ['camera','album'],
+      sourceType: ['camera', 'album'],
       count: 2,
       success: (res) => {
         my.alert({
           content: JSON.stringify(res),
-          
-        });
+        })
       },
-      fail:()=>{
+      fail: () => {
         my.showToast({
           content: 'fail', // 文字内容
-        });
-      }
+        })
+      },
     })
   },
   previewImage() {
@@ -22,9 +21,9 @@ Page({
       urls: [
         'https://img.alicdn.com/tps/TB1sXGYIFXXXXc5XpXXXXXXXXXX.jpg',
         'https://img.alicdn.com/tps/TB1pfG4IFXXXXc6XXXXXXXXXXXX.jpg',
-        'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg'
+        'https://img.alicdn.com/tps/TB1h9xxIFXXXXbKXXXXXXXXXXXX.jpg',
       ],
-    });
+    })
   },
   saveImage() {
     my.saveImage({
@@ -33,8 +32,8 @@ Page({
       success: () => {
         my.alert({
           title: '保存成功',
-        });
+        })
       },
-    });
-  }
-});
+    })
+  },
+})

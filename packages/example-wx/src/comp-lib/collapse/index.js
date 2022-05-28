@@ -3,28 +3,28 @@ Component({
 
   relations: {
     '../collapse-item/index': {
-      type: 'child'
-    }
+      type: 'child',
+    },
   },
   properties: {
     name: String,
-    accordion: Boolean
+    accordion: Boolean,
   },
   methods: {
-    clickfn (e) {
+    clickfn(e) {
       const params = e.detail
       const allList = this.getRelationNodes('../collapse-item/index')
       allList.forEach((item) => {
         if (params.name === item.data.name) {
           item.setData({
-            showContent: 'i-collapse-item-show-content'
+            showContent: 'i-collapse-item-show-content',
           })
         } else {
           item.setData({
-            showContent: ''
+            showContent: '',
           })
         }
       })
-    }
-  }
+    },
+  },
 })

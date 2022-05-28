@@ -2,41 +2,41 @@ Component({
   externalClasses: ['i-class'],
 
   options: {
-    multipleSlots: true
+    multipleSlots: true,
   },
 
   properties: {
     // button || number || pointer
     mode: {
       type: String,
-      value: 'button'
+      value: 'button',
     },
     current: {
       type: Number,
-      value: 1
+      value: 1,
     },
     total: {
       type: Number,
-      value: 0
+      value: 0,
     },
     // 是否隐藏数值
     simple: {
       type: Boolean,
-      value: false
-    }
+      value: false,
+    },
   },
 
   methods: {
-    handleChange (type) {
+    handleChange(type) {
       this.triggerEvent('change', {
-        type: type
+        type: type,
       })
     },
-    handlePrev () {
+    handlePrev() {
       this.handleChange('prev')
     },
-    handleNext () {
+    handleNext() {
       this.handleChange('next')
-    }
-  }
+    },
+  },
 })

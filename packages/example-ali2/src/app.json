@@ -194,15 +194,11 @@
   "preloadRule": {
     "page/tabBar/component/index": {
       "network": "all",
-      "packages": [
-        "page/component"
-      ]
+      "packages": ["page/component"]
     },
     "page/tabBar/API/index": {
       "network": "wifi",
-      "packages": [
-        "page/API"
-      ]
+      "packages": ["page/API"]
     }
   },
   "window": {

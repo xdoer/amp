@@ -1,5 +1,5 @@
 Page({
   makePhoneCall() {
-    my.makePhoneCall({ number: '95888' });
+    my.makePhoneCall({ number: '95888' })
   },
-});
+})

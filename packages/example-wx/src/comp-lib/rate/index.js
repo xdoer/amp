@@ -3,42 +3,42 @@ Component({
   properties: {
     count: {
       type: Number,
-      value: 5
+      value: 5,
     },
     value: {
       type: Number,
-      value: 0
+      value: 0,
     },
     disabled: {
       type: Boolean,
-      value: false
+      value: false,
     },
     size: {
       type: Number,
-      value: 20
+      value: 20,
     },
     name: {
       type: String,
-      value: ''
-    }
+      value: '',
+    },
   },
   data: {
     touchesStart: {
-      pageX: 0
-    }
+      pageX: 0,
+    },
   },
   methods: {
-    handleClick (e) {
+    handleClick(e) {
       const data = this.data
       if (data.disabled) {
         return
       }
       const index = e.currentTarget.dataset.index
       this.triggerEvent('change', {
-        index: index + 1
+        index: index + 1,
       })
     },
-    handleTouchMove (e) {
+    handleTouchMove(e) {
       const data = this.data
       if (data.disabled) {
         return
@@ -55,15 +55,18 @@ Component({
       let setIndex = Math.ceil(space / data.size)
       setIndex = setIndex > data.count ? data.count : setIndex
       this.triggerEvent('change', {
-        index: setIndex
+        index: setIndex,
       })
-    }
+    },
   },
-  ready () {
+  ready() {
     const className = '.i-rate'
     const query = wx.createSelectorQuery().in(this)
-    query.select(className).boundingClientRect((res) => {
-      this.data.touchesStart.pageX = res.left || 0
-    }).exec()
-  }
+    query
+      .select(className)
+      .boundingClientRect((res) => {
+        this.data.touchesStart.pageX = res.left || 0
+      })
+      .exec()
+  },
 })

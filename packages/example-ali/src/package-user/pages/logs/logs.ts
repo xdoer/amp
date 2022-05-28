@@ -1,13 +1,12 @@
-import { setupPage, usePageLifeCycle } from '@goldfishjs/core';
+import { setupPage, usePageLifeCycle } from '@goldfishjs/core'
 import { formatTime } from '../../../utils/util'
 
-Page(setupPage(() => {
+Page(
+  setupPage(() => {
+    usePageLifeCycle('onShow', () => {
+      console.log('logs', formatTime(new Date()))
+    })
 
-  usePageLifeCycle('onShow', () => {
-    console.log('logs', formatTime(new Date()))
+    return {}
   })
-
-  return {
-
-  }
-}))
+)

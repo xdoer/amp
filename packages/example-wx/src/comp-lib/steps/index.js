@@ -4,35 +4,35 @@ Component({
     current: {
       type: Number,
       value: -1,
-      observer: '_updateDataChange'
+      observer: '_updateDataChange',
     },
     status: {
       type: String,
       // wait、process、finish、error
-      value: ''
+      value: '',
     },
     direction: {
       type: String,
       // value has horizontal or vertical
-      value: 'horizontal'
-    }
+      value: 'horizontal',
+    },
   },
   relations: {
     '../step/index': {
       type: 'child',
-      linked () {
+      linked() {
         this._updateDataChange()
       },
-      linkChanged () {
+      linkChanged() {
         this._updateDataChange()
       },
-      unlinked () {
+      unlinked() {
         this._updateDataChange()
-      }
-    }
+      },
+    },
   },
   methods: {
-    _updateDataChange () {
+    _updateDataChange() {
       const steps = this.getRelationNodes('../step/index')
       const len = steps.length
       if (len > 0) {
@@ -41,10 +41,10 @@ Component({
             len: len,
             index: index,
             current: this.data.current,
-            direction: this.data.direction
+            direction: this.data.direction,
           })
         })
       }
-    }
-  }
+    },
+  },
 })

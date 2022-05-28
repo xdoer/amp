@@ -8,8 +8,8 @@ Page({
       success: (res) => {
         my.alert({
           content: JSON.stringify(res),
-        });
-      }
+        })
+      },
     })
-  }
-});
+  },
+})

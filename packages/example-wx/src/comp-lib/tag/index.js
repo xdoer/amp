@@ -4,39 +4,39 @@ Component({
     // slot name
     name: {
       type: String,
-      value: ''
+      value: '',
     },
     // can click or not click
     checkable: {
       type: Boolean,
-      value: false
+      value: false,
     },
     // is current choose
     checked: {
       type: Boolean,
-      value: true
+      value: true,
     },
     // background and color setting
     color: {
       type: String,
-      value: 'default'
+      value: 'default',
     },
     // control fill or not
     type: {
       type: String,
-      value: 'dot'
-    }
+      value: 'dot',
+    },
   },
   methods: {
-    tapTag () {
+    tapTag() {
       const data = this.data
       if (data.checkable) {
         const checked = !data.checked
         this.triggerEvent('change', {
           name: data.name || '',
-          checked: checked
+          checked: checked,
         })
       }
-    }
-  }
+    },
+  },
 })

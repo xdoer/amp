@@ -3,60 +3,60 @@ Component({
 
   relations: {
     '../tab-bar/index': {
-      type: 'parent'
-    }
+      type: 'parent',
+    },
   },
 
   properties: {
     icon: {
       type: String,
-      value: ''
+      value: '',
     },
     currentIcon: {
       type: String,
-      value: ''
+      value: '',
     },
     img: {
       type: String,
-      value: ''
+      value: '',
     },
     currentImg: {
       type: String,
-      value: ''
+      value: '',
     },
     key: {
       type: String,
-      value: ''
+      value: '',
     },
     title: {
       type: String,
-      value: ''
+      value: '',
     },
     dot: {
       type: Boolean,
-      value: false
+      value: false,
     },
     count: {
       type: Number,
-      value: 0
-    }
+      value: 0,
+    },
   },
 
   data: {
     current: false,
-    currentColor: ''
+    currentColor: '',
   },
 
   methods: {
-    changeCurrent (current) {
+    changeCurrent(current) {
       this.setData({ current })
     },
-    changeCurrentColor (currentColor) {
+    changeCurrentColor(currentColor) {
       this.setData({ currentColor })
     },
-    handleClickItem () {
+    handleClickItem() {
       const parent = this.getRelationNodes('../tab-bar/index')[0]
       parent.emitEvent(this.data.key)
-    }
-  }
+    },
+  },
 })
