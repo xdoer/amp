@@ -4,54 +4,35 @@ import { platformConf } from '../ampConf'
 
 export default function getWebpackRules() {
   const { alias, sourceRoot, platform } = parseAmpConf()
-  const { xml, css, json } = platformConf[platform].ext
+  const { xml, css, json, njs } = platformConf[platform].ext
+
+  const babelLoader = {
+    loader: 'babel-loader',
+    options: {
+      plugins: [
+        [
+          'module-resolver',
+          {
+            root: './src',
+            alias: {
+              '@': './src',
+              ...alias,
+            },
+          },
+        ],
+      ],
+    },
+  }
 
   return [
     {
       test: /\.js$/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            plugins: [
-              [
-                'module-resolver',
-                {
-                  root: './src',
-                  alias: {
-                    '@': './src',
-                    ...alias,
-                  },
-                },
-              ],
-            ],
-          },
-        },
-      ],
+      use: [babelLoader],
       include: [resolve(sourceRoot)],
     },
     {
       test: /\.ts$/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            plugins: [
-              [
-                'module-resolver',
-                {
-                  root: './src',
-                  alias: {
-                    '@': './src',
-                    ...alias
-                  },
-                },
-              ],
-            ],
-          },
-        },
-        'ts-loader',
-      ],
+      use: [babelLoader, 'ts-loader'],
       include: [resolve(sourceRoot)],
     },
     {
@@ -62,25 +43,32 @@ export default function getWebpackRules() {
     },
     {
       test: new RegExp(xml),
-      use: [
-        require.resolve('@amp/cli/dist/loader/xml-loader')
-      ],
+      use: [require.resolve('@amp/cli/dist/loader/xml-loader')],
     },
     {
       test: new RegExp(css),
       use: [require.resolve('@amp/cli/dist/loader/file-loader')],
     },
     {
+      test: new RegExp(njs),
+      use: [
+        require.resolve('@amp/cli/dist/loader/json-loader'),
+        babelLoader,
+      ],
+    },
+    {
       test: /\.less/,
       use: [
         {
           loader: require.resolve('@amp/cli/dist/loader/file-loader'),
-          options: {
-            ext: css
-          },
+          options: { ext: css },
         },
         require.resolve('less-loader')
       ],
+    },
+    {
+      test: /\.(png|jpe?g|gif|svg)$/,
+      use: [require.resolve('@amp/cli/dist/loader/file-loader')],
     },
   ]
 }

@@ -1,6 +1,6 @@
 {
   "component2": true,
-  "enableAppxNg": false,
+  "enableAppxNg": true,
   "enableHMR": true,
   "miniprogramRoot": "./dist",
   "compileType": "mini"

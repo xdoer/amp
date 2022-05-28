@@ -12,6 +12,11 @@ export function getRelativeOutput(_path) {
   return _path.replace(path.resolve(outputRoot), empty)
 }
 
+export function getRelativeSource(_path) {
+  const { sourceRoot } = parseAmpConf()
+  return _path.replace(path.resolve(sourceRoot), empty)
+}
+
 // 组件引用规范为绝对路径
 export function normalizeCompPath(name: string) {
   return `/components/${name}/index`
@@ -33,4 +38,11 @@ export function createRelativePath(path) {
 
 export function merge(target, source) {
   return Object.assign({}, target, source)
+}
+
+export function jsonModule(source) {
+  return `
+  var json = ${JSON.stringify(source, null, 2)};
+  module.exports = JSON.stringify(json, null, 2);\n
+`
 }

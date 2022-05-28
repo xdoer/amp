@@ -7,6 +7,7 @@ export const platformConf = {
       css: '.acss',
       json: '.json',
       js: '.js',
+      njs: '.sjs'
     }
   },
   wx: {
@@ -15,6 +16,7 @@ export const platformConf = {
       css: '.wxss',
       json: '.json',
       js: '.js',
+      njs: '.wss'
     }
   },
 }

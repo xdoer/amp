@@ -1,11 +1,16 @@
-import { getOptions } from 'loader-utils'
+import { getOptions, parseQuery } from 'loader-utils'
 import { parse, resolve } from 'path'
 import { ampEntry } from "../entry"
 
 // 直接输出文件
 module.exports = function (source) {
-  const output = ampEntry.getResourceOutput(this.resourcePath, true)
+  let output = ampEntry.getResourceOutput(this.resourcePath, true)
   const options = getOptions(this)
+
+  if (this.resourceQuery) {
+    const query = parseQuery(this.resourceQuery)
+    output = query.output || output
+  }
 
   if (options.ext) {
     const { dir, name } = parse(output)

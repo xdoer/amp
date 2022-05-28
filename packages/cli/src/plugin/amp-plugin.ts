@@ -1,5 +1,6 @@
 import { Compiler, EntryPlugin, Compilation, sources, Chunk } from 'webpack'
-import fs, { constants } from 'fs'
+import fs from 'fs'
+import { parseQuery } from 'loader-utils'
 import path, { resolve } from 'path'
 import { ampEntry } from '../entry'
 import parseAmpConf from '../parseAmpConf'
@@ -12,31 +13,29 @@ const { outputRoot, style, platform } = parseAmpConf()
 export default class AmpWebpackPlugin {
 
   compiler: Compiler
+  compilation: Compilation
 
   // 动态添加入口
-  applyEntry() {
+  applyAppEntry() {
     const { xml, css, json } = platformConf[platform].ext
 
     ampEntry.entryOutputMap.forEach((output, loc) => {
       // https://webpack.js.org/plugins/internal-plugins/#entryplugin
       const out = getRelativeOutput(output)
 
-      // 每个单元下, 必须有的
-      const requiredExts = ['', xml]
+      // js 文件
+      new EntryPlugin(this.compiler.context, loc, out).apply(this.compiler)
 
-      requiredExts.forEach(ext => new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler))
+      // 需要检验文件存不存在
+      const userExts = [style]
+      const exts = [css, json, xml, ...userExts]
 
-      // 可能有的，需要先检验文件存不存在
-      const checkExts = style ? [style, css, `${json}?asConfig`] : [css, `${json}?asConfig`]
-
-      for (let i = 0; i < checkExts.length; i++) {
-        const ext = checkExts[i];
-        try {
-          fs.accessSync(loc + ext, constants.R_OK)
-          new EntryPlugin(this.compiler.context, loc + ext, out).apply(this.compiler)
-          break
-        } catch (e) { }
-      }
+      exts.forEach(ext => {
+        if (fs.existsSync(resolve(this.compiler.context, loc + ext))) {
+          const fi = loc + (ext = ext === json ? `${json}?asConfig` : ext)
+          new EntryPlugin(this.compiler.context, fi, out).apply(this.compiler)
+        }
+      })
     })
   }
 
@@ -132,9 +131,35 @@ export default class AmpWebpackPlugin {
     })
   }
 
+  // 动态入口
+  dynamicEntry() {
+    this.compiler.hooks.thisCompilation.tap('AmpWebpackPlugin ', (compilation) => {
+      this.compilation = compilation
+    })
+
+    this.compiler.hooks.normalModuleFactory.tap('AmpWebpackPlugin', (normalModuleFactory) => {
+      normalModuleFactory.hooks.beforeResolve.tap('AmpWebpackPlugin', ({ request }) => {
+        const queryIndex = request.indexOf('?')
+        let resourcePath = request
+        let resourceQuery = ''
+
+        if (queryIndex >= 0) {
+          resourcePath = request.slice(0, queryIndex)
+          resourceQuery = request.slice(queryIndex)
+        }
+        const { type, output } = parseQuery(resourceQuery || '?')
+        if (type === 'entry') {
+          const dep = EntryPlugin.createDependency(resourcePath, path.parse(resourcePath).name)
+          this.compilation.addEntry(this.compiler.context, dep, output, (e, res) => { })
+        }
+      })
+    })
+  }
+
   apply(compiler: Compiler) {
     this.compiler = compiler
-    this.applyEntry()
+    this.applyAppEntry()
     this.applyChunkRequire()
+    this.dynamicEntry()
   }
 }
