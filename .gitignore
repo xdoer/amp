@@ -6,3 +6,9 @@ package-lock.json
 yarn.lock
 .DS_Store
 .Cache
+npm-debug.log
+.idea/
+deploy/
+output/
+.cache/
+.vscode/
