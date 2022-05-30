@@ -79,6 +79,7 @@ class AmpEntry {
   private travelComponents(entry, page, pkg) {
     const json = this.getJsonEntry(entry)
     const compMap = json[useComp]
+
     if (compMap) {
       Object.entries(compMap).forEach(([key, value]) => {
         this.addComponent(key, value as string, page, pkg, parse(entry).dir)

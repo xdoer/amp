@@ -1,0 +1,12 @@
+{
+  "publicComponents": {
+    "list": "components/list/list"
+  },
+  "publicPages": {
+    "hello-page": "pages/index/index"
+  },
+  "pages": [
+    "pages/index/index"
+  ],
+  "main": "index"
+}

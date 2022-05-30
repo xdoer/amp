@@ -1,0 +1,16 @@
+{
+  "name": "ali-todo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "amp -w --analyze",
+    "build": "amp -p"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^8.2.5",
+    "@amp/cli": "1.0.0"
+  }
+}
