@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "amp -w",
+    "dev": "amp -w --analyze",
     "build": "amp -p"
   },
   "author": "",
