@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import { ampConf } from './default-conf'
+import { ampConf } from './default'
 import { AmpConf } from '../types'
 import { merge } from '../utils'
 
@@ -11,7 +11,7 @@ function getAmpConf() {
   return userAmpConf
 }
 
-export { platformConf } from './default-conf'
+export { platformConf } from './default'
 
 export function parseAmpConf(): AmpConf {
   return merge(ampConf, getAmpConf())

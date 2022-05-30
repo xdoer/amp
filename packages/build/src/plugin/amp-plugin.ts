@@ -6,7 +6,7 @@ import { ampEntry } from '../entry'
 import { parseAmpConf } from '../ampConf'
 import { runtimeCodeFixBabel, runtimeCodeCtxObject, regeneratorRuntimeFix } from '../constants'
 import { getRelativeOutput, createRelativePath } from '../utils'
-import { platformConf } from '../ampConf/default-conf'
+import { platformConf } from '../ampConf'
 
 const { outputRoot, style, platform } = parseAmpConf()
 

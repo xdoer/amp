@@ -1,7 +1,8 @@
+import webpack from 'webpack'
 import { resolve } from 'path'
 import { parseAmpConf, platformConf } from '../ampConf'
 
-export default function getWebpackRules() {
+export default function getWebpackRules(): webpack.RuleSetRule[] {
   const { alias, sourceRoot, platform } = parseAmpConf()
   const { xml, css, json, njs } = platformConf[platform].ext
 
