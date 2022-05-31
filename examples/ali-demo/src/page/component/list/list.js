@@ -75,7 +75,7 @@ const newitems = [
     textMode: 'wrap',
     align: 'top',
   },
-]
+];
 Page({
   data: {
     items: [
@@ -275,20 +275,19 @@ Page({
       // check: false,
     },
     checkValues: {},
-    thumb:
-      'https://gw-office.alipayobjects.com/basement_prod/47775269-5c8e-40b8-bcda-43380022f311.jpg',
+    thumb: 'https://gw-office.alipayobjects.com/basement_prod/47775269-5c8e-40b8-bcda-43380022f311.jpg',
     changeCheckbox: true,
     changeSwitch: true,
   },
   onLoad() {
-    const charCode = 65
-    const charList = []
+    const charCode = 65;
+    const charList = [];
     for (let i = 0; i < 26; i++) {
-      charList.push(String.fromCharCode(charCode + i))
+      charList.push(String.fromCharCode(charCode + i));
     }
     this.setData({
       alphabet: charList,
-    })
+    });
   },
   onItemClick(ev) {
     if (ev.detail && ev.index === 'check') {
@@ -297,57 +296,57 @@ Page({
           ...this.data.actionValues,
           [ev.index]: ev.detail.value,
         },
-      })
+      });
     } else {
       my.alert({
         content: `点击了第${ev.index}行`,
-      })
+      });
     }
   },
   onSwitchClick() {
     this.setData({
       changeSwitch: !this.data.changeSwitch,
-    })
+    });
     my.alert({
       content: 'switch changed',
-    })
+    });
   },
   onCheckClick() {
     this.setData({
       changeCheckbox: !this.data.changeCheckbox,
-    })
+    });
     my.alert({
       content: 'checkbox changed',
-    })
+    });
   },
   onCapsuleClick() {
     my.alert({
       content: 'capsule button click',
-    })
+    });
   },
   onScrollToLower() {
     this.setData({
       loadMore: 'load',
-    })
-    const { items5 } = this.data
+    });
+    const { items5 } = this.data;
     // 加入 maxList 用于判断“假设”数据加载完毕后的情况
     if (this.data.maxList > 0) {
-      const newItems = items5.concat(newitems)
-      const MAXList = this.data.maxList - 1
+      const newItems = items5.concat(newitems);
+      const MAXList = this.data.maxList - 1;
       this.setData({
         items5: newItems,
         maxList: MAXList,
-      })
+      });
     } else {
       // 数据加载完毕之后，改变 loadMore 为 over 即可
       this.setData({
         loadMore: 'over',
-      })
+      });
     }
   },
   onAlphabetClick(ev) {
     my.alert({
       content: JSON.stringify(ev.data),
-    })
+    });
   },
-})
+});

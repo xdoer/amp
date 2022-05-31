@@ -1,8 +1,8 @@
 {
   "defaultTitle": "Grid",
-  "usingComponents": {
+  "usingComponents":{
     "list": "mini-ali-ui/es/list/index",
     "list-item": "mini-ali-ui/es/list/list-item/index",
-    "grid": "mini-ali-ui/es/grid/index"
+    "grid":"mini-ali-ui/es/grid/index"
   }
 }

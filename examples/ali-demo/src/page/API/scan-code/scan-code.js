@@ -3,8 +3,9 @@ Page({
     my.scan({
       type: 'qr',
       success: (res) => {
-        my.alert({ title: res.code })
+        my.alert({ title: res.code });
       },
-    })
-  },
+    });
+  }
 })
+

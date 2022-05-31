@@ -10,15 +10,15 @@ Page({
     ],
   },
   onSubmit(e) {
-    console.log('onSubmit', e)
+    console.log('onSubmit', e);
     my.alert({
       content: `你选择的框架是 ${e.detail.value.libs.join(', ')}`,
-    })
+    });
   },
   onReset(e) {
-    console.log('onReset', e)
+    console.log('onReset', e);
   },
   onChange(e) {
-    console.log(e)
+    console.log(e);
   },
-})
+});

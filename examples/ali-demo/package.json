@@ -1,20 +1,14 @@
 {
-  "name": "ali-demo",
+  "name": "ant-mini-program-demo",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "amp -w --analyze",
-    "build": "amp -p"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "mini-ali-ui": "^1.0.10"
-  },
-  "devDependencies": {
-    "babel-loader": "^8.2.5",
-    "@amp/cli": "1.0.0",
-    "@goldfishjs/core": "2.12.2"
   }
 }

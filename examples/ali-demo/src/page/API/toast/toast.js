@@ -7,9 +7,9 @@ Page({
       success: () => {
         my.alert({
           title: 'toast 消失了',
-        })
+        });
       },
-    })
+    });
   },
   showToastFail() {
     my.showToast({
@@ -19,9 +19,9 @@ Page({
       success: () => {
         my.alert({
           title: 'toast 消失了',
-        })
+        });
       },
-    })
+    });
   },
   showToastException() {
     my.showToast({
@@ -31,9 +31,9 @@ Page({
       success: () => {
         my.alert({
           title: 'toast 消失了',
-        })
+        });
       },
-    })
+    });
   },
   showToastNone() {
     my.showToast({
@@ -43,9 +43,9 @@ Page({
       success: () => {
         my.alert({
           title: 'toast 消失了',
-        })
+        });
       },
-    })
+    });
   },
   hideToast() {
     my.hideToast()

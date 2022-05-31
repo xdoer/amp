@@ -1,6 +1,6 @@
 Page({
   data: {},
   handleError(e) {
-    console.log(e)
+    console.log(e);
   },
-})
+});

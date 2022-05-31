@@ -1,19 +1,19 @@
 Page({
   data: {
-    systemInfo: {},
+    systemInfo: {}
   },
   getSystemInfo() {
     my.getSystemInfo({
       success: (res) => {
         this.setData({
-          systemInfo: res,
+          systemInfo: res
         })
-      },
+      }
     })
   },
   getSystemInfoSync() {
     this.setData({
       systemInfo: my.getSystemInfoSync(),
-    })
+    });
   },
 })

@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Stepper",
-  "usingComponents": {
+  "usingComponents":{
     "stepper": "mini-ali-ui/es/stepper/index",
     "list": "mini-ali-ui/es/list/index",
     "list-item": "mini-ali-ui/es/list/list-item/index"

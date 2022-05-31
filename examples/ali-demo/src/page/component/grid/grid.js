@@ -4,4 +4,4 @@ Page({
       url: e.target.dataset.url,
     })
   },
-})
+});

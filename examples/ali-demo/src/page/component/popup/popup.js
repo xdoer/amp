@@ -8,22 +8,22 @@ Page({
   onTopBtnTap() {
     this.setData({
       showTop: true,
-    })
+    });
   },
   onRightBtnTap() {
     this.setData({
       showRight: true,
-    })
+    });
   },
   onLeftBtnTap() {
     this.setData({
       showLeft: true,
-    })
+    });
   },
   onButtomBtnTap() {
     this.setData({
       showBottom: true,
-    })
+    });
   },
   onPopupClose() {
     this.setData({
@@ -31,6 +31,6 @@ Page({
       showRight: false,
       showTop: false,
       showBottom: false,
-    })
+    });
   },
-})
+});

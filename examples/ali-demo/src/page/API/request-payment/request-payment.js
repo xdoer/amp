@@ -6,13 +6,13 @@ Page({
       success: (res) => {
         my.alert({
           title: res.resultCode,
-        })
+        });
       },
       fail: (res) => {
         my.alert({
           content: JSON.stringify(res),
-        })
+        });
       },
-    })
-  },
+    });
+  }
 })

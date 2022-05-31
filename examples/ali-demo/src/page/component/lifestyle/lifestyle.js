@@ -1,5 +1,5 @@
 Page({
-  data: {
+  data:{
     canUse: my.canIUse('lifestyle'),
-  },
-})
+  }
+});

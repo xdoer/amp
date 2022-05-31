@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Popup",
-  "usingComponents": {
+  "usingComponents":{
     "popup": "mini-ali-ui/es/popup/index"
   }
 }

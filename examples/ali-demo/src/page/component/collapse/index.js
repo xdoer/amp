@@ -4,10 +4,10 @@ Page({
   },
   onShow() {
     this.setData({
-      randomLine: parseInt(Math.random() * 20 + 1, 0),
+      randomLine: parseInt(Math.random()*20 + 1, 0),
     })
   },
   onChange(e) {
-    console.log('collapse change', e)
+    console.log('collapse change', e);
   },
-})
+});

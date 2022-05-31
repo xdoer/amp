@@ -5,7 +5,7 @@ Page({
   handleInput(event) {
     this.setData({
       value: event.detail.value,
-    })
+    });
   },
   textRiskIdentification() {
     my.textRiskIdentification({
@@ -15,8 +15,8 @@ Page({
         my.alert({
           title: this.data.value,
           content: JSON.stringify(res),
-        })
+        });
       },
-    })
+    });
   },
-})
+});

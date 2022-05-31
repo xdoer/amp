@@ -1,4 +1,4 @@
-{
+{  
   "defaultTitle": "Popover",
   "usingComponents": {
     "popover": "mini-ali-ui/es/popover/index",

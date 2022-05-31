@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Page result",
-  "usingComponents": {
+  "usingComponents":{
     "page-result": "mini-ali-ui/es/page-result/index"
   }
 }

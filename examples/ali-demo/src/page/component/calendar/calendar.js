@@ -10,12 +10,12 @@ Page({
     ],
   },
   onLoad() {
-    const getDate = new Date()
-    const getYear = getDate.getFullYear()
-    const getMonth = getDate.getMonth()
-    let m = getMonth + 1
+    const getDate = new Date();
+    const getYear = getDate.getFullYear();
+    const getMonth = getDate.getMonth();
+    let m = getMonth + 1;
     if (m.toString().length === 1) {
-      m = '0' + m
+      m = '0' + m;
     }
     this.setData({
       tagData: [
@@ -26,7 +26,7 @@ Page({
         { date: getYear + '-' + m + '-4', tag: '还房贷', tagColor: 5 },
         { date: getYear + '-' + m + '-10', tag: '公积金', disable: true },
       ],
-    })
+    });
   },
   handleSelect() {},
   onMonthChange() {},
@@ -34,6 +34,6 @@ Page({
   onSelectHasDisableDate() {
     my.alert({
       content: 'SelectHasDisableDate',
-    })
+    });
   },
-})
+});

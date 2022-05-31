@@ -6,23 +6,23 @@ Page({
     my.onUserCaptureScreen(() => {
       my.alert({
         content: '收到用户截图',
-      })
-    })
+      });
+    });
   },
   offUserCaptureScreen() {
-    my.offUserCaptureScreen()
+    my.offUserCaptureScreen();
     this.setData({
       condition: false,
-    })
+    });
   },
   onUserCaptureScreen() {
     my.onUserCaptureScreen(() => {
       my.alert({
-        content: '收到用户截图',
-      })
-    })
+        content: '收到用户截图'
+      });
+    });
     this.setData({
       condition: true,
-    })
+    });
   },
-})
+});

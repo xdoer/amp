@@ -30,11 +30,26 @@ Page({
           arrow: true,
         },
       },
-      { title: '4 Tab', subTitle: '描述', showBadge: true, number: 0 },
-      { title: '5 Tab', subTitle: '描述描述', number: '99+', showBadge: false },
-      { title: '3 Tab', subTitle: '描述', showBadge: false },
-      { title: '4 Tab', subTitle: '描述' },
-      { title: '15 Tab', subTitle: '描述' },
+      { title: '4 Tab',
+        subTitle: '描述',
+        showBadge: true,
+        number: 0,
+      },
+      { title: '5 Tab',
+        subTitle: '描述描述',
+        number: '99+',
+        showBadge: false,
+      },
+      { title: '3 Tab',
+        subTitle: '描述',
+        showBadge: false,
+      },
+      { title: '4 Tab',
+        subTitle: '描述',
+      },
+      { title: '15 Tab',
+        subTitle: '描述',
+      },
     ],
     activeTab: 0,
     type: [
@@ -71,7 +86,7 @@ Page({
             number: '6',
           },
         ],
-      })
+      });
     } else if (e.detail.value === '2') {
       this.setData({
         tabs: [
@@ -92,7 +107,7 @@ Page({
             showBadge: true,
           },
         ],
-      })
+      });
     } else if (e.detail.value === '3') {
       this.setData({
         tabs: [
@@ -123,7 +138,7 @@ Page({
             },
           },
         ],
-      })
+      });
     } else {
       this.setData({
         tabs: [
@@ -156,18 +171,28 @@ Page({
               arrow: true,
             },
           },
-          { title: '4 Tab', subTitle: '描述', showBadge: true, number: 0 },
-          {
-            title: '5 Tab',
+          { title: '4 Tab',
+            subTitle: '描述',
+            showBadge: true,
+            number: 0,
+          },
+          { title: '5 Tab',
             subTitle: '描述描述',
             number: '99+',
             showBadge: false,
           },
-          { title: '3 Tab', subTitle: '描述', showBadge: false },
-          { title: '4 Tab', subTitle: '描述' },
-          { title: '15 Tab', subTitle: '描述' },
+          { title: '3 Tab',
+            subTitle: '描述',
+            showBadge: false,
+          },
+          { title: '4 Tab',
+            subTitle: '描述',
+          },
+          { title: '15 Tab',
+            subTitle: '描述',
+          },
         ],
-      })
+      });
     }
   },
   typeChange(e) {
@@ -175,28 +200,28 @@ Page({
       this.setData({
         typeCapsule: true,
         typeHasSubTitle: true,
-      })
+      });
     } else if (e.detail.value === 'capsule') {
       this.setData({
         typeCapsule: true,
         typeHasSubTitle: false,
-      })
+      });
     } else {
       this.setData({
         typeCapsule: false,
         typeHasSubTitle: false,
-      })
+      });
     }
   },
   plusChange(e) {
     if (e.detail.value === 'hasnt') {
       this.setData({
         hasPlus: false,
-      })
+      });
     } else {
       this.setData({
         hasPlus: true,
-      })
+      });
     }
   },
   // heightChange(e) {
@@ -213,16 +238,16 @@ Page({
   handleTabClick({ index, tabsName }) {
     this.setData({
       [tabsName]: index,
-    })
+    });
   },
   handleTabChange({ index, tabsName }) {
     this.setData({
       [tabsName]: index,
-    })
+    });
   },
   handlePlusClick() {
     my.alert({
       content: 'plus clicked',
-    })
+    });
   },
-})
+});

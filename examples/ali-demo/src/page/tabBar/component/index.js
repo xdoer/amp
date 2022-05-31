@@ -29,7 +29,7 @@ const basicContainers = [
     nameEn: 'CoverView',
     path: '/page/component/cover-view/cover-view',
   },
-]
+];
 
 const basicBasics = [
   {
@@ -50,7 +50,7 @@ const basicBasics = [
     nameEn: 'RichText',
     path: '/page/component/rich-text/rich-text',
   },
-]
+];
 
 const basicFeedBacks = [
   {
@@ -59,7 +59,7 @@ const basicFeedBacks = [
     nameEn: 'Progress',
     path: '/page/component/progress/progress',
   },
-]
+];
 
 const basicForms = [
   {
@@ -128,7 +128,7 @@ const basicForms = [
     nameEn: 'Picker',
     path: '/page/component/picker/picker',
   },
-]
+];
 
 const basicNavigators = [
   {
@@ -137,7 +137,7 @@ const basicNavigators = [
     nameEn: 'Navigator',
     path: '/page/component/navigator/navigator',
   },
-]
+];
 
 const basicMedias = [
   {
@@ -146,7 +146,7 @@ const basicMedias = [
     nameEn: 'Image',
     path: '/page/component/image/image',
   },
-]
+];
 
 const basicMaps = [
   {
@@ -154,8 +154,8 @@ const basicMaps = [
     thumb: '/image/icon/map.png',
     nameEn: 'Map',
     path: '/page/component/map/map',
-  },
-]
+  }
+];
 
 const basicCanvas = [
   {
@@ -163,8 +163,8 @@ const basicCanvas = [
     thumb: '/image/icon/canvas.png',
     nameEn: 'Canvas',
     path: '/page/component/canvas/canvas',
-  },
-]
+  }
+];
 
 const basicOpens = [
   {
@@ -191,7 +191,8 @@ const basicOpens = [
     nameEn: 'Favorite',
     path: '/page/component/favorite/favorite',
   },
-]
+];
+
 
 let basicComponentList = [
   {
@@ -222,7 +223,7 @@ let basicComponentList = [
     type: '画布',
     list: basicCanvas,
   },
-]
+];
 
 if (my.ap) {
   basicComponentList = basicComponentList.concat([
@@ -234,7 +235,7 @@ if (my.ap) {
       type: '开放组件',
       list: basicOpens,
     },
-  ])
+  ]);
 }
 
 const extContainers = [
@@ -255,7 +256,7 @@ const extContainers = [
     thumb: '/image/icon/form.png',
     nameEn: 'List',
     path: '/page/component/list/list',
-  },
+  }, 
   {
     name: '列表元素',
     thumb: '/image/icon/list-item.png',
@@ -322,7 +323,7 @@ const extContainers = [
     nameEn: 'Collapse',
     path: '/page/component/collapse/index',
   },
-]
+];
 
 const pops = [
   {
@@ -349,7 +350,7 @@ const pops = [
     nameEn: 'Popup',
     path: '/page/component/popup/popup',
   },
-]
+];
 
 const extForms = [
   {
@@ -418,7 +419,7 @@ const extForms = [
     nameEn: 'Search-bar',
     path: '/page/component/search-bar/search-bar',
   },
-]
+];
 
 const results = [
   {
@@ -433,7 +434,7 @@ const results = [
     nameEn: 'Message',
     path: '/page/component/message/message',
   },
-]
+];
 
 const tips = [
   {
@@ -478,7 +479,7 @@ const tips = [
     nameEn: 'Avatar',
     path: '/page/component/avatar/index',
   },
-]
+];
 
 const gestures = [
   {
@@ -486,10 +487,11 @@ const gestures = [
     thumb: '/image/icon/swipe-action.png',
     nameEn: 'Swipe-action',
     path: '/page/component/swipe-action/swipe-action',
-  },
-]
+  }, 
+];
 
-const inputs = []
+const inputs = [
+]
 
 const others = [
   {
@@ -559,7 +561,7 @@ const extComponentList = [
     type: '其他',
     list: others,
   },
-]
+];
 
 Page({
   data: {
@@ -576,56 +578,56 @@ Page({
       { name: '导航', url: '/page/API/navigator/navigator' },
     ],
     tabs: ['基础组件', '扩展组件'],
-    activeTab: 0,
+    activeTab: 0, 
     basicComponentList,
     extComponentList,
     titleOpacity: 1,
     shadow: false,
   },
   onPageScroll(e) {
-    const { scrollTop } = e
-    let titleOpacity = 1 - scrollTop * 0.02
-    let shadow = false
+    const { scrollTop } = e;
+    let titleOpacity = 1 - scrollTop * 0.02;
+    let shadow = false;
 
     if (titleOpacity < 0) {
-      titleOpacity = 0
+      titleOpacity = 0;
     }
 
     if (titleOpacity > 1) {
-      titleOpacity = 1
+      titleOpacity = 1;
     }
 
     if (scrollTop > 80) {
       my.setNavigationBar({
         title: '小程序官方示例',
-      })
+      });
     } else {
       my.setNavigationBar({
         title: ' ',
-      })
+      });
     }
 
     if (scrollTop > 320) {
-      shadow = true
+      shadow = true;
     } else {
-      shadow = false
+      shadow = false;
     }
 
     this.setData({
       shadow,
       titleOpacity,
-    })
+    });
   },
   onSearchBarTap() {
     my.navigateTo({
       url: '/page/common/search/search',
-    })
+    });
   },
   onTabBarTap(e) {
     const { index } = e.target.dataset
     this.setData({
       activeTab: index,
-    })
+    });
   },
   onLoad() {
     my.getSystemInfo({
@@ -633,23 +635,23 @@ Page({
         if (res.statusBarHeight && res.titleBarHeight) {
           this.setData({
             top: res.statusBarHeight + res.titleBarHeight,
-          })
+          });
         }
       },
-    })
+    });
   },
   goDevCenter() {
     my.navigateToMiniProgram({
       appId: '2018082061148052',
       path: 'pages/discover/discover',
       extraData: {
-        from: 'miniDemo',
-      },
-    })
+        "from": "miniDemo"
+      }
+    });
   },
   openPage(e) {
     my.navigateTo({
       url: e.target.dataset.url,
     })
   },
-})
+});

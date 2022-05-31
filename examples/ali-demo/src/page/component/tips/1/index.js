@@ -18,23 +18,23 @@ Page({
   onCloseTap() {
     this.setData({
       showRectangle: false,
-    })
+    });
   },
   onRectangleTap() {
     my.alert({
       content: 'do something',
-    })
+    });
   },
   onDialogTap() {
     this.setData({
       showDialog: false,
-    })
+    });
   },
   setInfo(e) {
-    const { dataset } = e.target
-    const { name } = dataset
+    const { dataset } = e.target;
+    const { name } = dataset;
     this.setData({
       [name]: e.detail.value,
-    })
+    });
   },
-})
+});

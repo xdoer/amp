@@ -1,9 +1,7 @@
 Page({
   data: {
-    footer: [
-      {
-        text: '刷新',
-      },
-    ],
+    footer: [{
+      text: '刷新',
+    }],
   },
-})
+});

@@ -8,6 +8,6 @@ Page({
     })
   },
   returnIndex() {
-    my.switchTab({ url: '/page/tabBar/component/index' })
+    my.switchTab({ url: '/page/tabBar/component/index' });
   },
-})
+});

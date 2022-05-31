@@ -6,6 +6,6 @@ Page({
   onClose() {
     my.alert({
       title: '12321',
-    })
+    });
   },
-})
+});

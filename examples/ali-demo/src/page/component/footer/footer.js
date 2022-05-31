@@ -81,6 +81,6 @@ Page({
   brandClick() {
     my.alert({
       content: '这个品牌 logo 没有链接，可通过 js 自定义点击事件。',
-    })
+    });
   },
-})
+});
