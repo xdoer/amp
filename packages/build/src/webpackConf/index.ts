@@ -17,7 +17,7 @@ export default function getWebpackConf(options): webpack.Configuration {
   } = parseAmpConf()
 
   const config: webpack.Configuration = {
-    entry: { index: entryIncludes },
+    entry: { app: entryIncludes },
     output: {
       path: resolve(outputRoot),
       publicPath: '/',
