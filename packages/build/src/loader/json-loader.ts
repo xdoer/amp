@@ -13,11 +13,9 @@ import {
 import { addQuery, Query } from './addQuery'
 import { platformConf } from '../ampConf'
 
-const { outputRoot, style, platform } = parseAmpConf()
-const { xml, css, json, js } = platformConf[platform].ext
-
 module.exports = function (source) {
-  const { outputRoot, sourceRoot } = parseAmpConf()
+  const { outputRoot, sourceRoot, platform, style } = parseAmpConf()
+  const { xml, css, json } = platformConf[platform].ext
 
   if (this.resourceQuery) {
     const { asConfig, type } = parseQuery(this.resourceQuery)
@@ -60,7 +58,7 @@ module.exports = function (source) {
                 },
               })
 
-              const exts = [css, json, xml]
+              const exts = [css, json, xml].concat([style])
               exts.forEach((ext) => {
                 const resource = resolve(loc + ext)
 

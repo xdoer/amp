@@ -30,8 +30,7 @@ export default class AmpWebpackPlugin {
       new EntryPlugin(this.compiler.context, loc, out).apply(this.compiler)
 
       // 需要检验文件存不存在
-      const userExts = [style]
-      const exts = [css, json, xml, ...userExts]
+      const exts = [css, json, xml].concat([style])
 
       exts.forEach((ext) => {
         if (fs.existsSync(resolve(this.compiler.context, loc + ext))) {
@@ -203,7 +202,7 @@ export default class AmpWebpackPlugin {
                   path.parse(resourcePath).name
                 ),
                 output,
-                (e, res) => {}
+                (e, res) => { }
               )
             }
           }
