@@ -1,8 +1,1 @@
-import startPack from '@amp/build'
-import cmd from './parseCommand'
-
-function main() {
-  startPack(cmd())
-}
-
-main()
+export function main() {}

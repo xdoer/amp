@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import attrParse from './attr-parse'
 import { ampEntry } from '../../entry'
 import { getBaseOutput, getRelativeOutput, isRelativeUrl } from '../../utils'
-import { addQuery, AssetQuery } from '../addQuery'
+import { addQuery, Query } from '../addQuery'
 import { parseAmpConf, platformConf } from '../../ampConf'
 
 const { sourceRoot, platform, style } = parseAmpConf()
@@ -35,7 +35,7 @@ module.exports = function xmlLoader(source) {
     return !!res
   })
 
-  const assets: AssetQuery[] = []
+  const assets: Query[] = []
 
   // 解析 xml 中的相对路径资源进行拷贝
   links

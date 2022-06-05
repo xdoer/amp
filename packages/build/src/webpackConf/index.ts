@@ -32,7 +32,7 @@ export default function getWebpackConf(options): webpack.Configuration {
     optimization: {
       nodeEnv: isProduct ? 'production' : 'development',
     },
-    devtool: isWatch ? 'inline-source-map' : 'source-map',
+    devtool: isWatch ? 'inline-source-map' : false,
     plugins: getWebpackPlugins(options),
     module: { rules: getWebpackRules() },
   }

@@ -27,18 +27,12 @@ export default function getWebpackRules(): webpack.RuleSetRule[] {
       },
     },
     postCssLoader: {
-      loader: "postcss-loader",
+      loader: 'postcss-loader',
       options: {
         postcssOptions: {
-          plugins: [
-            [
-              "postcss-preset-env",
-              {
-              },
-            ],
-          ],
+          plugins: [['postcss-preset-env', {}]],
         },
-      }
+      },
     },
   }
 
@@ -65,10 +59,7 @@ export default function getWebpackRules(): webpack.RuleSetRule[] {
     },
     {
       test: new RegExp(css),
-      use: [
-        fileLoader,
-        loader.postCssLoader,
-      ],
+      use: [fileLoader, loader.postCssLoader],
     },
     {
       test: /\.less/,
@@ -82,11 +73,9 @@ export default function getWebpackRules(): webpack.RuleSetRule[] {
           loader: 'less-loader',
           options: {
             lessOptions: {
-              plugins: [
-                new npmImportPlugin({ prefix: '~' })
-              ]
-            }
-          }
+              plugins: [new npmImportPlugin({ prefix: '~' })],
+            },
+          },
         },
       ],
     },

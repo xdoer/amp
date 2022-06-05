@@ -1,14 +1,14 @@
 Page({
   zmCreditBorrow() {
-    const vNow = new Date();
-    let sNow = '';
-    sNow += String(vNow.getFullYear());
-    sNow += String(vNow.getMonth() + 1);
-    sNow += String(vNow.getDate());
-    sNow += String(vNow.getHours());
-    sNow += String(vNow.getMinutes());
-    sNow += String(vNow.getSeconds());
-    sNow += String(vNow.getMilliseconds());
+    const vNow = new Date()
+    let sNow = ''
+    sNow += String(vNow.getFullYear())
+    sNow += String(vNow.getMonth() + 1)
+    sNow += String(vNow.getDate())
+    sNow += String(vNow.getHours())
+    sNow += String(vNow.getMinutes())
+    sNow += String(vNow.getSeconds())
+    sNow += String(vNow.getMilliseconds())
     my.zmCreditBorrow({
       out_order_no: sNow,
       product_code: 'w1010100000000002858',
@@ -23,8 +23,8 @@ Page({
       success: (res) => {
         my.alert({
           content: JSON.stringify(res),
-        });
+        })
       },
-    });
+    })
   },
-});
+})

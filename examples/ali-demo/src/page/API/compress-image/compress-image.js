@@ -10,14 +10,14 @@ Page({
         my.compressImage({
           apFilePaths: res.apFilePaths,
           level: 1,
-          success: data => {
-            console.log(data);
+          success: (data) => {
+            console.log(data)
             this.setData({
               compressedSrc: data.apFilePaths[0],
             })
-          }
+          },
         })
-      }
+      },
     })
   },
-});
+})

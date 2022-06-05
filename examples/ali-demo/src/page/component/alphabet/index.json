@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Alphabet",
-  "usingComponents":{
+  "usingComponents": {
     "alphabet": "mini-ali-ui/es/list/alphabet/index",
     "am-icon": "mini-ali-ui/es/am-icon/index"
   }

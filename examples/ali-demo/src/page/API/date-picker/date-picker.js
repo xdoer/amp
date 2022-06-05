@@ -6,10 +6,10 @@ Page({
       endDate: '2017-10-9',
       success: (res) => {
         my.alert({
-          title: 'datePicker response: ' + JSON.stringify(res)
-        });
+          title: 'datePicker response: ' + JSON.stringify(res),
+        })
       },
-    });
+    })
   },
   datePickerHMS() {
     my.datePicker({
@@ -19,10 +19,10 @@ Page({
       endDate: '13:13:13',
       success: (res) => {
         my.alert({
-          title: 'datePicker response: ' + JSON.stringify(res)
-        });
+          title: 'datePicker response: ' + JSON.stringify(res),
+        })
       },
-    });
+    })
   },
   datePickerYMDHMS() {
     my.datePicker({
@@ -32,9 +32,9 @@ Page({
       endDate: '2012-01-10 11:11:11',
       success: (res) => {
         my.alert({
-          title: 'datePicker response: ' + JSON.stringify(res)
-        });
+          title: 'datePicker response: ' + JSON.stringify(res),
+        })
       },
-    });
+    })
   },
-});
+})

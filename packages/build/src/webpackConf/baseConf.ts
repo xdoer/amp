@@ -9,13 +9,13 @@ export default {
     modules: ['node_modules'],
     alias: {},
   },
-  cache: {
-    type: 'filesystem',
-    buildDependencies: {
-      // config: [resolve('config/')],
-    },
-    cacheDirectory: resolve('.cache/'),
-  },
+  // cache: {
+  //   type: 'filesystem',
+  //   buildDependencies: {
+  //     // config: [resolve('config/')],
+  //   },
+  //   cacheDirectory: resolve('.cache/'),
+  // },
   snapshot: {
     managedPaths: [resolve('node_modules/')],
   },

@@ -5,13 +5,13 @@ Page({
       success({ apFilePath }) {
         my.previewImage({
           urls: [apFilePath],
-        });
+        })
       },
       fail(res) {
         my.alert({
           content: res.errorMessage || res.error,
-        });
+        })
       },
-    });
+    })
   },
 })

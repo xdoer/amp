@@ -12,13 +12,13 @@ Page({
   onSubmit(e) {
     my.alert({
       content: e.detail.value.lib,
-    });
-    console.log('onSubmit', e.detail);
+    })
+    console.log('onSubmit', e.detail)
   },
   onReset(e) {
-    console.log('onReset', e);
+    console.log('onReset', e)
   },
   radioChange(e) {
-    console.log('你选择的框架是：', e.detail.value);
+    console.log('你选择的框架是：', e.detail.value)
   },
-});
+})

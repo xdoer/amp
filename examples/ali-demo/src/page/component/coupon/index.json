@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Coupon",
-  "usingComponents":{
+  "usingComponents": {
     "coupon": "mini-ali-ui/es/coupon/index",
     "button": "mini-ali-ui/es/button/index",
     "am-checkbox": "mini-ali-ui/es/am-checkbox/index",

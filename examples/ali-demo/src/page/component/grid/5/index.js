@@ -68,6 +68,6 @@ Page({
   onItemClick(ev) {
     my.alert({
       content: ev.detail.index,
-    });
+    })
   },
-});
+})

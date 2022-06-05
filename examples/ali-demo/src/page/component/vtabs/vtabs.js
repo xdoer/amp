@@ -13,11 +13,11 @@ Page({
   handleChange(index) {
     this.setData({
       activeTab: index,
-    });
+    })
   },
   onChange(index) {
     this.setData({
       activeTab: index,
-    });
+    })
   },
-});
+})

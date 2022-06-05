@@ -4,7 +4,11 @@ import { parseQuery } from 'loader-utils'
 import path, { resolve } from 'path'
 import { ampEntry } from '../entry'
 import { parseAmpConf } from '../ampConf'
-import { runtimeCodeFixBabel, runtimeCodeCtxObject, regeneratorRuntimeFix } from '../constants'
+import {
+  runtimeCodeFixBabel,
+  runtimeCodeCtxObject,
+  regeneratorRuntimeFix,
+} from '../constants'
 import { getRelativeOutput, createRelativePath } from '../utils'
 import { platformConf } from '../ampConf'
 
@@ -65,7 +69,9 @@ export default class AmpWebpackPlugin {
               if (!chunkFile || processedChunk.has(chunk)) return
 
               let originalSource = compilation.assets[chunkFile]
-              const isRegeneratorRuntime = /regeneratorRuntime/.test(originalSource.source().toString())
+              const isRegeneratorRuntime = /regeneratorRuntime/.test(
+                originalSource.source().toString()
+              )
               const source = new sources.ConcatSource()
               source.add(`\nvar ${globalObject} = ${globalObject} || {};\n\n`)
               if (isRegeneratorRuntime) source.add(regeneratorRuntimeFix)
@@ -188,16 +194,16 @@ export default class AmpWebpackPlugin {
               resourceQuery = request.slice(queryIndex)
             }
             const { type, output } = parseQuery(resourceQuery || '?')
+
             if (type === 'entry') {
-              const dep = EntryPlugin.createDependency(
-                resourcePath,
-                path.parse(resourcePath).name
-              )
               this.compilation.addEntry(
                 this.compiler.context,
-                dep,
+                EntryPlugin.createDependency(
+                  resourcePath,
+                  path.parse(resourcePath).name
+                ),
                 output,
-                (e, res) => { }
+                (e, res) => {}
               )
             }
           }

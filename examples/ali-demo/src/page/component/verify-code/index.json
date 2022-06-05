@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Verify-code",
-  "usingComponents":{
+  "usingComponents": {
     "verify-code": "mini-ali-ui/es/verify-code/index"
   }
 }

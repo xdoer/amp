@@ -43,19 +43,17 @@ const cfg = {
       title: '提交',
     },
   },
-};
-
+}
 
 Page({
   data: cfg,
-  onLoad() {
-  },
+  onLoad() {},
   onSelect(e) {
-    const selectedData = e.currentTarget.dataset.name || '';
-    selectedData && my.alert({
-      title: 'Terms Btns',
-      content: selectedData,
-    });
+    const selectedData = e.currentTarget.dataset.name || ''
+    selectedData &&
+      my.alert({
+        title: 'Terms Btns',
+        content: selectedData,
+      })
   },
-
-});
+})

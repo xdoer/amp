@@ -1,12 +1,11 @@
 Page({
-
-  getServerTime(){
+  getServerTime() {
     my.getServerTime({
       success: (res) => {
         my.alert({
           content: res.time,
-        });
+        })
       },
-    });
-  }
+    })
+  },
 })

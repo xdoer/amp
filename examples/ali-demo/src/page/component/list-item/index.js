@@ -1,5 +1,5 @@
 const thumb =
-  'https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*XMCgSYx3f50AAAAAAAAAAABkARQnAQ';
+  'https://gw.alipayobjects.com/mdn/rms_ce4c6f/afts/img/A*XMCgSYx3f50AAAAAAAAAAABkARQnAQ'
 Page({
   data: {
     title: '单行列表1',
@@ -51,24 +51,24 @@ Page({
     },
   },
   setInfo(e) {
-    const { dataset } = e.target;
-    const { name } = dataset;
+    const { dataset } = e.target
+    const { name } = dataset
     if (name) {
       this.setData({
         [name]: e.detail.value,
-      });
+      })
     }
   },
   setSecInfo(e) {
-    const { dataset } = e.target;
-    const { name } = dataset;
+    const { dataset } = e.target
+    const { name } = dataset
     if (name) {
       this.setData({
         secondary: {
           ...this.data.secondary,
           [name]: e.detail.value,
         },
-      });
+      })
     }
   },
-});
+})

@@ -8,8 +8,8 @@ Page({
       success: (result) => {
         my.alert({
           title: `${result.confirm}`,
-        });
+        })
       },
-    });
+    })
   },
-});
+})

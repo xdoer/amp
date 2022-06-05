@@ -1,10 +1,10 @@
-var plugin = requirePlugin("myPlugin");
+var plugin = requirePlugin('myPlugin')
 
 Page({
   onLoad(query) {
-    plugin.getData();
+    plugin.getData()
     // 页面加载
-    console.info(`Page onLoad with query: ${JSON.stringify(query)}`);
+    console.info(`Page onLoad with query: ${JSON.stringify(query)}`)
   },
   onReady() {
     // 页面加载完成
@@ -33,11 +33,11 @@ Page({
       title: 'My App',
       desc: 'My App description',
       path: 'pages/index/index',
-    };
+    }
   },
   navigateToPlugin() {
     my.navigateTo({
       url: 'plugin://myPlugin/hello-page',
-    });
-  }
-});
+    })
+  },
+})

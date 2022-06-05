@@ -9,7 +9,5 @@
       }
     }
   },
-  "pages": [
-    "pages/component/index"
-  ]
+  "pages": ["pages/component/index"]
 }

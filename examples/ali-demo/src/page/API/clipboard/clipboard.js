@@ -7,20 +7,20 @@ Page({
   handleInput(e) {
     this.setData({
       text: e.detail.value,
-    });
+    })
   },
 
   handleCopy() {
     my.setClipboard({
       text: this.data.text,
-    });
+    })
   },
 
   handlePaste() {
     my.getClipboard({
       success: ({ text }) => {
-        this.setData({ copy: text });
+        this.setData({ copy: text })
       },
-    });
+    })
   },
-});
+})

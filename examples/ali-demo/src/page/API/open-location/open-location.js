@@ -13,5 +13,5 @@ Page({
       name: this.data.name,
       address: this.data.address,
     })
-  }
+  },
 })

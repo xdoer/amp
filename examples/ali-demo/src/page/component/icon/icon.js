@@ -1,9 +1,7 @@
 Page({
   data: {
     iconSize: [20, 30, 40, 50, 60],
-    iconColor: [
-      'red', 'yellow', 'blue', 'green',
-    ],
+    iconColor: ['red', 'yellow', 'blue', 'green'],
     iconType: [
       'success',
       'info',
@@ -16,4 +14,4 @@ Page({
       'search',
     ],
   },
-});
+})

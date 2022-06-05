@@ -1,6 +1,6 @@
 {
   "defaultTitle": "Card",
-  "usingComponents":{
+  "usingComponents": {
     "card": "mini-ali-ui/es/card/index"
   }
 }
