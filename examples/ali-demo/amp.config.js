@@ -7,7 +7,7 @@ module.exports = {
   outputRoot: 'dist',
   defineConstants: {},
   alias: {},
-  style: '.less',
+  // style: '.acss',
   entryIncludes: [
     path.resolve('src/app.js'),
     path.resolve('src/app.acss'),
