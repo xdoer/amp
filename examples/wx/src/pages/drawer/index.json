@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "Drawer 抽屉",
-  "usingComponents": {
-    "i-drawer": "../../comp-lib/drawer/index",
-    "i-button": "../../comp-lib/button/index"
-  }
-}

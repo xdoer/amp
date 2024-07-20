@@ -1,9 +1,0 @@
-{
-  "navigationBarTitleText": "Color 色彩",
-  "usingComponents": {
-    "i-card": "../../comp-lib/card/index",
-    "i-row": "../../comp-lib/row/index",
-    "i-col": "../../comp-lib/col/index",
-    "i-panel": "../../comp-lib/panel/index"
-  }
-}

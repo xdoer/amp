@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "TabBar 标签栏",
-  "usingComponents": {
-    "i-tab-bar": "../../comp-lib/tab-bar/index",
-    "i-tab-bar-item": "../../comp-lib/tab-bar-item/index",
-    "i-panel": "../../comp-lib/panel/index"
-  }
-}

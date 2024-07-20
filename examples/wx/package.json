@@ -4,7 +4,7 @@
   "description": "A mpx project",
   "main": "index.js",
   "scripts": {
-    "dev": "amp -w --analyze",
+    "dev": "amp -w",
     "build": "amp"
   },
   "author": "sky-admin <546485299@qq.com>",

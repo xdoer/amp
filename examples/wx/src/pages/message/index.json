@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "Message 全局提醒",
-  "usingComponents": {
-    "i-message": "../../comp-lib/message/index",
-    "i-button": "../../comp-lib/button/index"
-  }
-}

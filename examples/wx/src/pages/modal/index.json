@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "Modal 对话框",
-  "usingComponents": {
-    "i-modal": "../../comp-lib/modal/index",
-    "i-button": "../../comp-lib/button/index",
-    "i-message": "../../comp-lib/message/index"
-  }
-}

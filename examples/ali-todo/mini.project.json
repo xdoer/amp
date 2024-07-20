@@ -1,7 +1,11 @@
 {
-  "component2": true,
-  "enableAppxNg": true,
-  "enableHMR": true,
+  "format": 2,
+  "developOptions": {
+    "hotReload": true
+  },
+  "compileOptions": {
+    "component2": true
+  },
   "miniprogramRoot": "./dist",
   "compileType": "mini"
 }

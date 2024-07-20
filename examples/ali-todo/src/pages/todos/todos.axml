@@ -6,7 +6,7 @@
   </view>
 
   <view class="todo-items">
-
+    <!-- AMP framework -->
     <checkbox-group class="todo-items-group" onChange="onTodoChanged">
       <label a:for="{{todos}}" a:for-item="item" class="todo-item {{item.completed ? 'checked' : ''}}" a:key="*this">
         <checkbox class="todo-item-checkbox" value="{{item.text}}" checked="{{item.completed}}" />

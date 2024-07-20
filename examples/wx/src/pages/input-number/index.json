@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "InputNumber 数字输入框",
-  "usingComponents": {
-    "i-input-number": "../../comp-lib/input-number/index",
-    "i-panel": "../../comp-lib/panel/index"
-  }
-}
